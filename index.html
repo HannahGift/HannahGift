@@ -185,9 +185,12 @@
         .container {
             position: relative;
             z-index: 10;
-            padding: 20px;
+            padding: 15px;
             max-width: 500px;
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .content-wrapper {
@@ -206,6 +209,8 @@
             animation: floatContainer 7s ease-in-out infinite;
             position: relative;
             overflow: hidden;
+            width: 100%;
+            max-width: 500px;
         }
 
         .content-wrapper::before {
@@ -373,8 +378,8 @@
         }
 
         #cat-gif {
-            width: clamp(180px, 50vw, 260px);
-            height: clamp(180px, 50vw, 260px);
+            width: clamp(180px, 45vw, 240px);
+            height: clamp(180px, 45vw, 240px);
             object-fit: contain;
             filter: drop-shadow(0 15px 40px var(--shadow-pink));
             transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -400,17 +405,17 @@
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* Buttons */
+        /* Buttons - FIXED LAYOUT */
         .buttons {
             display: flex;
-            gap: 20px;
-            justify-content: center;
+            flex-direction: column;
+            gap: 15px;
             align-items: center;
             margin-top: 40px;
-            flex-wrap: wrap;
             animation: fadeIn 1.2s ease 1s backwards;
             position: relative;
             z-index: 2;
+            width: 100%;
         }
 
         .btn {
@@ -425,6 +430,8 @@
             letter-spacing: 0.5px;
             transform-style: preserve-3d;
             touch-action: manipulation;
+            width: fit-content;
+            max-width: 90%;
         }
 
         #yes-btn {
@@ -440,6 +447,7 @@
                 inset 0 3px 15px rgba(255, 255, 255, 0.4);
             animation: yesButtonPulse 2.5s ease-in-out infinite;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            order: 1;
         }
 
         @keyframes yesButtonPulse {
@@ -470,7 +478,7 @@
         }
 
         #yes-btn:hover {
-            transform: scale(1.1) translateY(-5px);
+            transform: scale(1.08) translateY(-5px);
             box-shadow: 
                 0 20px 50px rgba(76, 175, 80, 0.6),
                 0 10px 30px rgba(76, 175, 80, 0.4);
@@ -480,6 +488,7 @@
             transform: scale(1.05) translateY(-2px);
         }
 
+        /* No button - stays visible */
         #no-btn {
             background: linear-gradient(135deg, var(--red-primary) 0%, #FF5252 50%, #FF3838 100%);
             color: white;
@@ -491,16 +500,26 @@
                 inset 0 -2px 10px rgba(0, 0, 0, 0.15);
             transition: all 0.3s ease;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            order: 2;
+            min-width: 100px;
         }
 
         #no-btn:hover {
             background: linear-gradient(135deg, #FF5252 0%, #FF3838 50%, #FF1F1F 100%);
-            transform: scale(1.08) translateY(-2px);
+            transform: scale(1.05) translateY(-2px);
             box-shadow: 0 10px 35px rgba(255, 107, 107, 0.5);
         }
 
         #no-btn:active {
             transform: scale(1.02);
+        }
+
+        /* Runaway mode for No button */
+        #no-btn.runaway-mode {
+            position: fixed !important;
+            order: initial;
+            z-index: 100;
+            min-width: auto;
         }
 
         /* Toast message */
@@ -660,8 +679,8 @@
         }
 
         .yes-page #cat-gif {
-            width: clamp(220px, 60vw, 350px);
-            height: clamp(220px, 60vw, 350px);
+            width: clamp(220px, 55vw, 320px);
+            height: clamp(220px, 55vw, 320px);
             animation: celebrateGif 1.2s ease-in-out infinite alternate;
         }
 
@@ -688,7 +707,7 @@
             }
 
             .buttons {
-                gap: 15px;
+                gap: 12px;
                 margin-top: 30px;
             }
 
@@ -714,50 +733,78 @@
 
             .buttons {
                 margin-top: 25px;
-                gap: 12px;
+                gap: 10px;
+            }
+
+            #cat-gif {
+                width: clamp(160px, 45vw, 200px);
+                height: clamp(160px, 45vw, 200px);
             }
         }
 
         /* Touch device optimizations */
         @media (hover: none) and (pointer: coarse) {
             #yes-btn:active {
-                transform: scale(1.15) translateY(-3px);
+                transform: scale(1.12) translateY(-3px);
             }
 
             #no-btn:active {
-                transform: scale(1.1) translateY(-2px);
+                transform: scale(1.05) translateY(-2px);
             }
 
             #cat-gif:active {
-                transform: scale(1.08);
+                transform: scale(1.05);
             }
         }
 
         /* Landscape mobile */
         @media (max-height: 600px) and (orientation: landscape) {
             .content-wrapper {
-                padding: 25px 30px;
+                padding: 20px 30px;
             }
 
             .question-title {
-                margin-bottom: 15px;
+                margin-bottom: 12px;
+                font-size: clamp(1.5rem, 6vw, 2.5rem);
+            }
+
+            .valentine-word {
+                font-size: clamp(2rem, 8vw, 3.2rem);
             }
 
             #cat-gif {
-                width: clamp(120px, 30vh, 180px);
-                height: clamp(120px, 30vh, 180px);
+                width: clamp(100px, 25vh, 150px);
+                height: clamp(100px, 25vh, 150px);
             }
 
             .gif-container {
-                margin: 15px auto;
+                margin: 12px auto;
             }
 
             .buttons {
-                margin-top: 20px;
+                margin-top: 15px;
+                gap: 8px;
             }
 
             #tease-toast {
-                margin-top: 15px;
+                margin-top: 12px;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 360px) {
+            .content-wrapper {
+                padding: 30px 15px 25px;
+            }
+
+            #yes-btn {
+                font-size: clamp(1.2rem, 5vw, 1.8rem);
+                padding: clamp(15px, 4vw, 20px) clamp(30px, 8vw, 50px);
+            }
+
+            #no-btn {
+                font-size: clamp(0.9rem, 4vw, 1.1rem);
+                padding: clamp(10px, 3vw, 14px) clamp(20px, 6vw, 30px);
             }
         }
     </style>
@@ -927,7 +974,6 @@
                         music.muted = false;
                     }, 100);
                 }).catch(() => {
-                    // Fallback: play on first interaction
                     const playOnInteraction = () => {
                         music.muted = false;
                         music.play().catch(() => {});
@@ -940,10 +986,9 @@
             }
         }
 
-        // Initialize on load
         window.addEventListener('load', initMusic);
 
-        // Music toggle with better feedback
+        // Music toggle
         musicToggle.addEventListener('click', (e) => {
             e.preventDefault();
             const icon = musicToggle.querySelector('.music-icon');
@@ -973,7 +1018,6 @@
                 yesTeasedCount++;
                 showTeaseMessage(msg);
                 
-                // Add bounce effect
                 yesBtn.style.animation = 'none';
                 setTimeout(() => {
                     yesBtn.style.animation = '';
@@ -993,7 +1037,7 @@
             toast._timer = setTimeout(() => toast.classList.remove('show'), 3000);
         }
 
-        // No button click
+        // No button click with smart growth limiting
         noBtn.addEventListener('click', handleNoClick);
 
         function handleNoClick(e) {
@@ -1005,24 +1049,36 @@
             const msgIndex = Math.min(noClickCount, noMessages.length - 1);
             noBtn.querySelector('.btn-text').textContent = noMessages[msgIndex];
 
-            // Grow Yes button progressively
+            // Smart Yes button growth - limits based on screen size
             const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
-            const newSize = currentSize * 1.35;
+            const maxSize = window.innerWidth < 768 ? currentSize * 2.5 : currentSize * 4;
+            const newSize = Math.min(currentSize * 1.25, maxSize);
             yesBtn.style.fontSize = `${newSize}px`;
             
-            const basePadY = parseInt(window.getComputedStyle(yesBtn).paddingTop);
-            const basePadX = parseInt(window.getComputedStyle(yesBtn).paddingLeft);
-            const padY = Math.min(basePadY + noClickCount * 5, basePadY * 3);
-            const padX = Math.min(basePadX + noClickCount * 12, basePadX * 2.5);
+            const basePadY = 18;
+            const basePadX = 40;
+            const maxPadY = window.innerWidth < 768 ? 40 : 60;
+            const maxPadX = window.innerWidth < 768 ? 80 : 120;
+            
+            const padY = Math.min(basePadY + noClickCount * 4, maxPadY);
+            const padX = Math.min(basePadX + noClickCount * 8, maxPadX);
             yesBtn.style.padding = `${padY}px ${padX}px`;
 
-            // Shrink No button
+            // Shrink No button gradually
             if (noClickCount >= 2) {
                 const noSize = parseFloat(window.getComputedStyle(noBtn).fontSize);
-                noBtn.style.fontSize = `${Math.max(noSize * 0.85, 10)}px`;
+                const minSize = window.innerWidth < 768 ? 10 : 12;
+                noBtn.style.fontSize = `${Math.max(noSize * 0.88, minSize)}px`;
+                
+                // Shrink padding too
+                if (noClickCount >= 3) {
+                    const noPadY = Math.max(12 - noClickCount, 8);
+                    const noPadX = Math.max(25 - noClickCount * 2, 15);
+                    noBtn.style.padding = `${noPadY}px ${noPadX}px`;
+                }
             }
 
-            // Change GIF with smooth transition
+            // Change GIF
             const gifIndex = Math.min(noClickCount, gifStages.length - 1);
             swapGif(gifStages[gifIndex]);
 
@@ -1032,11 +1088,13 @@
                 runawayEnabled = true;
             }
 
-            // Add shake effect to No button
             noBtn.style.animation = 'none';
             setTimeout(() => {
                 noBtn.style.animation = '';
             }, 10);
+
+            // Vibration feedback
+            vibrate(50);
         }
 
         // Swap GIF with enhanced animation
@@ -1051,8 +1109,9 @@
             }, 400);
         }
 
-        // Enable runaway mode with mobile support
+        // Enable runaway mode
         function enableRunaway() {
+            noBtn.classList.add('runaway-mode');
             noBtn.addEventListener('mouseover', runAway);
             noBtn.addEventListener('touchstart', runAway, { passive: true });
         }
@@ -1060,7 +1119,7 @@
         function runAway(e) {
             if (e) e.preventDefault();
             
-            const margin = 20;
+            const margin = 30;
             const btnW = noBtn.offsetWidth;
             const btnH = noBtn.offsetHeight;
             const maxX = window.innerWidth - btnW - margin;
@@ -1070,29 +1129,30 @@
             const randomY = Math.random() * (maxY - margin) + margin;
             const randomRotation = Math.random() * 40 - 20;
 
-            noBtn.style.position = 'fixed';
             noBtn.style.left = `${randomX}px`;
             noBtn.style.top = `${randomY}px`;
             noBtn.style.transform = `rotate(${randomRotation}deg) scale(0.9)`;
-            noBtn.style.zIndex = '50';
             
             setTimeout(() => {
                 noBtn.style.transform = `rotate(${randomRotation}deg) scale(1)`;
             }, 150);
+
+            vibrate(30);
         }
 
-        // Show yes page with enhanced confetti
+        // Show yes page
         function showYesPage() {
             mainPage.style.display = 'none';
             yesPage.classList.add('active');
             
-            // Small delay for page transition
             setTimeout(() => {
                 launchConfetti();
             }, 200);
+
+            vibrate([50, 100, 50]);
         }
 
-        // Enhanced confetti celebration
+        // Enhanced confetti
         function launchConfetti() {
             const colors = [
                 '#ff69b4', '#ff1493', '#ff85a2', '#ffb3c1', 
@@ -1114,14 +1174,13 @@
                 ticks: 300
             });
 
-            // Continuous side cannons
+            // Continuous cannons
             const interval = setInterval(() => {
                 if (Date.now() > end) {
                     clearInterval(interval);
                     return;
                 }
 
-                // Left cannon
                 confetti({
                     particleCount: 60,
                     angle: 60,
@@ -1131,7 +1190,6 @@
                     startVelocity: 45
                 });
 
-                // Right cannon
                 confetti({
                     particleCount: 60,
                     angle: 120,
@@ -1142,7 +1200,7 @@
                 });
             }, 200);
 
-            // Extra celebration bursts
+            // Extra bursts
             setTimeout(() => {
                 confetti({
                     particleCount: 200,
@@ -1188,7 +1246,7 @@
             }, 4000);
         }
 
-        // Prevent double-tap zoom on mobile
+        // Prevent double-tap zoom
         let lastTouchEnd = 0;
         document.addEventListener('touchend', (e) => {
             const now = Date.now();
@@ -1198,15 +1256,12 @@
             lastTouchEnd = now;
         }, { passive: false });
 
-        // Add haptic feedback for mobile (if supported)
+        // Vibration helper
         function vibrate(pattern = 50) {
             if ('vibrate' in navigator) {
                 navigator.vibrate(pattern);
             }
         }
-
-        yesBtn.addEventListener('click', () => vibrate(30));
-        noBtn.addEventListener('click', () => vibrate(50));
     </script>
 </body>
 </html>
