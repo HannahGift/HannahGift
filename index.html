@@ -3,34 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will you be my Valentine? 💕</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <title>Valentine's Day Celebration</title>
+    <style>
+        body {
+            background-color: #FFEBEE;
+            font-family: 'Arial', sans-serif;
+            color: #C2185B;
+            text-align: center;
+            animation: fadeIn 2s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        h1 {
+            font-size: 3em;
+            margin-top: 20px;
+        }
+        .heart {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background-color: #C2185B;
+            position: relative;
+            animation: pulse 1.5s infinite;
+        }
+        .heart::before, .heart::after {
+            content: '';
+            background-color: #C2185B;
+            border-radius: 50%;
+            position: absolute;
+            width: 100px;
+            height: 100px;
+        }
+        .heart::before {
+            top: -50px;
+            left: 0;
+        }
+        .heart::after {
+            left: 50px;
+            top: 0;
+        }
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            background-color: #D81B60;
+            color: #FFFFFF;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #C2185B;
+        }
+    </style>
 </head>
 <body>
-    <div class="hearts-bg"></div>
-
-    <div class="container">
-        <h1>Will you be my Valentine? 💕</h1>
-
-        <div class="gif-container">
-            <img id="cat-gif" src="https://media.tenor.com/EBV7OT7ACfwAAAAj/u-u-qua-qua-u-quaa.gif" alt="cute character">
-        </div>
-
-        <div class="buttons">
-            <button id="yes-btn" onclick="handleYesClick()">Yes</button>
-            <button id="no-btn" onclick="handleNoClick()">No</button>
-        </div>
-        <div id="tease-toast"></div>
-    </div>
-
-    <audio id="bg-music" loop autoplay muted>
-        <source src="music/beabadoobee - Glue Song (Lyrics).mp3" type="audio/mpeg">
-    </audio>
-
-    <button id="music-toggle" onclick="toggleMusic()" title="Toggle music">🔊</button>
-
-    <script src="script.js"></script>
+    <h1>Happy Valentine's Day!</h1>
+    <div class="heart"></div>
+    <p>Join us in celebrating love and friendship with interactive games and heartfelt messages!</p>
+    <button onclick="alert('Thank you for joining us!')">Click Me!</button>
 </body>
 </html>
