@@ -3,74 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Day Celebration</title>
+    <title>Happy Valentine’s Day!</title>
     <style>
         body {
-            background-color: #FFEBEE;
-            font-family: 'Arial', sans-serif;
-            color: #C2185B;
-            text-align: center;
-            animation: fadeIn 2s ease;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f06, #a0e);
+            overflow-y: scroll;
+            scrollbar-width: thin;
+            scrollbar-color: #888 #f0f0f0;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        /* Scrollbar styles */
+        body::-webkit-scrollbar {
+            width: 8px;
+        }
+        body::-webkit-scrollbar-track {
+            background: #f0f0f0;
+        }
+        body::-webkit-scrollbar-thumb {
+            background-color: #888;
+            border-radius: 10px;
         }
         h1 {
-            font-size: 3em;
-            margin-top: 20px;
+            text-align: center;
+            color: #fff;
+            margin-top: 50px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
         }
-        .heart {
-            display: inline-block;
-            width: 100px;
-            height: 100px;
-            background-color: #C2185B;
-            position: relative;
-            animation: pulse 1.5s infinite;
+        .greeting {
+            font-size: 2em;
+            margin-bottom: 20px;
         }
-        .heart::before, .heart::after {
-            content: '';
-            background-color: #C2185B;
-            border-radius: 50%;
-            position: absolute;
-            width: 100px;
-            height: 100px;
+        .animated-gif {
+            display: flex;
+            justify-content: center;
+            animatemovingEffect 5s infinite;
         }
-        .heart::before {
-            top: -50px;
-            left: 0;
-        }
-        .heart::after {
-            left: 50px;
-            top: 0;
-        }
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 1.2em;
+        /* Button styles */
+        .button {
+            background-color: #ff5c57;
             border: none;
-            border-radius: 5px;
-            background-color: #D81B60;
-            color: #FFFFFF;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition: background-color 0.3s ease; /* Smooth transition */
+            border-radius: 12px;
             cursor: pointer;
-            margin-top: 20px;
         }
-        button:hover {
-            background-color: #C2185B;
+        /* Button hover effect */
+        .button:hover {
+            background-color: #ff7b5a;
+        }
+        /* Custom symbols instead of emojis */
+        .custom-symbol {
+            font-size: 2em;
+        }
+        /* Glassmorphism effects */
+        .card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        /* Bouncing animation */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Happy Valentine's Day!</h1>
-    <div class="heart"></div>
-    <p>Join us in celebrating love and friendship with interactive games and heartfelt messages!</p>
-    <button onclick="alert('Thank you for joining us!')">Click Me!</button>
+    <h1 class="greeting">Happy Valentine’s Day, Hannah!</h1>
+    <div class="animated-gif">
+        <!-- Multiple animated GIF sections -->
+        <img src="gif1.gif" alt="Animation 1">
+        <img src="gif2.gif" alt="Animation 2">
+    </div>
+    <div class="interactive-buttons">
+        <button class="button">Click Me!</button>
+        <button class="button">Another Action!</button>
+    </div>
+    <div class="custom-symbol">❤️ 🥰 🌹</div>
 </body>
 </html>
