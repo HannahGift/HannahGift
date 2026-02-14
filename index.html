@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Will you be my Valentine? 💕</title>
+    <title>Will you be my Valentine? 🦈💙</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
@@ -15,18 +15,13 @@
         }
 
         :root {
-            --pink-light: #FFE4E8;
-            --pink-medium: #FFB3C1;
-            --pink-vibrant: #FF69B4;
-            --pink-hot: #FF1493;
-            --purple-soft: #E5B8F4;
-            --purple-medium: #C77DFF;
-            --peach: #FFCCD5;
-            --cream: #FFF5F7;
-            --green-primary: #4CAF50;
-            --green-glow: #81C784;
-            --red-primary: #FF6B6B;
-            --shadow-pink: rgba(255, 105, 180, 0.4);
+            --ocean-deep: #001829;
+            --ocean-mid: #003d5c;
+            --ocean-light: #006994;
+            --ocean-bright: #0099cc;
+            --aqua: #00ccff;
+            --cyan-light: #66e0ff;
+            --coral: #ff6b9d;
         }
 
         body {
@@ -37,148 +32,311 @@
             align-items: center;
             overflow: hidden;
             position: relative;
-            background: 
-                radial-gradient(circle at 15% 85%, var(--pink-medium) 0%, transparent 45%),
-                radial-gradient(circle at 85% 15%, var(--purple-soft) 0%, transparent 45%),
-                radial-gradient(circle at 50% 50%, var(--peach) 0%, transparent 35%),
-                radial-gradient(circle at 30% 30%, var(--cream) 0%, transparent 40%),
-                linear-gradient(135deg, var(--pink-light) 0%, #E8D5F2 50%, var(--purple-soft) 100%);
-            animation: gradientShift 20s ease-in-out infinite;
+            background: linear-gradient(180deg, 
+                #004d73 0%, 
+                #003952 20%, 
+                #002838 50%, 
+                #001f2e 80%, 
+                #001520 100%);
         }
 
-        @keyframes gradientShift {
+        /* Caustic light patterns (water surface reflection) */
+        .caustics {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse 800px 400px at 20% 30%, rgba(0, 204, 255, 0.1) 0%, transparent 40%),
+                radial-gradient(ellipse 600px 300px at 80% 60%, rgba(102, 224, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(ellipse 700px 350px at 50% 80%, rgba(0, 153, 204, 0.09) 0%, transparent 40%);
+            animation: causticMove 15s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.8;
+        }
+
+        @keyframes causticMove {
             0%, 100% { 
-                filter: hue-rotate(0deg) brightness(1.05);
-                background-position: 0% 50%;
+                transform: translateX(0) translateY(0);
+                opacity: 0.6;
             }
             50% { 
-                filter: hue-rotate(15deg) brightness(1.1);
-                background-position: 100% 50%;
+                transform: translateX(-10%) translateY(-5%);
+                opacity: 0.8;
             }
         }
 
-        /* Floating elements */
-        .hearts-bg {
+        /* Depth fog effect */
+        .depth-fog {
             position: fixed;
-            top: 0; left: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 24, 41, 0.4) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* God rays from surface */
+        .god-rays {
+            position: fixed;
+            top: -50%;
+            left: -10%;
+            width: 120%;
+            height: 150%;
+            background: 
+                linear-gradient(110deg, transparent 0%, rgba(0, 204, 255, 0.03) 48%, rgba(102, 224, 255, 0.08) 50%, rgba(0, 204, 255, 0.03) 52%, transparent 100%),
+                linear-gradient(95deg, transparent 0%, rgba(0, 204, 255, 0.02) 48%, rgba(102, 224, 255, 0.06) 50%, rgba(0, 204, 255, 0.02) 52%, transparent 100%),
+                linear-gradient(125deg, transparent 0%, rgba(0, 204, 255, 0.025) 48%, rgba(102, 224, 255, 0.07) 50%, rgba(0, 204, 255, 0.025) 52%, transparent 100%);
+            background-size: 400px 100%, 500px 100%, 350px 100%;
+            background-position: 0 0, 100px 0, 250px 0;
+            animation: godRayShift 25s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.7;
+        }
+
+        @keyframes godRayShift {
+            0% { transform: translateX(0) translateY(0) rotate(5deg); }
+            100% { transform: translateX(-200px) translateY(50px) rotate(5deg); }
+        }
+
+        /* Particle system - plankton/debris */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 0;
+            z-index: 2;
             overflow: hidden;
         }
 
-        .heart {
+        .particle {
             position: absolute;
-            font-size: 2.5rem;
-            opacity: 0;
-            animation: floatHeart 18s linear infinite;
-            filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.5));
-            will-change: transform;
+            width: 2px;
+            height: 2px;
+            background: rgba(102, 224, 255, 0.6);
+            border-radius: 50%;
+            animation: floatParticle 20s linear infinite;
+            box-shadow: 0 0 4px rgba(102, 224, 255, 0.8);
         }
 
-        .heart:nth-child(1) { left: 5%; animation-delay: 0s; }
-        .heart:nth-child(2) { left: 15%; animation-delay: 3s; font-size: 2rem; }
-        .heart:nth-child(3) { left: 30%; animation-delay: 6s; font-size: 3rem; }
-        .heart:nth-child(4) { left: 45%; animation-delay: 2s; font-size: 1.8rem; }
-        .heart:nth-child(5) { left: 60%; animation-delay: 8s; font-size: 2.3rem; }
-        .heart:nth-child(6) { left: 75%; animation-delay: 5s; font-size: 2.7rem; }
-        .heart:nth-child(7) { left: 90%; animation-delay: 10s; font-size: 2rem; }
-        .heart:nth-child(8) { left: 20%; animation-delay: 12s; font-size: 2.5rem; }
-
-        @keyframes floatHeart {
-            0% { 
-                transform: translateY(120vh) rotate(0deg) scale(0.3);
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(0.5);
                 opacity: 0;
             }
-            5% { opacity: 0.8; }
-            50% { 
-                transform: translateY(50vh) rotate(180deg) scale(1);
-                opacity: 0.9;
+            10% {
+                opacity: 0.8;
             }
-            95% { opacity: 0.7; }
-            100% { 
-                transform: translateY(-20vh) rotate(360deg) scale(1.3);
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-20vh) translateX(var(--drift)) scale(1);
                 opacity: 0;
             }
         }
 
-        /* Bubble effects */
-        .bubbles {
+        /* Custom ASCII fish */
+        .fish-container {
             position: fixed;
-            top: 0; left: 0;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1;
+            z-index: 3;
+            overflow: hidden;
+            font-family: monospace;
+        }
+
+        .fish {
+            position: absolute;
+            color: var(--cyan-light);
+            opacity: 0;
+            animation: swimAcross 30s linear infinite;
+            text-shadow: 0 0 10px rgba(102, 224, 255, 0.6);
+            white-space: pre;
+            line-height: 1.2;
+            font-size: 14px;
+        }
+
+        .fish:nth-child(1) { top: 15%; animation-delay: 0s; }
+        .fish:nth-child(2) { top: 30%; animation-delay: 7s; }
+        .fish:nth-child(3) { top: 50%; animation-delay: 14s; }
+        .fish:nth-child(4) { top: 70%; animation-delay: 4s; }
+        .fish:nth-child(5) { top: 85%; animation-delay: 11s; }
+        .fish:nth-child(6) { top: 40%; animation-delay: 18s; }
+
+        @keyframes swimAcross {
+            0% {
+                left: -15%;
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                left: 115%;
+                opacity: 0;
+            }
+        }
+
+        /* Bubbles with better underwater effect */
+        .bubbles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 4;
             overflow: hidden;
         }
 
         .bubble {
             position: absolute;
-            bottom: -100px;
-            width: 40px;
-            height: 40px;
-            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(255, 182, 193, 0.3));
+            bottom: -50px;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle at 35% 35%, 
+                rgba(255, 255, 255, 0.9) 0%, 
+                rgba(102, 224, 255, 0.3) 30%, 
+                rgba(0, 204, 255, 0.2) 60%,
+                transparent 100%);
             border-radius: 50%;
-            opacity: 0.6;
-            animation: riseBubble 15s ease-in-out infinite;
-            box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: bubbleRise 15s ease-in infinite;
+            box-shadow: 
+                inset 2px 2px 4px rgba(255, 255, 255, 0.4),
+                0 0 10px rgba(102, 224, 255, 0.3);
         }
 
-        .bubble:nth-child(1) { left: 10%; animation-delay: 0s; width: 30px; height: 30px; }
-        .bubble:nth-child(2) { left: 25%; animation-delay: 2s; width: 50px; height: 50px; }
-        .bubble:nth-child(3) { left: 40%; animation-delay: 4s; width: 35px; height: 35px; }
-        .bubble:nth-child(4) { left: 60%; animation-delay: 1s; width: 45px; height: 45px; }
-        .bubble:nth-child(5) { left: 75%; animation-delay: 3s; width: 40px; height: 40px; }
-        .bubble:nth-child(6) { left: 90%; animation-delay: 5s; width: 30px; height: 30px; }
+        .bubble:nth-child(1) { left: 10%; animation-delay: 0s; width: 15px; height: 15px; }
+        .bubble:nth-child(2) { left: 20%; animation-delay: 2s; width: 25px; height: 25px; }
+        .bubble:nth-child(3) { left: 30%; animation-delay: 5s; width: 12px; height: 12px; }
+        .bubble:nth-child(4) { left: 40%; animation-delay: 1s; width: 20px; height: 20px; }
+        .bubble:nth-child(5) { left: 50%; animation-delay: 4s; width: 18px; height: 18px; }
+        .bubble:nth-child(6) { left: 60%; animation-delay: 3s; width: 22px; height: 22px; }
+        .bubble:nth-child(7) { left: 70%; animation-delay: 6s; width: 16px; height: 16px; }
+        .bubble:nth-child(8) { left: 80%; animation-delay: 2.5s; width: 14px; height: 14px; }
+        .bubble:nth-child(9) { left: 90%; animation-delay: 4.5s; width: 19px; height: 19px; }
+        .bubble:nth-child(10) { left: 15%; animation-delay: 7s; width: 17px; height: 17px; }
+        .bubble:nth-child(11) { left: 45%; animation-delay: 5.5s; width: 21px; height: 21px; }
+        .bubble:nth-child(12) { left: 75%; animation-delay: 1.5s; width: 13px; height: 13px; }
 
-        @keyframes riseBubble {
+        @keyframes bubbleRise {
             0% {
-                transform: translateY(0) translateX(0) scale(1);
+                transform: translateY(0) translateX(0) scale(0.8);
                 opacity: 0;
             }
-            10% { opacity: 0.6; }
-            50% {
-                transform: translateY(-50vh) translateX(30px);
+            10% {
+                opacity: 0.8;
             }
-            90% { opacity: 0.6; }
+            50% {
+                transform: translateY(-50vh) translateX(20px) scale(1);
+            }
+            90% {
+                opacity: 0.7;
+            }
             100% {
-                transform: translateY(-110vh) translateX(-30px) scale(1.5);
+                transform: translateY(-110vh) translateX(-15px) scale(1.1);
                 opacity: 0;
             }
         }
 
-        /* Sparkle layer */
-        .sparkles {
+        /* Jellyfish ASCII art */
+        .jellyfish-container {
             position: fixed;
-            top: 0; left: 0;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1;
-            background-image: 
-                radial-gradient(2px 2px at 20% 30%, white, transparent),
-                radial-gradient(2px 2px at 60% 70%, rgba(255, 182, 193, 0.8), transparent),
-                radial-gradient(1px 1px at 50% 50%, rgba(255, 105, 180, 0.6), transparent),
-                radial-gradient(1px 1px at 80% 10%, white, transparent),
-                radial-gradient(2px 2px at 90% 60%, rgba(255, 182, 193, 0.7), transparent),
-                radial-gradient(1px 1px at 33% 80%, white, transparent);
-            background-size: 200% 200%;
-            background-position: 0% 0%;
-            animation: sparkleShine 8s ease-in-out infinite;
-            opacity: 0.7;
+            z-index: 3;
+            overflow: hidden;
+            font-family: monospace;
         }
 
-        @keyframes sparkleShine {
-            0%, 100% { 
-                background-position: 0% 0%;
-                opacity: 0.7;
+        .jellyfish {
+            position: absolute;
+            color: rgba(255, 107, 157, 0.7);
+            opacity: 0;
+            animation: jellyfishFloat 25s ease-in-out infinite;
+            text-shadow: 0 0 15px rgba(255, 107, 157, 0.8);
+            white-space: pre;
+            line-height: 1;
+            font-size: 12px;
+        }
+
+        .jellyfish:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .jellyfish:nth-child(2) { left: 30%; animation-delay: 8s; }
+        .jellyfish:nth-child(3) { left: 60%; animation-delay: 4s; }
+        .jellyfish:nth-child(4) { left: 80%; animation-delay: 12s; }
+
+        @keyframes jellyfishFloat {
+            0% {
+                transform: translateY(110vh) scale(0.8);
+                opacity: 0;
             }
-            50% { 
-                background-position: 100% 100%;
-                opacity: 1;
+            10% {
+                opacity: 0.6;
             }
+            50% {
+                transform: translateY(50vh) scale(1);
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-20vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Seaweed swaying */
+        .seaweed-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            pointer-events: none;
+            z-index: 2;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+        }
+
+        .seaweed {
+            color: rgba(0, 153, 102, 0.4);
+            font-family: monospace;
+            white-space: pre;
+            line-height: 1;
+            font-size: 20px;
+            animation: seaweedSway 4s ease-in-out infinite;
+            text-shadow: 0 0 10px rgba(0, 153, 102, 0.3);
+        }
+
+        .seaweed:nth-child(1) { animation-delay: 0s; }
+        .seaweed:nth-child(2) { animation-delay: 0.5s; }
+        .seaweed:nth-child(3) { animation-delay: 1s; }
+        .seaweed:nth-child(4) { animation-delay: 1.5s; }
+        .seaweed:nth-child(5) { animation-delay: 0.8s; }
+
+        @keyframes seaweedSway {
+            0%, 100% { transform: skewX(0deg) scaleY(1); }
+            25% { transform: skewX(3deg) scaleY(1.02); }
+            75% { transform: skewX(-3deg) scaleY(0.98); }
         }
 
         /* Main container */
@@ -194,19 +352,19 @@
         }
 
         .content-wrapper {
-            background: rgba(255, 255, 255, 0.35);
-            backdrop-filter: blur(40px) saturate(180%);
-            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            background: rgba(0, 61, 92, 0.3);
+            backdrop-filter: blur(20px) saturate(150%);
+            -webkit-backdrop-filter: blur(20px) saturate(150%);
             border-radius: 45px;
             padding: 50px 35px 45px;
             box-shadow: 
-                0 30px 80px rgba(255, 105, 180, 0.4),
-                0 15px 40px rgba(255, 105, 180, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.8),
-                inset 0 -1px 0 rgba(255, 255, 255, 0.5),
-                0 0 0 1px rgba(255, 255, 255, 0.4);
-            border: 3px solid rgba(255, 255, 255, 0.5);
-            animation: floatContainer 7s ease-in-out infinite;
+                0 30px 80px rgba(0, 0, 0, 0.6),
+                0 15px 40px rgba(0, 153, 204, 0.2),
+                inset 0 1px 0 rgba(102, 224, 255, 0.3),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(102, 224, 255, 0.2);
+            border: 2px solid rgba(102, 224, 255, 0.3);
+            animation: floatContainer 8s ease-in-out infinite;
             position: relative;
             overflow: hidden;
             width: 100%;
@@ -220,13 +378,13 @@
             left: -100%;
             width: 300%;
             height: 300%;
-            background: linear-gradient(45deg, 
-                transparent 20%, 
-                rgba(255, 255, 255, 0.2) 40%,
-                rgba(255, 255, 255, 0.4) 50%,
-                rgba(255, 255, 255, 0.2) 60%,
-                transparent 80%);
-            animation: shimmer 6s ease-in-out infinite;
+            background: linear-gradient(135deg, 
+                transparent 40%, 
+                rgba(102, 224, 255, 0.1) 48%,
+                rgba(255, 255, 255, 0.15) 50%,
+                rgba(102, 224, 255, 0.1) 52%,
+                transparent 60%);
+            animation: shimmer 10s ease-in-out infinite;
         }
 
         .content-wrapper::after {
@@ -236,8 +394,8 @@
             right: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255, 182, 193, 0.15) 0%, transparent 70%);
-            animation: pulseGlow 4s ease-in-out infinite;
+            background: radial-gradient(circle, rgba(0, 204, 255, 0.08) 0%, transparent 70%);
+            animation: pulseGlow 6s ease-in-out infinite;
         }
 
         @keyframes shimmer {
@@ -251,18 +409,10 @@
         }
 
         @keyframes floatContainer {
-            0%, 100% { 
-                transform: translateY(0px) scale(1);
-            }
-            25% {
-                transform: translateY(-8px) scale(1.01);
-            }
-            50% {
-                transform: translateY(-15px) scale(1.02);
-            }
-            75% {
-                transform: translateY(-8px) scale(1.01);
-            }
+            0%, 100% { transform: translateY(0px) scale(1); }
+            25% { transform: translateY(-10px) scale(1.01); }
+            50% { transform: translateY(-18px) scale(1.02); }
+            75% { transform: translateY(-10px) scale(1.01); }
         }
 
         /* Title */
@@ -270,14 +420,15 @@
             font-family: 'Pacifico', cursive;
             font-size: clamp(2rem, 8vw, 3.8rem);
             font-weight: 400;
-            color: var(--pink-hot);
+            color: var(--cyan-light);
             text-align: center;
             margin-bottom: 35px;
             line-height: 1.4;
             text-shadow: 
-                5px 5px 0px rgba(255, 105, 180, 0.25),
-                -2px -2px 0px rgba(255, 255, 255, 0.95),
-                0 0 20px rgba(255, 105, 180, 0.3);
+                3px 3px 0px rgba(0, 61, 92, 0.8),
+                -1px -1px 0px rgba(255, 255, 255, 0.4),
+                0 0 30px rgba(102, 224, 255, 0.8),
+                0 0 60px rgba(0, 204, 255, 0.4);
             position: relative;
             z-index: 1;
             letter-spacing: 0.5px;
@@ -295,13 +446,12 @@
         .title-word:nth-child(4) { animation-delay: 0.4s; }
 
         .valentine-word {
-            color: var(--pink-hot);
             font-size: clamp(2.5rem, 10vw, 4.8rem);
             display: block;
             margin-top: 8px;
             animation: bounceIn 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.5s backwards,
                        heartbeat 1.5s ease-in-out 1.5s infinite;
-            background: linear-gradient(135deg, var(--pink-hot) 0%, var(--purple-medium) 100%);
+            background: linear-gradient(135deg, var(--cyan-light) 0%, var(--aqua) 50%, var(--coral) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -357,8 +507,8 @@
             width: 100%;
             height: 100%;
             transform: translate(-50%, -50%);
-            background: radial-gradient(circle, var(--pink-vibrant) 0%, var(--purple-medium) 40%, transparent 70%);
-            opacity: 0.5;
+            background: radial-gradient(circle, var(--aqua) 0%, var(--ocean-bright) 40%, transparent 70%);
+            opacity: 0.4;
             filter: blur(50px);
             animation: glowPulse 3s ease-in-out infinite;
             z-index: -1;
@@ -368,12 +518,10 @@
             0%, 100% { 
                 opacity: 0.4; 
                 transform: translate(-50%, -50%) scale(0.85);
-                filter: blur(40px);
             }
             50% { 
                 opacity: 0.7; 
                 transform: translate(-50%, -50%) scale(1.15);
-                filter: blur(60px);
             }
         }
 
@@ -381,23 +529,23 @@
             width: clamp(180px, 45vw, 240px);
             height: clamp(180px, 45vw, 240px);
             object-fit: contain;
-            filter: drop-shadow(0 15px 40px var(--shadow-pink));
+            filter: drop-shadow(0 15px 40px rgba(0, 204, 255, 0.6));
             transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             border-radius: 25px;
             position: relative;
             z-index: 1;
-            animation: gentleFloat 4s ease-in-out infinite;
+            animation: gentleFloat 5s ease-in-out infinite;
         }
 
         @keyframes gentleFloat {
             0%, 100% { transform: translateY(0) rotate(0deg); }
-            25% { transform: translateY(-10px) rotate(2deg); }
-            75% { transform: translateY(-5px) rotate(-2deg); }
+            25% { transform: translateY(-12px) rotate(2deg); }
+            75% { transform: translateY(-6px) rotate(-2deg); }
         }
 
         #cat-gif:hover {
             transform: scale(1.1) rotate(5deg);
-            filter: drop-shadow(0 20px 50px var(--shadow-pink));
+            filter: drop-shadow(0 20px 50px rgba(0, 204, 255, 0.8));
         }
 
         @keyframes fadeIn {
@@ -405,7 +553,7 @@
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* Buttons - FIXED LAYOUT */
+        /* Buttons */
         .buttons {
             display: flex;
             flex-direction: column;
@@ -435,30 +583,30 @@
         }
 
         #yes-btn {
-            background: linear-gradient(135deg, var(--green-primary) 0%, var(--green-glow) 50%, #66BB6A 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--aqua) 0%, var(--cyan-light) 50%, #80e5ff 100%);
+            color: var(--ocean-deep);
             font-size: clamp(1.5rem, 5vw, 2.2rem);
             font-weight: 900;
             padding: clamp(18px, 4vw, 25px) clamp(40px, 10vw, 65px);
             box-shadow: 
-                0 10px 30px rgba(76, 175, 80, 0.5),
-                0 5px 15px rgba(76, 175, 80, 0.3),
-                inset 0 -3px 15px rgba(0, 0, 0, 0.15),
-                inset 0 3px 15px rgba(255, 255, 255, 0.4);
+                0 10px 30px rgba(0, 204, 255, 0.6),
+                0 5px 15px rgba(102, 224, 255, 0.4),
+                inset 0 -3px 15px rgba(0, 61, 92, 0.3),
+                inset 0 3px 15px rgba(255, 255, 255, 0.6);
             animation: yesButtonPulse 2.5s ease-in-out infinite;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.5);
             order: 1;
         }
 
         @keyframes yesButtonPulse {
             0%, 100% { 
-                box-shadow: 0 10px 30px rgba(76, 175, 80, 0.5),
-                            0 5px 15px rgba(76, 175, 80, 0.3);
+                box-shadow: 0 10px 30px rgba(0, 204, 255, 0.6),
+                            0 5px 15px rgba(102, 224, 255, 0.4);
                 transform: translateY(0);
             }
             50% { 
-                box-shadow: 0 15px 45px rgba(76, 175, 80, 0.7),
-                            0 8px 25px rgba(76, 175, 80, 0.5);
+                box-shadow: 0 15px 45px rgba(0, 204, 255, 0.8),
+                            0 8px 25px rgba(102, 224, 255, 0.6);
                 transform: translateY(-3px);
             }
         }
@@ -468,7 +616,7 @@
             position: absolute;
             top: 0; left: -100%;
             width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
             transition: left 0.6s;
         }
 
@@ -480,41 +628,39 @@
         #yes-btn:hover {
             transform: scale(1.08) translateY(-5px);
             box-shadow: 
-                0 20px 50px rgba(76, 175, 80, 0.6),
-                0 10px 30px rgba(76, 175, 80, 0.4);
+                0 20px 50px rgba(0, 204, 255, 0.8),
+                0 10px 30px rgba(102, 224, 255, 0.6);
         }
 
         #yes-btn:active {
             transform: scale(1.05) translateY(-2px);
         }
 
-        /* No button - stays visible */
         #no-btn {
-            background: linear-gradient(135deg, var(--red-primary) 0%, #FF5252 50%, #FF3838 100%);
+            background: linear-gradient(135deg, var(--coral) 0%, #ff5a8f 50%, #ff4080 100%);
             color: white;
             font-size: clamp(1rem, 4vw, 1.3rem);
             font-weight: 700;
             padding: clamp(12px, 3vw, 18px) clamp(25px, 7vw, 40px);
             box-shadow: 
-                0 6px 25px rgba(255, 107, 107, 0.45),
-                inset 0 -2px 10px rgba(0, 0, 0, 0.15);
+                0 6px 25px rgba(255, 107, 157, 0.5),
+                inset 0 -2px 10px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
             order: 2;
             min-width: 100px;
         }
 
         #no-btn:hover {
-            background: linear-gradient(135deg, #FF5252 0%, #FF3838 50%, #FF1F1F 100%);
+            background: linear-gradient(135deg, #ff5a8f 0%, #ff4080 50%, #ff2670 100%);
             transform: scale(1.05) translateY(-2px);
-            box-shadow: 0 10px 35px rgba(255, 107, 107, 0.5);
+            box-shadow: 0 10px 35px rgba(255, 107, 157, 0.6);
         }
 
         #no-btn:active {
             transform: scale(1.02);
         }
 
-        /* Runaway mode for No button */
         #no-btn.runaway-mode {
             position: fixed !important;
             order: initial;
@@ -526,7 +672,7 @@
         #tease-toast {
             margin-top: 28px;
             font-size: clamp(1rem, 4vw, 1.3rem);
-            color: var(--pink-hot);
+            color: var(--cyan-light);
             font-weight: 700;
             font-style: italic;
             opacity: 0;
@@ -534,8 +680,8 @@
             transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             min-height: 2.5rem;
             text-shadow: 
-                2px 2px 0 rgba(255, 255, 255, 0.9),
-                0 0 10px rgba(255, 105, 180, 0.5);
+                2px 2px 0 rgba(0, 61, 92, 0.8),
+                0 0 15px rgba(102, 224, 255, 0.8);
             line-height: 1.4;
             text-align: center;
         }
@@ -558,23 +704,25 @@
             position: fixed;
             bottom: clamp(20px, 5vw, 35px);
             right: clamp(20px, 5vw, 35px);
-            background: rgba(255, 255, 255, 0.95);
-            border: 4px solid rgba(255, 105, 180, 0.4);
+            background: rgba(0, 61, 92, 0.5);
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(102, 224, 255, 0.5);
             border-radius: 50%;
             width: clamp(55px, 15vw, 75px);
             height: clamp(55px, 15vw, 75px);
             font-size: clamp(1.5rem, 5vw, 2.2rem);
             cursor: pointer;
-            backdrop-filter: blur(10px);
             box-shadow: 
-                0 10px 30px rgba(255, 105, 180, 0.4),
-                0 5px 15px rgba(255, 105, 180, 0.2);
+                0 10px 30px rgba(0, 204, 255, 0.4),
+                0 5px 15px rgba(102, 224, 255, 0.3),
+                inset 0 2px 10px rgba(255, 255, 255, 0.2);
             transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: center;
             animation: musicButtonFloat 3s ease-in-out infinite;
+            color: var(--cyan-light);
         }
 
         @keyframes musicButtonFloat {
@@ -586,10 +734,10 @@
         #music-toggle:active {
             transform: scale(1.2) rotate(15deg);
             box-shadow: 
-                0 15px 45px rgba(255, 105, 180, 0.6),
-                0 8px 25px rgba(255, 105, 180, 0.4);
-            border-color: var(--pink-vibrant);
-            background: rgba(255, 255, 255, 1);
+                0 15px 45px rgba(0, 204, 255, 0.6),
+                0 8px 25px rgba(102, 224, 255, 0.5);
+            border-color: var(--aqua);
+            background: rgba(0, 61, 92, 0.7);
         }
 
         /* Yes page */
@@ -623,11 +771,11 @@
         .yes-title {
             font-size: clamp(2.5rem, 8vw, 4.5rem) !important;
             animation: bounceTitle 1s ease infinite alternate !important;
-            background: linear-gradient(135deg, var(--pink-hot) 0%, var(--purple-medium) 50%, var(--pink-vibrant) 100%);
+            background: linear-gradient(135deg, var(--cyan-light) 0%, var(--aqua) 50%, var(--coral) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            filter: drop-shadow(3px 3px 0 rgba(255, 105, 180, 0.3));
+            filter: drop-shadow(3px 3px 0 rgba(0, 204, 255, 0.4));
             margin-bottom: 25px !important;
         }
 
@@ -642,13 +790,13 @@
 
         .yes-message {
             font-size: clamp(1.3rem, 5vw, 2rem);
-            color: var(--pink-hot);
+            color: var(--cyan-light);
             font-weight: 700;
             margin-top: 35px;
             animation: fadeInUp 1.2s ease 0.5s both, messageGlow 2s ease-in-out 1.7s infinite;
             text-shadow: 
-                3px 3px 0 rgba(255, 255, 255, 0.9),
-                0 0 20px rgba(255, 105, 180, 0.6);
+                3px 3px 0 rgba(0, 61, 92, 0.8),
+                0 0 25px rgba(0, 204, 255, 0.8);
             line-height: 1.5;
             padding: 0 20px;
         }
@@ -667,14 +815,14 @@
         @keyframes messageGlow {
             0%, 100% {
                 text-shadow: 
-                    3px 3px 0 rgba(255, 255, 255, 0.9),
-                    0 0 20px rgba(255, 105, 180, 0.6);
+                    3px 3px 0 rgba(0, 61, 92, 0.8),
+                    0 0 25px rgba(0, 204, 255, 0.8);
             }
             50% {
                 text-shadow: 
-                    3px 3px 0 rgba(255, 255, 255, 1),
-                    0 0 30px rgba(255, 105, 180, 0.9),
-                    0 0 40px rgba(255, 105, 180, 0.5);
+                    3px 3px 0 rgba(0, 61, 92, 0.9),
+                    0 0 35px rgba(0, 204, 255, 1),
+                    0 0 50px rgba(102, 224, 255, 0.6);
             }
         }
 
@@ -687,11 +835,11 @@
         @keyframes celebrateGif {
             from { 
                 transform: scale(1) rotate(-5deg) translateY(0);
-                filter: drop-shadow(0 15px 40px rgba(255, 105, 180, 0.6));
+                filter: drop-shadow(0 15px 40px rgba(0, 204, 255, 0.8));
             }
             to { 
                 transform: scale(1.15) rotate(5deg) translateY(-10px);
-                filter: drop-shadow(0 20px 50px rgba(255, 105, 180, 0.8));
+                filter: drop-shadow(0 20px 50px rgba(0, 204, 255, 1));
             }
         }
 
@@ -714,6 +862,14 @@
             #tease-toast {
                 margin-top: 20px;
                 padding: 0 10px;
+            }
+
+            .fish {
+                font-size: 10px;
+            }
+
+            .jellyfish {
+                font-size: 10px;
             }
         }
 
@@ -742,7 +898,6 @@
             }
         }
 
-        /* Touch device optimizations */
         @media (hover: none) and (pointer: coarse) {
             #yes-btn:active {
                 transform: scale(1.12) translateY(-3px);
@@ -757,7 +912,6 @@
             }
         }
 
-        /* Landscape mobile */
         @media (max-height: 600px) and (orientation: landscape) {
             .content-wrapper {
                 padding: 20px 30px;
@@ -791,7 +945,6 @@
             }
         }
 
-        /* Extra small devices */
         @media (max-width: 360px) {
             .content-wrapper {
                 padding: 30px 15px 25px;
@@ -812,17 +965,56 @@
 <body>
     <!-- Main question page -->
     <div id="main-page">
-        <div class="hearts-bg">
-            <div class="heart">💕</div>
-            <div class="heart">💗</div>
-            <div class="heart">💖</div>
-            <div class="heart">✨</div>
-            <div class="heart">🌸</div>
-            <div class="heart">🦋</div>
-            <div class="heart">💝</div>
-            <div class="heart">💓</div>
+        <div class="caustics"></div>
+        <div class="depth-fog"></div>
+        <div class="god-rays"></div>
+        
+        <!-- Particles -->
+        <div class="particles" id="particles"></div>
+        
+        <!-- ASCII Fish -->
+        <div class="fish-container">
+            <div class="fish">    /\
+  ><((((º>
+    \/</div>
+            <div class="fish">  ><###º>
+  /   \</div>
+            <div class="fish">     /\___/\
+   ><((((°>
+     \/   \/</div>
+            <div class="fish">   ><(((*>  </div>
+            <div class="fish">  <°)))><
+    \  /</div>
+            <div class="fish">    ___
+ ><(((º>
+    ‾‾‾</div>
         </div>
         
+        <!-- ASCII Jellyfish -->
+        <div class="jellyfish-container">
+            <div class="jellyfish">  _  _
+ (  o.o  )
+  >  <
+ /|  |\
+/ |  | \</div>
+            <div class="jellyfish"> .---.
+(  ~  )
+ '._.'
+  | |
+ /| |\</div>
+            <div class="jellyfish">  ___
+ (o o)
+ (   )
+  | |
+ /| |\</div>
+            <div class="jellyfish">  _._
+ (   )
+  '-'
+  | |
+ /| |\</div>
+        </div>
+        
+        <!-- Bubbles -->
         <div class="bubbles">
             <div class="bubble"></div>
             <div class="bubble"></div>
@@ -830,9 +1022,47 @@
             <div class="bubble"></div>
             <div class="bubble"></div>
             <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
         </div>
         
-        <div class="sparkles"></div>
+        <!-- Seaweed -->
+        <div class="seaweed-container">
+            <div class="seaweed">|
+|
+|
+|
+|
+~</div>
+            <div class="seaweed">|
+|
+}
+|
+|
+~</div>
+            <div class="seaweed">|
+{
+|
+|
+|
+~</div>
+            <div class="seaweed">|
+|
+|
+}
+|
+~</div>
+            <div class="seaweed">|
+{
+|
+|
+|
+~</div>
+        </div>
         
         <div class="container">
             <div class="content-wrapper">
@@ -853,7 +1083,7 @@
 
                 <div class="buttons">
                     <button id="yes-btn" class="btn">
-                        <span class="btn-text">Yes! 💕</span>
+                        <span class="btn-text">Yes!</span>
                     </button>
                     <button id="no-btn" class="btn">
                         <span class="btn-text">No</span>
@@ -867,15 +1097,50 @@
 
     <!-- Yes celebration page -->
     <div id="yes-page" class="yes-page">
-        <div class="hearts-bg">
-            <div class="heart">💕</div>
-            <div class="heart">💗</div>
-            <div class="heart">💖</div>
-            <div class="heart">✨</div>
-            <div class="heart">🌸</div>
-            <div class="heart">🦋</div>
-            <div class="heart">💝</div>
-            <div class="heart">💓</div>
+        <div class="caustics"></div>
+        <div class="depth-fog"></div>
+        <div class="god-rays"></div>
+        
+        <div class="particles" id="particles-yes"></div>
+        
+        <div class="fish-container">
+            <div class="fish">    /\
+  ><((((º>
+    \/</div>
+            <div class="fish">  ><###º>
+  /   \</div>
+            <div class="fish">     /\___/\
+   ><((((°>
+     \/   \/</div>
+            <div class="fish">   ><(((*>  </div>
+            <div class="fish">  <°)))><
+    \  /</div>
+            <div class="fish">    ___
+ ><(((º>
+    ‾‾‾</div>
+        </div>
+        
+        <div class="jellyfish-container">
+            <div class="jellyfish">  _  _
+ (  o.o  )
+  >  <
+ /|  |\
+/ |  | \</div>
+            <div class="jellyfish"> .---.
+(  ~  )
+ '._.'
+  | |
+ /| |\</div>
+            <div class="jellyfish">  ___
+ (o o)
+ (   )
+  | |
+ /| |\</div>
+            <div class="jellyfish">  _._
+ (   )
+  '-'
+  | |
+ /| |\</div>
         </div>
         
         <div class="bubbles">
@@ -885,13 +1150,50 @@
             <div class="bubble"></div>
             <div class="bubble"></div>
             <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
         </div>
         
-        <div class="sparkles"></div>
+        <div class="seaweed-container">
+            <div class="seaweed">|
+|
+|
+|
+|
+~</div>
+            <div class="seaweed">|
+|
+}
+|
+|
+~</div>
+            <div class="seaweed">|
+{
+|
+|
+|
+~</div>
+            <div class="seaweed">|
+|
+|
+}
+|
+~</div>
+            <div class="seaweed">|
+{
+|
+|
+|
+~</div>
+        </div>
 
         <div class="container yes-container">
             <div class="content-wrapper">
-                <h1 class="question-title yes-title">Knew you would say yes! 🎉</h1>
+                <h1 class="question-title yes-title">Knew you would say yes!</h1>
 
                 <div class="gif-container">
                     <div class="gif-wrapper">
@@ -900,14 +1202,14 @@
                     </div>
                 </div>
 
-                <p class="yes-message">You just made me the happiest person ever! 💕</p>
+                <p class="yes-message">You just made me the happiest shark in the ocean!</p>
             </div>
         </div>
     </div>
 
     <!-- Audio -->
     <audio id="bg-music" loop preload="auto">
-        <source src="beabadoobee_-_Glue_Song__Lyrics_.mp3" type="audio/mpeg">
+        <source src="music/beabadoobee - Glue Song (Lyrics).mp3" type="audio/mpeg">
     </audio>
 
     <!-- Music toggle -->
@@ -917,6 +1219,23 @@
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
     <script>
+        // Create floating particles
+        function createParticles(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.setProperty('--drift', (Math.random() * 40 - 20) + 'px');
+                container.appendChild(particle);
+            }
+        }
+
+        createParticles('particles');
+
         // GIF stages
         const gifStages = [
             "https://media.tenor.com/EBV7OT7ACfwAAAAj/u-u-qua-qua-u-quaa.gif",
@@ -938,7 +1257,7 @@
             "Please??? 💔",
             "Don't do this to me...",
             "Last chance! 😭",
-            "You can't catch me anyway 😜"
+            "You can't catch me anyway"
         ];
 
         const yesTeasePokes = [
@@ -951,7 +1270,8 @@
         let yesTeasedCount = 0;
         let noClickCount = 0;
         let runawayEnabled = false;
-        let musicPlaying = true;
+        let musicPlaying = false;
+        let musicLoaded = false;
 
         const catGif = document.getElementById('cat-gif');
         const yesBtn = document.getElementById('yes-btn');
@@ -961,37 +1281,61 @@
         const yesPage = document.getElementById('yes-page');
         const musicToggle = document.getElementById('music-toggle');
 
-        // Auto-play music with better mobile support
+        // Music initialization
         function initMusic() {
-            music.muted = true;
-            music.volume = 0.25;
+            music.volume = 0.3;
             
-            const playPromise = music.play();
-            
-            if (playPromise !== undefined) {
-                playPromise.then(() => {
-                    setTimeout(() => {
-                        music.muted = false;
-                    }, 100);
-                }).catch(() => {
-                    const playOnInteraction = () => {
-                        music.muted = false;
-                        music.play().catch(() => {});
-                        document.removeEventListener('touchstart', playOnInteraction);
-                        document.removeEventListener('click', playOnInteraction);
-                    };
-                    document.addEventListener('touchstart', playOnInteraction, { once: true, passive: true });
-                    document.addEventListener('click', playOnInteraction, { once: true });
-                });
-            }
+            music.play().then(() => {
+                musicPlaying = true;
+                musicLoaded = true;
+                musicToggle.querySelector('.music-icon').textContent = '🔊';
+            }).catch((error) => {
+                console.log('Autoplay blocked:', error);
+                musicPlaying = false;
+                musicToggle.querySelector('.music-icon').textContent = '🔇';
+                
+                const enableAudio = () => {
+                    if (!musicLoaded) {
+                        music.play().then(() => {
+                            musicPlaying = true;
+                            musicLoaded = true;
+                            musicToggle.querySelector('.music-icon').textContent = '🔊';
+                        }).catch(() => {});
+                    }
+                };
+                
+                document.addEventListener('click', enableAudio, { once: true });
+                document.addEventListener('touchstart', enableAudio, { once: true, passive: true });
+            });
         }
 
-        window.addEventListener('load', initMusic);
+        music.addEventListener('error', (e) => {
+            console.error('Music file not found!');
+            musicToggle.style.opacity = '0.5';
+        });
+
+        music.addEventListener('canplaythrough', () => {
+            musicLoaded = true;
+        });
+
+        window.addEventListener('load', () => {
+            initMusic();
+            createParticles('particles-yes');
+        });
 
         // Music toggle
         musicToggle.addEventListener('click', (e) => {
             e.preventDefault();
             const icon = musicToggle.querySelector('.music-icon');
+            
+            if (!musicLoaded) {
+                music.play().then(() => {
+                    musicPlaying = true;
+                    musicLoaded = true;
+                    icon.textContent = '🔊';
+                }).catch(() => {});
+                return;
+            }
             
             if (musicPlaying) {
                 music.pause();
@@ -999,7 +1343,6 @@
                 icon.textContent = '🔇';
                 musicToggle.style.transform = 'scale(1.2) rotate(-15deg)';
             } else {
-                music.muted = false;
                 music.play().catch(() => {});
                 musicPlaying = true;
                 icon.textContent = '🔊';
@@ -1011,7 +1354,7 @@
             }, 300);
         });
 
-        // Yes button click
+        // Yes button - NO EXPANSION
         yesBtn.addEventListener('click', () => {
             if (!runawayEnabled) {
                 const msg = yesTeasePokes[Math.min(yesTeasedCount, yesTeasePokes.length - 1)];
@@ -1028,7 +1371,6 @@
             showYesPage();
         });
 
-        // Show tease message
         function showTeaseMessage(msg) {
             const toast = document.getElementById('tease-toast');
             toast.textContent = msg;
@@ -1037,7 +1379,7 @@
             toast._timer = setTimeout(() => toast.classList.remove('show'), 3000);
         }
 
-        // No button click with smart growth limiting
+        // No button - shrinks only
         noBtn.addEventListener('click', handleNoClick);
 
         function handleNoClick(e) {
@@ -1045,44 +1387,26 @@
             
             noClickCount++;
 
-            // Update message
             const msgIndex = Math.min(noClickCount, noMessages.length - 1);
             noBtn.querySelector('.btn-text').textContent = noMessages[msgIndex];
 
-            // Smart Yes button growth - limits based on screen size
-            const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
-            const maxSize = window.innerWidth < 768 ? currentSize * 2.5 : currentSize * 4;
-            const newSize = Math.min(currentSize * 1.25, maxSize);
-            yesBtn.style.fontSize = `${newSize}px`;
-            
-            const basePadY = 18;
-            const basePadX = 40;
-            const maxPadY = window.innerWidth < 768 ? 40 : 60;
-            const maxPadX = window.innerWidth < 768 ? 80 : 120;
-            
-            const padY = Math.min(basePadY + noClickCount * 4, maxPadY);
-            const padX = Math.min(basePadX + noClickCount * 8, maxPadX);
-            yesBtn.style.padding = `${padY}px ${padX}px`;
-
-            // Shrink No button gradually
-            if (noClickCount >= 2) {
+            if (noClickCount >= 1) {
                 const noSize = parseFloat(window.getComputedStyle(noBtn).fontSize);
                 const minSize = window.innerWidth < 768 ? 10 : 12;
-                noBtn.style.fontSize = `${Math.max(noSize * 0.88, minSize)}px`;
+                noBtn.style.fontSize = `${Math.max(noSize * 0.90, minSize)}px`;
                 
-                // Shrink padding too
-                if (noClickCount >= 3) {
-                    const noPadY = Math.max(12 - noClickCount, 8);
-                    const noPadX = Math.max(25 - noClickCount * 2, 15);
+                if (noClickCount >= 2) {
+                    const currentPadY = parseInt(window.getComputedStyle(noBtn).paddingTop);
+                    const currentPadX = parseInt(window.getComputedStyle(noBtn).paddingLeft);
+                    const noPadY = Math.max(currentPadY - 2, 6);
+                    const noPadX = Math.max(currentPadX - 4, 12);
                     noBtn.style.padding = `${noPadY}px ${noPadX}px`;
                 }
             }
 
-            // Change GIF
             const gifIndex = Math.min(noClickCount, gifStages.length - 1);
             swapGif(gifStages[gifIndex]);
 
-            // Enable runaway mode
             if (noClickCount >= 5 && !runawayEnabled) {
                 enableRunaway();
                 runawayEnabled = true;
@@ -1093,11 +1417,9 @@
                 noBtn.style.animation = '';
             }, 10);
 
-            // Vibration feedback
             vibrate(50);
         }
 
-        // Swap GIF with enhanced animation
         function swapGif(src) {
             catGif.style.opacity = '0';
             catGif.style.transform = 'scale(0.7) rotate(15deg)';
@@ -1109,7 +1431,6 @@
             }, 400);
         }
 
-        // Enable runaway mode
         function enableRunaway() {
             noBtn.classList.add('runaway-mode');
             noBtn.addEventListener('mouseover', runAway);
@@ -1140,10 +1461,15 @@
             vibrate(30);
         }
 
-        // Show yes page
         function showYesPage() {
             mainPage.style.display = 'none';
             yesPage.classList.add('active');
+            
+            if (musicLoaded && !musicPlaying) {
+                music.play().catch(() => {});
+                musicPlaying = true;
+                musicToggle.querySelector('.music-icon').textContent = '🔊';
+            }
             
             setTimeout(() => {
                 launchConfetti();
@@ -1152,17 +1478,14 @@
             vibrate([50, 100, 50]);
         }
 
-        // Enhanced confetti
         function launchConfetti() {
             const colors = [
-                '#ff69b4', '#ff1493', '#ff85a2', '#ffb3c1', 
-                '#ff0000', '#ff6347', '#fff', '#ffdf00',
-                '#E5B8F4', '#C77DFF', '#FFCCD5'
+                '#00ccff', '#66e0ff', '#0099cc', '#80e5ff',
+                '#ff6b9d', '#fff', '#00d4ff', '#4dffff'
             ];
             const duration = 10000;
             const end = Date.now() + duration;
 
-            // Initial mega burst
             confetti({
                 particleCount: 250,
                 spread: 140,
@@ -1174,7 +1497,6 @@
                 ticks: 300
             });
 
-            // Continuous cannons
             const interval = setInterval(() => {
                 if (Date.now() > end) {
                     clearInterval(interval);
@@ -1200,7 +1522,6 @@
                 });
             }, 200);
 
-            // Extra bursts
             setTimeout(() => {
                 confetti({
                     particleCount: 200,
@@ -1225,7 +1546,6 @@
                 });
             }, 2500);
 
-            // Sparkle bursts
             setTimeout(() => {
                 for (let i = 0; i < 5; i++) {
                     setTimeout(() => {
@@ -1246,7 +1566,6 @@
             }, 4000);
         }
 
-        // Prevent double-tap zoom
         let lastTouchEnd = 0;
         document.addEventListener('touchend', (e) => {
             const now = Date.now();
@@ -1256,7 +1575,6 @@
             lastTouchEnd = now;
         }, { passive: false });
 
-        // Vibration helper
         function vibrate(pattern = 50) {
             if ('vibrate' in navigator) {
                 navigator.vibrate(pattern);
