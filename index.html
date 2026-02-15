@@ -1465,25 +1465,39 @@
                 <h1 class="page-title">Our Memories</h1>
                 <div class="slideshow-container">
                     <div class="slide active">
-                        <img src="images/05fae9e6c4fbb7a4024b24e4ba" alt="Memory 1" onerror="this.src='images/05fae9e6c4fbb7a4024b24e4ba.jpg'" onclick="openModal(this.src)">
+                        <img src="images/05fae9e6c4fbb7a4024b24e4ba" 
+                             onerror="this.onerror=null; this.src='images/05fae9e6c4fbb7a4024b24e4ba.jpg'; this.onerror=function(){this.src='https://via.placeholder.com/800x600/8b5cf6/ffffff?text=Memory+1';}"
+                             alt="Memory 1" onclick="openModal(this.src)">
                     </div>
                     <div class="slide">
-                        <img src="images/32722b5438ce8427a2f28de026" alt="Memory 2" onerror="this.src='images/32722b5438ce8427a2f28de026.jpg'" onclick="openModal(this.src)">
+                        <img src="images/32722b5438ce8427a2f28de026" 
+                             onerror="this.onerror=null; this.src='images/32722b5438ce8427a2f28de026.jpg'; this.onerror=function(){this.src='https://via.placeholder.com/800x600/ec4899/ffffff?text=Memory+2';}"
+                             alt="Memory 2" onclick="openModal(this.src)">
                     </div>
                     <div class="slide">
-                        <img src="images/35fe93b91362501303b918625" alt="Memory 3" onerror="this.src='images/35fe93b91362501303b918625.jpg'" onclick="openModal(this.src)">
+                        <img src="images/35fe93b91362501303b918625" 
+                             onerror="this.onerror=null; this.src='images/35fe93b91362501303b918625.jpg'; this.onerror=function(){this.src='https://via.placeholder.com/800x600/a78bfa/ffffff?text=Memory+3';}"
+                             alt="Memory 3" onclick="openModal(this.src)">
                     </div>
                     <div class="slide">
-                        <img src="images/a13a267798ec1aa701448de10" alt="Memory 4" onerror="this.src='images/a13a267798ec1aa701448de10.jpg'" onclick="openModal(this.src)">
+                        <img src="images/a13a267798ec1aa701448de10" 
+                             onerror="this.onerror=null; this.src='images/a13a267798ec1aa701448de10.jpg'; this.onerror=function(){this.src='https://via.placeholder.com/800x600/f472b6/ffffff?text=Memory+4';}"
+                             alt="Memory 4" onclick="openModal(this.src)">
                     </div>
                     <div class="slide">
-                        <img src="images/a77b1c34c76fed366553a81d0a" alt="Memory 5" onerror="this.src='images/a77b1c34c76fed366553a81d0a.jpg'" onclick="openModal(this.src)">
+                        <img src="images/a77b1c34c76fed366553a81d0a" 
+                             onerror="this.onerror=null; this.src='images/a77b1c34c76fed366553a81d0a.jpg'; this.onerror=function(){this.src='https://via.placeholder.com/800x600/fb7185/ffffff?text=Memory+5';}"
+                             alt="Memory 5" onclick="openModal(this.src)">
                     </div>
                     <div class="slide">
-                        <img src="images/c9b246d12c859a3d207ed0116" alt="Memory 6" onerror="this.src='images/c9b246d12c859a3d207ed0116.jpg'" onclick="openModal(this.src)">
+                        <img src="images/c9b246d12c859a3d207ed0116" 
+                             onerror="this.onerror=null; this.src='images/c9b246d12c859a3d207ed0116.jpg'; this.onerror=function(){this.src='https://via.placeholder.com/800x600/fbbf24/ffffff?text=Memory+6';}"
+                             alt="Memory 6" onclick="openModal(this.src)">
                     </div>
                     <div class="slide">
-                        <img src="images/d9f88c8c36e9c43175ad0afa01c" alt="Memory 7" onerror="this.src='images/d9f88c8c36e9c43175ad0afa01c.jpg'" onclick="openModal(this.src)">
+                        <img src="images/d9f88c8c36e9c43175ad0afa01c" 
+                             onerror="this.onerror=null; this.src='images/d9f88c8c36e9c43175ad0afa01c.jpg'; this.onerror=function(){this.src='https://via.placeholder.com/800x600/c084fc/ffffff?text=Memory+7';}"
+                             alt="Memory 7" onclick="openModal(this.src)">
                     </div>
                     
                     <div class="slide-controls">
@@ -1556,24 +1570,17 @@
             const centerY = window.innerHeight / 2;
             
             // Calculate rotation based on mouse position
-            const rotateX = ((e.clientY - centerY) / centerY) * 10; // Increased from 5 to 10
-            const rotateY = ((e.clientX - centerX) / centerX) * 10;
+            const rotateX = ((e.clientY - centerY) / centerY) * 15; // More dramatic tilt
+            const rotateY = ((e.clientX - centerX) / centerX) * 15;
             
-            // Apply 3D transform to main container
-            if (container) {
-                container.style.transform = `
+            // Apply 3D transform to the GLASS CARD (not container)
+            if (glassCard) {
+                glassCard.style.transform = `
                     perspective(1500px)
                     rotateX(${-rotateX}deg)
                     rotateY(${rotateY}deg)
                     translateZ(0)
-                `;
-            }
-            
-            // Card tilt effect
-            if (glassCard) {
-                glassCard.style.transform = `
-                    rotateX(${-rotateX * 0.4}deg)
-                    rotateY(${rotateY * 0.4}deg)
+                    scale(1)
                 `;
             }
             
@@ -1585,17 +1592,6 @@
                 const y = ((e.clientY - centerY) / centerY) * (25 * speed);
                 star.style.transform = `translate(${x}px, ${y}px)`;
             });
-            
-            // Title parallax
-            const pageTitle = document.querySelector('.page.active .page-title');
-            if (pageTitle) {
-                const titleX = ((e.clientX - centerX) / centerX) * 20;
-                const titleY = ((e.clientY - centerY) / centerY) * 20;
-                pageTitle.style.transform = `
-                    translate(${titleX}px, ${titleY}px)
-                    translateZ(50px)
-                `;
-            }
             
             // Parallax shapes (if they exist)
             const shapes = document.querySelectorAll('.shape');
