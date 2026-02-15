@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>For Isabella</title>
+    <title>For Isabella ♥</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&family=Satisfy&family=Raleway:wght@300;400;600;800&family=Libre+Baskerville:wght@400;700&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&family=Satisfy&family=Raleway:wght@300;400;600;800&family=Libre+Baskerville:wght@400;700&family=Quicksand:wght@300;500;700&family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -45,6 +45,10 @@
             cursor: none;
         }
 
+        body.mobile {
+            cursor: auto;
+        }
+
         @keyframes darkGradientShift {
             0% { background-position: 0% 50%; }
             25% { background-position: 50% 75%; }
@@ -80,7 +84,6 @@
             box-shadow: 0 0 15px rgba(167, 139, 250, 0.8);
         }
 
-        /* Cursor Trail Effect */
         .cursor-trail {
             position: fixed;
             width: 6px;
@@ -95,17 +98,10 @@
         }
 
         @keyframes trailFade {
-            0% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            100% {
-                opacity: 0;
-                transform: scale(0.2);
-            }
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0.2); }
         }
 
-        /* Ripple effect on click */
         .ripple {
             position: fixed;
             border: 2px solid rgba(236, 72, 153, 0.8);
@@ -116,19 +112,11 @@
         }
 
         @keyframes rippleExpand {
-            0% {
-                width: 0;
-                height: 0;
-                opacity: 1;
-            }
-            100% {
-                width: 100px;
-                height: 100px;
-                opacity: 0;
-            }
+            0% { width: 0; height: 0; opacity: 1; }
+            100% { width: 100px; height: 100px; opacity: 0; }
         }
 
-        /* Animated background shapes */
+        /* Background effects */
         .bg-shapes {
             position: fixed;
             top: 0;
@@ -146,6 +134,7 @@
             filter: blur(100px);
             opacity: 0.4;
             animation: shapeFloat 30s ease-in-out infinite;
+            transition: transform 0.2s ease-out;
         }
 
         .shape:nth-child(1) {
@@ -178,42 +167,13 @@
             animation-duration: 35s;
         }
 
-        .shape:nth-child(4) {
-            width: 350px;
-            height: 350px;
-            background: linear-gradient(135deg, var(--red-bright), var(--purple-mid));
-            top: 20%;
-            right: 10%;
-            animation-delay: 4s;
-            animation-duration: 28s;
-        }
-
-        .shape:nth-child(5) {
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(135deg, var(--pink-bright), var(--purple-deep));
-            bottom: 30%;
-            left: 15%;
-            animation-delay: 12s;
-            animation-duration: 32s;
-        }
-
         @keyframes shapeFloat {
-            0%, 100% { 
-                transform: translate(0, 0) scale(1) rotate(0deg);
-            }
-            25% { 
-                transform: translate(150px, -150px) scale(1.3) rotate(90deg);
-            }
-            50% { 
-                transform: translate(-100px, 100px) scale(0.8) rotate(180deg);
-            }
-            75% { 
-                transform: translate(100px, 150px) scale(1.1) rotate(270deg);
-            }
+            0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            25% { transform: translate(150px, -150px) scale(1.3) rotate(90deg); }
+            50% { transform: translate(-100px, 100px) scale(0.8) rotate(180deg); }
+            75% { transform: translate(100px, 150px) scale(1.1) rotate(270deg); }
         }
 
-        /* Particle system */
         .particles {
             position: fixed;
             top: 0;
@@ -233,82 +193,12 @@
         }
 
         @keyframes particleFloat {
-            0% { 
-                transform: translateY(100vh) translateX(0) scale(0);
-                opacity: 0;
-            }
+            0% { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
             5% { opacity: 1; }
             95% { opacity: 1; }
-            100% { 
-                transform: translateY(-20vh) translateX(var(--drift)) scale(1);
-                opacity: 0;
-            }
+            100% { transform: translateY(-20vh) translateX(var(--drift)) scale(1); opacity: 0; }
         }
 
-        /* Floating orbs */
-        .floating-orbs {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        .orb {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, rgba(167, 139, 250, 0.3), transparent);
-            animation: orbFloat 25s ease-in-out infinite;
-            filter: blur(20px);
-        }
-
-        @keyframes orbFloat {
-            0%, 100% { 
-                transform: translate(0, 0);
-                opacity: 0.2;
-            }
-            33% { 
-                transform: translate(var(--x1), var(--y1));
-                opacity: 0.5;
-            }
-            66% { 
-                transform: translate(var(--x2), var(--y2));
-                opacity: 0.3;
-            }
-        }
-
-        /* Light rays */
-        .light-rays {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            background: 
-                linear-gradient(45deg, transparent 30%, rgba(139, 92, 246, 0.08) 48%, rgba(236, 72, 153, 0.12) 50%, rgba(139, 92, 246, 0.08) 52%, transparent 70%),
-                linear-gradient(135deg, transparent 30%, rgba(236, 72, 153, 0.06) 48%, rgba(139, 92, 246, 0.1) 50%, rgba(236, 72, 153, 0.06) 52%, transparent 70%);
-            background-size: 300% 300%, 400% 400%;
-            animation: rayShift 20s linear infinite, rayShift2 25s linear infinite;
-        }
-
-        @keyframes rayShift {
-            0% { background-position: 0% 0%, 100% 100%; }
-            100% { background-position: 300% 300%, 0% 0%; }
-        }
-
-        @keyframes rayShift2 {
-            0% { opacity: 0.4; }
-            50% { opacity: 0.7; }
-            100% { opacity: 0.4; }
-        }
-
-        /* Stars/Sparkles */
         .stars {
             position: fixed;
             top: 0;
@@ -332,14 +222,56 @@
         }
 
         @keyframes starTwinkle {
-            0%, 100% { 
-                opacity: 0.2;
-                transform: scale(1);
-            }
-            50% { 
-                opacity: 1;
-                transform: scale(1.5);
-            }
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* Language Toggle */
+        .lang-toggle {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+            background: rgba(17, 7, 30, 0.4);
+            backdrop-filter: blur(20px);
+            padding: 12px 18px;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            animation: langFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes langFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .lang-btn {
+            background: transparent;
+            color: rgba(255, 255, 255, 0.6);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, var(--purple-mid), var(--pink-bright));
+            color: white;
+            box-shadow: 0 0 20px rgba(236, 72, 153, 0.6);
+        }
+
+        .lang-btn:hover:not(.active) {
+            color: rgba(255, 255, 255, 0.9);
+            transform: scale(1.05);
         }
 
         /* Main container */
@@ -357,7 +289,7 @@
             transition: transform 0.1s ease-out;
         }
 
-        /* Glass morphism card */
+        /* Glass card */
         .glass-card {
             background: rgba(17, 7, 30, 0.35);
             backdrop-filter: blur(50px) saturate(180%);
@@ -370,7 +302,7 @@
                 inset 0 2px 0 0 rgba(255, 255, 255, 0.15),
                 0 0 0 1px rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            animation: cardFloat 12s ease-in-out infinite, cardGlow 8s ease-in-out infinite;
+            animation: cardGlow 8s ease-in-out infinite;
             position: relative;
             overflow: hidden;
             flex: 1;
@@ -381,28 +313,9 @@
             will-change: transform;
         }
 
-        .glass-card:hover {
-            border-color: rgba(236, 72, 153, 0.3);
-            box-shadow: 
-                0 8px 32px 0 rgba(0, 0, 0, 0.7),
-                0 30px 100px 0 rgba(139, 92, 246, 0.25),
-                inset 0 2px 0 0 rgba(255, 255, 255, 0.2),
-                0 0 0 1px rgba(236, 72, 153, 0.15);
-        }
-
-        @keyframes cardFloat {
-            0%, 100% { transform: translateY(0) rotateX(0deg); }
-            25% { transform: translateY(-15px) rotateX(1deg); }
-            75% { transform: translateY(-10px) rotateX(-1deg); }
-        }
-
         @keyframes cardGlow {
-            0%, 100% { 
-                filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.2));
-            }
-            50% { 
-                filter: drop-shadow(0 0 40px rgba(236, 72, 153, 0.4));
-            }
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.2)); }
+            50% { filter: drop-shadow(0 0 40px rgba(236, 72, 153, 0.4)); }
         }
 
         .glass-card::before {
@@ -419,28 +332,6 @@
         @keyframes glassShine {
             0% { left: -100%; }
             50%, 100% { left: 100%; }
-        }
-
-        .glass-card::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(236, 72, 153, 0.1) 0%, transparent 60%);
-            animation: afterGlow 15s ease-in-out infinite;
-        }
-
-        @keyframes afterGlow {
-            0%, 100% { 
-                opacity: 0.3;
-                transform: rotate(0deg);
-            }
-            50% { 
-                opacity: 0.6;
-                transform: rotate(180deg);
-            }
         }
 
         /* Navigation dots */
@@ -463,40 +354,14 @@
             transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             backdrop-filter: blur(5px);
             position: relative;
-            animation: dotPulse 3s ease-in-out infinite;
-        }
-
-        .nav-dot::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(236, 72, 153, 0.3);
-            transition: all 0.4s ease;
-        }
-
-        .nav-dot:hover::before {
-            width: 30px;
-            height: 30px;
-        }
-
-        @keyframes dotPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
         }
 
         .nav-dot.active {
             background: linear-gradient(135deg, var(--purple-mid), var(--pink-bright));
             border-color: rgba(255, 255, 255, 0.5);
             transform: scale(1.6);
-            box-shadow: 
-                0 0 25px rgba(236, 72, 153, 1),
-                0 0 50px rgba(139, 92, 246, 0.6);
-            animation: activeDotSpin 4s linear infinite, activeDotPulse 2s ease-in-out infinite;
+            box-shadow: 0 0 25px rgba(236, 72, 153, 1), 0 0 50px rgba(139, 92, 246, 0.6);
+            animation: activeDotSpin 4s linear infinite;
         }
 
         @keyframes activeDotSpin {
@@ -504,22 +369,9 @@
             to { filter: hue-rotate(360deg); }
         }
 
-        @keyframes activeDotPulse {
-            0%, 100% { 
-                box-shadow: 0 0 25px rgba(236, 72, 153, 1),
-                            0 0 50px rgba(139, 92, 246, 0.6);
-            }
-            50% { 
-                box-shadow: 0 0 35px rgba(236, 72, 153, 1),
-                            0 0 70px rgba(139, 92, 246, 0.8),
-                            0 0 100px rgba(236, 72, 153, 0.4);
-            }
-        }
-
         .nav-dot:hover {
             background: rgba(255, 255, 255, 0.35);
             transform: scale(1.4);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
         }
 
         /* Pages */
@@ -535,59 +387,27 @@
         .page.active {
             display: flex;
             flex-direction: column;
+            animation: pageEnter 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
-        /* Enhanced page animations */
-        .page[data-page="1"] {
-            animation: page1Enter 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        @keyframes pageEnter {
+            0% { opacity: 0; transform: scale(0.9) translateY(30px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        .page[data-page="1"] .page-title {
+        .page-title {
             font-family: 'Playfair Display', serif;
             font-weight: 900;
-            font-size: clamp(3.5rem, 11vw, 7rem);
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
             background: linear-gradient(135deg, #c4b5fd 0%, #f0abfc 30%, #fda4af 60%, #fbbf24 100%);
             background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-align: center;
-            margin-bottom: 45px;
-            letter-spacing: -3px;
-            animation: page1Title 2.5s ease, gradientMove 8s ease infinite;
+            margin-bottom: 40px;
+            animation: gradientMove 8s ease infinite;
             filter: drop-shadow(0 0 30px rgba(236, 72, 153, 0.4));
-        }
-
-        @keyframes page1Enter {
-            0% { 
-                opacity: 0; 
-                transform: translateY(80px) scale(0.8) rotateX(-20deg);
-                filter: blur(30px);
-            }
-            60% {
-                transform: translateY(-10px) scale(1.03);
-            }
-            100% { 
-                opacity: 1; 
-                transform: translateY(0) scale(1) rotateX(0deg);
-                filter: blur(0);
-            }
-        }
-
-        @keyframes page1Title {
-            0% { 
-                opacity: 0; 
-                transform: translateY(-50px) scale(0.7) rotateZ(-10deg);
-                filter: blur(20px);
-            }
-            60% {
-                transform: translateY(5px) scale(1.08) rotateZ(2deg);
-            }
-            100% { 
-                opacity: 1; 
-                transform: translateY(0) scale(1) rotateZ(0deg);
-                filter: blur(0);
-            }
         }
 
         @keyframes gradientMove {
@@ -595,307 +415,192 @@
             50% { background-position: 100% 50%; }
         }
 
-        .page[data-page="2"] {
-            animation: page2Enter 1.3s ease;
+        /* Content */
+        .page-content {
+            font-size: clamp(1.1rem, 3vw, 1.35rem);
+            color: rgba(255, 255, 255, 0.92);
+            line-height: 1.9;
+            font-weight: 300;
         }
 
-        .page[data-page="2"] .page-title {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            font-size: clamp(3rem, 10vw, 6rem);
-            background: linear-gradient(135deg, #c084fc 0%, #f472b6 40%, #fb7185 70%, #fbbf24 100%);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-align: center;
-            margin-bottom: 45px;
-            text-transform: uppercase;
-            letter-spacing: 8px;
-            animation: page2Title 2s cubic-bezier(0.68, -0.55, 0.265, 1.55), gradientMove 6s ease infinite;
-            filter: drop-shadow(0 0 25px rgba(236, 72, 153, 0.5));
+        .page-content p {
+            margin: 25px 0;
+            animation: textReveal 1s ease forwards;
+            opacity: 0;
+            transition: all 0.3s ease;
         }
 
-        @keyframes page2Enter {
-            0% { 
-                opacity: 0; 
-                transform: scale(0.4) rotate(-20deg) translateX(-100px);
-            }
-            70% {
-                transform: scale(1.05) rotate(5deg);
-            }
-            100% { 
-                opacity: 1; 
-                transform: scale(1) rotate(0deg) translateX(0);
-            }
+        .page-content p:nth-child(1) { animation-delay: 0.3s; }
+        .page-content p:nth-child(2) { animation-delay: 0.5s; }
+        .page-content p:nth-child(3) { animation-delay: 0.7s; }
+
+        @keyframes textReveal {
+            0% { opacity: 0; transform: translateX(-30px); filter: blur(8px); }
+            100% { opacity: 1; transform: translateX(0); filter: blur(0); }
         }
 
-        @keyframes page2Title {
-            0% { 
-                opacity: 0; 
-                transform: scale(0.2) rotate(-25deg) translateY(-50px);
-                letter-spacing: 40px;
-            }
-            70% {
-                transform: scale(1.15) rotate(3deg);
-            }
-            100% { 
-                opacity: 1; 
-                transform: scale(1) rotate(0deg) translateY(0);
-                letter-spacing: 8px;
-            }
-        }
-
-        .page[data-page="3"] {
-            animation: page3Enter 1.4s ease;
-        }
-
-        .page[data-page="3"] .page-title {
+        .spanish-note, .english-note {
             font-family: 'Satisfy', cursive;
-            font-weight: 400;
-            font-size: clamp(3.5rem, 11vw, 7.5rem);
-            background: linear-gradient(135deg, #e9d5ff 0%, #fbcfe8 30%, #fecdd3 60%, #fed7aa 100%);
-            background-size: 250% 250%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
+            color: rgba(251, 207, 232, 1);
+            margin: 35px 0;
+            padding: 35px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.15));
+            backdrop-filter: blur(15px);
+            border-left: 5px solid;
+            border-image: linear-gradient(to bottom, var(--purple-mid), var(--pink-bright)) 1;
+            border-radius: 25px;
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.25);
+            animation: notePopIn 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.6s backwards;
             text-align: center;
-            margin-bottom: 45px;
-            animation: page3Title 2.3s ease, gradientMove 10s ease infinite;
-            filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.6));
+            transition: all 0.4s ease;
         }
 
-        @keyframes page3Enter {
-            0% { 
-                opacity: 0; 
-                transform: rotateY(120deg) translateX(150px) scale(0.6);
-            }
-            60% {
-                transform: rotateY(-10deg) scale(1.05);
-            }
-            100% { 
-                opacity: 1; 
-                transform: rotateY(0) translateX(0) scale(1);
-            }
+        @keyframes notePopIn {
+            0% { opacity: 0; transform: scale(0.8) translateY(30px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        @keyframes page3Title {
-            0% { 
-                opacity: 0; 
-                transform: translateX(-120px) rotate(-8deg) scale(0.8);
-                filter: blur(15px);
-            }
-            100% { 
-                opacity: 1; 
-                transform: translateX(0) rotate(0deg) scale(1);
-                filter: blur(0);
-            }
+        /* Reasons List */
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
         }
 
-        .page[data-page="4"] {
-            animation: page4Enter 1.2s ease;
+        .reason-card {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.1));
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            animation: cardFloat 1s ease backwards;
+            animation-delay: calc(var(--index) * 0.1s);
         }
 
-        .page[data-page="4"] .page-title {
-            font-family: 'Raleway', sans-serif;
-            font-weight: 800;
-            font-size: clamp(3rem, 10vw, 6.5rem);
-            background: linear-gradient(135deg, #a78bfa 0%, #ec4899 35%, #f43f5e 70%, #f59e0b 100%);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-align: center;
-            margin-bottom: 45px;
-            letter-spacing: 10px;
-            animation: page4Title 2s cubic-bezier(0.68, -0.55, 0.265, 1.55), gradientMove 7s ease infinite;
-            filter: drop-shadow(0 0 30px rgba(236, 72, 153, 0.5));
+        @keyframes cardFloat {
+            0% { opacity: 0; transform: translateY(30px) scale(0.9); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        @keyframes page4Enter {
-            0% { 
-                opacity: 0; 
-                transform: translateY(-200px) scale(0.4) rotateX(45deg);
-            }
-            60% {
-                transform: translateY(25px) scale(1.12);
-            }
-            100% { 
-                opacity: 1; 
-                transform: translateY(0) scale(1) rotateX(0deg);
-            }
+        .reason-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(236, 72, 153, 0.3);
+            border-color: rgba(236, 72, 153, 0.4);
         }
 
-        @keyframes page4Title {
-            0% { 
-                opacity: 0; 
-                transform: scale(0.1) translateY(-100px) rotateZ(15deg);
-                letter-spacing: 50px;
-            }
-            60% {
-                transform: scale(1.2) translateY(15px) rotateZ(-3deg);
-            }
-            100% { 
-                opacity: 1; 
-                transform: scale(1) translateY(0) rotateZ(0deg);
-                letter-spacing: 10px;
-            }
+        .reason-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+            animation: iconBounce 2s ease-in-out infinite;
         }
 
-        .page[data-page="5"] {
-            animation: page5Enter 1.5s ease;
+        @keyframes iconBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
-        .page[data-page="5"] .page-title {
-            font-family: 'Libre Baskerville', serif;
+        .reason-title {
             font-weight: 700;
-            font-size: clamp(3rem, 9vw, 6rem);
-            background: linear-gradient(135deg, #c4b5fd 0%, #f9a8d4 35%, #fda4af 70%, #fde68a 100%);
-            background-size: 250% 250%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-align: center;
-            margin-bottom: 45px;
-            animation: page5Title 2.2s ease, gradientMove 9s ease infinite;
-            filter: drop-shadow(0 0 25px rgba(236, 72, 153, 0.6));
+            font-size: 1.2rem;
+            color: rgba(251, 207, 232, 1);
+            margin-bottom: 10px;
         }
 
-        @keyframes page5Enter {
-            0% { 
-                opacity: 0; 
-                transform: rotateX(-120deg) scale(0.4) translateZ(-200px);
-                filter: blur(25px);
-            }
-            60% {
-                transform: rotateX(10deg) scale(1.06);
-            }
-            100% { 
-                opacity: 1; 
-                transform: rotateX(0) scale(1) translateZ(0);
-                filter: blur(0);
-            }
+        .reason-text {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
         }
 
-        @keyframes page5Title {
-            0% { 
-                opacity: 0; 
-                transform: translateY(80px) scale(0.6) rotateX(-30deg);
-                letter-spacing: 60px;
-                filter: blur(20px);
-            }
-            100% { 
-                opacity: 1; 
-                transform: translateY(0) scale(1) rotateX(0deg);
-                letter-spacing: 0px;
-                filter: blur(0);
-            }
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+            margin: 30px 0;
         }
 
-        .page[data-page="6"] {
-            animation: page6Enter 1.8s ease;
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--purple-mid), var(--pink-bright));
+            box-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
         }
 
-        .page[data-page="6"] .page-title {
-            font-family: 'Quicksand', sans-serif;
+        .timeline-item {
+            position: relative;
+            margin: 40px 0;
+            padding: 0 40px;
+            animation: timelineFade 1s ease backwards;
+            animation-delay: calc(var(--index) * 0.2s);
+        }
+
+        @keyframes timelineFade {
+            0% { opacity: 0; transform: translateX(-50px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        .timeline-item:nth-child(even) {
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--purple-mid), var(--pink-bright));
+            box-shadow: 0 0 20px rgba(236, 72, 153, 0.8);
+            animation: dotPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes dotPulse {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.3); }
+        }
+
+        .timeline-content {
+            background: rgba(139, 92, 246, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 45%;
+            transition: all 0.4s ease;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(236, 72, 153, 0.3);
+        }
+
+        .timeline-date {
             font-weight: 700;
-            font-size: clamp(3.2rem, 10vw, 6.5rem);
-            background: linear-gradient(135deg, #a78bfa 0%, #f0abfc 25%, #f472b6 50%, #fb7185 75%, #fbbf24 100%);
-            background-size: 400% 400%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-align: center;
-            margin-bottom: 45px;
-            animation: page6Title 3s ease, gradientMove 5s ease infinite;
-            filter: drop-shadow(0 0 35px rgba(236, 72, 153, 0.7));
+            color: rgba(251, 207, 232, 1);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
         }
 
-        @keyframes page6Enter {
-            0% { 
-                opacity: 0; 
-                transform: scale(4) rotate(30deg);
-                filter: blur(60px);
-            }
-            60% {
-                transform: scale(0.95) rotate(-5deg);
-            }
-            100% { 
-                opacity: 1; 
-                transform: scale(1) rotate(0deg);
-                filter: blur(0);
-            }
+        .timeline-text {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
         }
 
-        @keyframes page6Title {
-            0% { 
-                opacity: 0; 
-                transform: scale(0.2) rotate(-15deg);
-                filter: blur(40px);
-            }
-            50% {
-                transform: scale(1.25) rotate(8deg);
-            }
-            100% { 
-                opacity: 1; 
-                transform: scale(1) rotate(0deg);
-                filter: blur(0);
-            }
-        }
-
-        /* Page 7 - Gallery */
-        .page[data-page="7"] {
-            animation: page7Enter 1.6s ease;
-        }
-
-        .page[data-page="7"] .page-title {
-            font-family: 'Playfair Display', serif;
-            font-weight: 900;
-            font-size: clamp(3rem, 10vw, 6rem);
-            background: linear-gradient(135deg, #f0abfc 0%, #ec4899 30%, #a78bfa 60%, #fbbf24 100%);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-align: center;
-            margin-bottom: 45px;
-            animation: page7Title 2.5s ease, gradientMove 6s ease infinite;
-            filter: drop-shadow(0 0 30px rgba(236, 72, 153, 0.6));
-        }
-
-        @keyframes page7Enter {
-            0% { 
-                opacity: 0; 
-                transform: scale(0.3) rotateY(-90deg);
-                filter: blur(50px);
-            }
-            60% {
-                transform: scale(1.08) rotateY(10deg);
-            }
-            100% { 
-                opacity: 1; 
-                transform: scale(1) rotateY(0);
-                filter: blur(0);
-            }
-        }
-
-        @keyframes page7Title {
-            0% { 
-                opacity: 0; 
-                transform: translateY(-60px) scale(0.5) rotateX(45deg);
-                filter: blur(25px);
-            }
-            60% {
-                transform: translateY(10px) scale(1.1);
-            }
-            100% { 
-                opacity: 1; 
-                transform: translateY(0) scale(1) rotateX(0deg);
-                filter: blur(0);
-            }
-        }
-
-        /* Slideshow Container */
+        /* Slideshow */
         .slideshow-container {
             position: relative;
             width: 100%;
@@ -920,14 +625,8 @@
         }
 
         @keyframes slideIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.7) rotateY(90deg);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) rotateY(0);
-            }
+            0% { opacity: 0; transform: scale(0.7) rotateY(90deg); }
+            100% { opacity: 1; transform: scale(1) rotateY(0); }
         }
 
         .slide img {
@@ -935,9 +634,7 @@
             max-height: 500px;
             object-fit: contain;
             border-radius: 25px;
-            box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.6),
-                0 0 50px rgba(236, 72, 153, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 50px rgba(236, 72, 153, 0.3);
             cursor: pointer;
             transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             border: 3px solid rgba(255, 255, 255, 0.15);
@@ -945,14 +642,10 @@
 
         .slide img:hover {
             transform: scale(1.05) translateY(-10px);
-            box-shadow: 
-                0 30px 80px rgba(0, 0, 0, 0.7),
-                0 0 80px rgba(236, 72, 153, 0.6),
-                0 0 120px rgba(139, 92, 246, 0.4);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 80px rgba(236, 72, 153, 0.6);
             border-color: rgba(236, 72, 153, 0.5);
         }
 
-        /* Slideshow controls */
         .slide-controls {
             display: flex;
             justify-content: center;
@@ -975,15 +668,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
         }
 
         .slide-btn:hover {
-            background: linear-gradient(135deg, rgba(236, 72, 153, 0.6), rgba(139, 92, 246, 0.5));
             transform: scale(1.2);
-            box-shadow: 
-                0 12px 40px rgba(236, 72, 153, 0.6),
-                0 0 60px rgba(139, 92, 246, 0.4);
+            box-shadow: 0 12px 40px rgba(236, 72, 153, 0.6);
         }
 
         .slide-counter {
@@ -1005,39 +694,29 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(20px);
-            animation: modalFadeIn 0.3s ease;
         }
 
         .image-modal.active {
             display: flex;
             align-items: center;
             justify-content: center;
+            animation: modalFadeIn 0.3s ease;
         }
 
         @keyframes modalFadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .modal-content {
             max-width: 95%;
             max-height: 95%;
-            animation: modalImageZoom 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            animation: modalZoom 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
-        @keyframes modalImageZoom {
-            0% {
-                transform: scale(0.3) rotate(-10deg);
-                opacity: 0;
-            }
-            100% {
-                transform: scale(1) rotate(0);
-                opacity: 1;
-            }
+        @keyframes modalZoom {
+            0% { transform: scale(0.3) rotate(-10deg); opacity: 0; }
+            100% { transform: scale(1) rotate(0); opacity: 1; }
         }
 
         .modal-content img {
@@ -1045,9 +724,7 @@
             height: 100%;
             object-fit: contain;
             border-radius: 15px;
-            box-shadow: 
-                0 30px 100px rgba(0, 0, 0, 0.8),
-                0 0 100px rgba(236, 72, 153, 0.5);
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.8), 0 0 100px rgba(236, 72, 153, 0.5);
         }
 
         .modal-close {
@@ -1073,100 +750,6 @@
         .modal-close:hover {
             transform: rotate(90deg) scale(1.2);
             background: rgba(236, 72, 153, 0.5);
-            box-shadow: 0 0 40px rgba(236, 72, 153, 0.8);
-        }
-
-        /* Content styling */
-        .page-content {
-            font-size: clamp(1.15rem, 3.5vw, 1.5rem);
-            color: rgba(255, 255, 255, 0.92);
-            line-height: 2;
-            font-weight: 300;
-        }
-
-        .page-content p {
-            margin: 30px 0;
-            animation: textReveal 1s ease forwards;
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-
-        .page-content p:hover {
-            color: rgba(251, 207, 232, 1);
-            transform: translateX(10px);
-            text-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
-        }
-
-        .page-content p:nth-child(1) { animation-delay: 0.4s; }
-        .page-content p:nth-child(2) { animation-delay: 0.6s; }
-        .page-content p:nth-child(3) { animation-delay: 0.8s; }
-        .page-content p:nth-child(4) { animation-delay: 1s; }
-
-        @keyframes textReveal {
-            0% { 
-                opacity: 0; 
-                transform: translateX(-30px);
-                filter: blur(8px);
-            }
-            100% { 
-                opacity: 1; 
-                transform: translateX(0);
-                filter: blur(0);
-            }
-        }
-
-        .spanish-note {
-            font-family: 'Satisfy', cursive;
-            font-size: clamp(1.4rem, 4.5vw, 2rem);
-            color: rgba(251, 207, 232, 1);
-            margin: 40px 0;
-            padding: 35px;
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.15));
-            backdrop-filter: blur(15px);
-            border-left: 5px solid;
-            border-image: linear-gradient(to bottom, var(--purple-mid), var(--pink-bright)) 1;
-            border-radius: 25px;
-            box-shadow: 
-                0 8px 32px rgba(139, 92, 246, 0.25),
-                inset 0 1px 0 rgba(255, 255, 255, 0.15);
-            animation: notePopIn 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.8s backwards,
-                       noteGlow 4s ease-in-out infinite;
-            text-align: center;
-            transition: all 0.4s ease;
-        }
-
-        .spanish-note:hover {
-            transform: scale(1.05) rotate(1deg);
-            box-shadow: 
-                0 12px 48px rgba(139, 92, 246, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2),
-                0 0 40px rgba(236, 72, 153, 0.3);
-        }
-
-        @keyframes notePopIn {
-            0% { 
-                opacity: 0; 
-                transform: scale(0.6) translateY(40px) rotate(-5deg);
-            }
-            70% { 
-                transform: scale(1.08) rotate(2deg);
-            }
-            100% { 
-                opacity: 1; 
-                transform: scale(1) translateY(0) rotate(0deg);
-            }
-        }
-
-        @keyframes noteGlow {
-            0%, 100% { 
-                box-shadow: 0 8px 32px rgba(139, 92, 246, 0.25),
-                            inset 0 1px 0 rgba(255, 255, 255, 0.15);
-            }
-            50% { 
-                box-shadow: 0 15px 60px rgba(139, 92, 246, 0.5),
-                            0 0 80px rgba(236, 72, 153, 0.3),
-                            inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            }
         }
 
         /* Navigation buttons */
@@ -1174,8 +757,6 @@
             display: flex;
             justify-content: space-between;
             margin-top: 45px;
-            position: relative;
-            z-index: 1;
             gap: 25px;
         }
 
@@ -1191,7 +772,6 @@
             font-size: 1.15rem;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
             position: relative;
             overflow: hidden;
         }
@@ -1215,16 +795,8 @@
         }
 
         .nav-btn:hover {
-            background: linear-gradient(135deg, rgba(236, 72, 153, 0.5), rgba(139, 92, 246, 0.4));
-            border-color: rgba(255, 255, 255, 0.4);
             transform: translateY(-5px) scale(1.05);
-            box-shadow: 
-                0 15px 50px rgba(236, 72, 153, 0.6),
-                0 0 60px rgba(139, 92, 246, 0.4);
-        }
-
-        .nav-btn:active {
-            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 15px 50px rgba(236, 72, 153, 0.6);
         }
 
         .nav-btn:disabled {
@@ -1251,7 +823,6 @@
             height: 75px;
             font-size: 2rem;
             cursor: pointer;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
             transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             z-index: 1000;
             display: flex;
@@ -1268,11 +839,8 @@
         }
 
         #music-toggle:hover {
-            background: linear-gradient(135deg, rgba(236, 72, 153, 0.5), rgba(139, 92, 246, 0.4));
             transform: scale(1.2) rotate(15deg);
-            box-shadow: 
-                0 15px 50px rgba(236, 72, 153, 0.7),
-                0 0 70px rgba(139, 92, 246, 0.5);
+            box-shadow: 0 15px 50px rgba(236, 72, 153, 0.7);
         }
 
         /* Scrollbar */
@@ -1288,32 +856,51 @@
         .page::-webkit-scrollbar-thumb {
             background: linear-gradient(to bottom, var(--purple-mid), var(--pink-bright));
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(236, 72, 153, 0.5);
-        }
-
-        .page::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to bottom, var(--pink-bright), var(--purple-mid));
         }
 
         /* Mobile */
         @media (max-width: 768px) {
-            body {
-                cursor: auto;
-            }
-
-            .custom-cursor,
-            .cursor-dot {
-                display: none;
-            }
-
             .container {
                 padding: 15px;
                 height: 95vh;
             }
 
             .glass-card {
-                padding: 35px 25px;
-                border-radius: 35px;
+                padding: 30px 20px;
+                border-radius: 30px;
+            }
+
+            .lang-toggle {
+                top: 15px;
+                right: 15px;
+                padding: 8px 12px;
+            }
+
+            .lang-btn {
+                padding: 6px 15px;
+                font-size: 0.8rem;
+            }
+
+            .reasons-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                padding-left: 50px;
+                text-align: left !important;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .timeline-content {
+                max-width: 100%;
+                margin-left: 0 !important;
             }
 
             .nav-btn {
@@ -1321,25 +908,13 @@
                 font-size: 1rem;
             }
 
-            #music-toggle {
-                width: 65px;
-                height: 65px;
-                font-size: 1.6rem;
-                bottom: 25px;
-                right: 25px;
-            }
-
             .slide img {
                 max-height: 350px;
             }
+        }
 
-            .modal-close {
-                top: 15px;
-                right: 15px;
-                width: 50px;
-                height: 50px;
-                font-size: 2rem;
-            }
+        .hidden {
+            display: none !important;
         }
     </style>
 </head>
@@ -1348,17 +923,19 @@
     <div class="custom-cursor"></div>
     <div class="cursor-dot"></div>
 
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLanguage('en')" data-lang="en">English</button>
+        <button class="lang-btn" onclick="setLanguage('es')" data-lang="es">Español</button>
+    </div>
+
     <!-- Background effects -->
     <div class="bg-shapes">
         <div class="shape"></div>
         <div class="shape"></div>
         <div class="shape"></div>
-        <div class="shape"></div>
-        <div class="shape"></div>
     </div>
     <div class="particles" id="particles"></div>
-    <div class="floating-orbs" id="floating-orbs"></div>
-    <div class="light-rays"></div>
     <div class="stars" id="stars"></div>
 
     <!-- Image Modal -->
@@ -1369,120 +946,220 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="glass-card">
+    <div class="container" id="container">
+        <div class="glass-card" id="glassCard">
             <div class="nav-dots" id="nav-dots"></div>
 
             <!-- Page 1 -->
             <div class="page active" data-page="1">
-                <h1 class="page-title">For Isabella</h1>
+                <h1 class="page-title">For Isabella ♥</h1>
                 <div class="page-content">
-                    <p>[Write your opening message here]</p>
+                    <p class="lang-en">Hey Isabella, I love you so much. This day is special because it's all about us — celebrating the journey we've been on together.</p>
+                    <p class="lang-es hidden">Hola Isabella, te amo muchísimo. Este día es especial porque se trata de nosotros — celebrando el viaje que hemos recorrido juntos.</p>
                     
-                    <div class="spanish-note">
-                        "Eres mi todo"
+                    <div class="spanish-note lang-en">
+                        "We met almost 1 year ago, and every moment has had its highs and lows. But I'll never stop loving you or doing special things for you. No matter how many times you ask me to stop, I won't — not until we meet in person. I won't stop loving you, and I never will."
+                    </div>
+                    <div class="spanish-note lang-es hidden">
+                        "Nos conocimos hace casi 1 año, y cada momento ha tenido sus altibajos. Pero nunca dejaré de amarte ni de hacer cosas especiales para ti. No importa cuántas veces me pidas que pare, no lo haré — no hasta que nos encontremos en persona. No dejaré de amarte, y nunca lo haré."
                     </div>
 
-                    <p>[Continue your thoughts...]</p>
+                    <p class="lang-en">Every day with you has taught me what it means to truly care about someone. You've become my everything.</p>
+                    <p class="lang-es hidden">Cada día contigo me ha enseñado lo que significa realmente preocuparse por alguien. Te has convertido en mi todo.</p>
                 </div>
             </div>
 
             <!-- Page 2 -->
             <div class="page" data-page="2">
-                <h1 class="page-title">Why You're Special</h1>
+                <h1 class="page-title lang-en">Why You're Special</h1>
+                <h1 class="page-title lang-es hidden">Por Qué Eres Especial</h1>
                 <div class="page-content">
-                    <p>[What makes Isabella special to you]</p>
+                    <p class="lang-en">Sometimes I wonder what makes you so special to me, but then I remember all these reasons:</p>
+                    <p class="lang-es hidden">A veces me pregunto qué te hace tan especial para mí, pero luego recuerdo todas estas razones:</p>
 
-                    <div class="spanish-note">
-                        "Cada día contigo es un regalo"
+                    <div class="reasons-grid">
+                        <div class="reason-card" style="--index: 0">
+                            <span class="reason-icon">💖</span>
+                            <div class="reason-title lang-en">Kind & Caring</div>
+                            <div class="reason-title lang-es hidden">Amable y Cariñosa</div>
+                            <div class="reason-text lang-en">You always know how to make me feel loved and supported</div>
+                            <div class="reason-text lang-es hidden">Siempre sabes cómo hacerme sentir amado y apoyado</div>
+                        </div>
+                        <div class="reason-card" style="--index: 1">
+                            <span class="reason-icon">✨</span>
+                            <div class="reason-title lang-en">Beautiful Soul</div>
+                            <div class="reason-title lang-es hidden">Alma Hermosa</div>
+                            <div class="reason-text lang-en">Inside and out, you shine brighter than anyone I know</div>
+                            <div class="reason-text lang-es hidden">Por dentro y por fuera, brillas más que nadie que conozco</div>
+                        </div>
+                        <div class="reason-card" style="--index: 2">
+                            <span class="reason-icon">😄</span>
+                            <div class="reason-title lang-en">Makes Me Smile</div>
+                            <div class="reason-title lang-es hidden">Me Haces Sonreír</div>
+                            <div class="reason-text lang-en">Your laugh is my favorite sound in the world</div>
+                            <div class="reason-text lang-es hidden">Tu risa es mi sonido favorito en el mundo</div>
+                        </div>
+                        <div class="reason-card" style="--index: 3">
+                            <span class="reason-icon">💪</span>
+                            <div class="reason-title lang-en">Strong & Brave</div>
+                            <div class="reason-title lang-es hidden">Fuerte y Valiente</div>
+                            <div class="reason-text lang-en">Even when things get hard, you never give up</div>
+                            <div class="reason-text lang-es hidden">Incluso cuando las cosas se ponen difíciles, nunca te rindes</div>
+                        </div>
+                        <div class="reason-card" style="--index: 4">
+                            <span class="reason-icon">🎨</span>
+                            <div class="reason-title lang-en">Creative & Smart</div>
+                            <div class="reason-title lang-es hidden">Creativa e Inteligente</div>
+                            <div class="reason-text lang-en">I love when you share your code with me and ask for help</div>
+                            <div class="reason-text lang-es hidden">Me encanta cuando compartes tu código conmigo y pides ayuda</div>
+                        </div>
+                        <div class="reason-card" style="--index: 5">
+                            <span class="reason-icon">🏡</span>
+                            <div class="reason-title lang-en">Feels Like Home</div>
+                            <div class="reason-title lang-es hidden">Se Siente Como Hogar</div>
+                            <div class="reason-text lang-en">Being with you feels like I'm exactly where I belong</div>
+                            <div class="reason-text lang-es hidden">Estar contigo se siente como si estuviera exactamente donde pertenezco</div>
+                        </div>
                     </div>
-
-                    <p>[More thoughts...]</p>
                 </div>
             </div>
 
             <!-- Page 3 -->
             <div class="page" data-page="3">
-                <h1 class="page-title">Our Story</h1>
+                <h1 class="page-title lang-en">Our Story</h1>
+                <h1 class="page-title lang-es hidden">Nuestra Historia</h1>
                 <div class="page-content">
-                    <p>[Share your favorite memories]</p>
+                    <p class="lang-en">These are the moments I'll never forget:</p>
+                    <p class="lang-es hidden">Estos son los momentos que nunca olvidaré:</p>
 
-                    <div class="spanish-note">
-                        "Contigo, cada momento es perfecto"
+                    <div class="timeline">
+                        <div class="timeline-item" style="--index: 0">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-date lang-en">The Beginning</div>
+                                <div class="timeline-date lang-es hidden">El Comienzo</div>
+                                <div class="timeline-text lang-en">When I first asked you out on that alt account and you said no... I was devastated. But then you said yes, and my whole world changed. ♥</div>
+                                <div class="timeline-text lang-es hidden">Cuando te invité a salir por primera vez en esa cuenta alternativa y dijiste que no... quedé devastado. Pero luego dijiste que sí, y todo mi mundo cambió. ♥</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item" style="--index: 1">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-date lang-en">Gaming Together</div>
+                                <div class="timeline-date lang-es hidden">Jugando Juntos</div>
+                                <div class="timeline-text lang-en">Playing obbys, tycoons, and zombie games together. Those simple moments are some of my favorites.</div>
+                                <div class="timeline-text lang-es hidden">Jugando obbys, tycoons y juegos de zombies juntos. Esos momentos simples son algunos de mis favoritos.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item" style="--index: 2">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-date lang-en">Coding Help</div>
+                                <div class="timeline-date lang-es hidden">Ayuda con Código</div>
+                                <div class="timeline-text lang-en">I love when you get confused or stressed about your code and come ask me for help. It makes me smile every time.</div>
+                                <div class="timeline-text lang-es hidden">Me encanta cuando te confundes o te estresas con tu código y vienes a pedirme ayuda. Me hace sonreír cada vez.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item" style="--index: 3">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-date lang-en">Every Day Since</div>
+                                <div class="timeline-date lang-es hidden">Cada Día Desde Entonces</div>
+                                <div class="timeline-text lang-en">Every conversation, every laugh, every moment we share. They're all perfect to me.</div>
+                                <div class="timeline-text lang-es hidden">Cada conversación, cada risa, cada momento que compartimos. Todos son perfectos para mí.</div>
+                            </div>
+                        </div>
                     </div>
-
-                    <p>[More memories...]</p>
                 </div>
             </div>
 
             <!-- Page 4 -->
             <div class="page" data-page="4">
-                <h1 class="page-title">What I Love</h1>
+                <h1 class="page-title lang-en">What I Love</h1>
+                <h1 class="page-title lang-es hidden">Lo Que Amo</h1>
                 <div class="page-content">
-                    <p>[Things you love about her]</p>
+                    <p class="lang-en">Out of 8,231,775,260 people in this world, I found you. The perfect girl I could ever want. You're the light in my moon.</p>
+                    <p class="lang-es hidden">De 8,231,775,260 personas en este mundo, te encontré a ti. La chica perfecta que podría querer. Eres la luz en mi luna.</p>
 
-                    <div class="spanish-note">
-                        "Tu sonrisa ilumina mi mundo"
+                    <div class="spanish-note lang-en">
+                        "I don't know why I chose you over every other girl in the world, but I know it's the best decision I've ever made. Te Amo Isabella ♥"
+                    </div>
+                    <div class="spanish-note lang-es hidden">
+                        "No sé por qué te elegí a ti sobre todas las demás chicas del mundo, pero sé que es la mejor decisión que he tomado. Te Amo Isabella ♥"
                     </div>
 
-                    <p>[More things...]</p>
+                    <p class="lang-en">Your coffee-colored eyes, your beautiful smile, the way you play volleyball, how you love spaghetti... I remember everything about you because you're everything to me.</p>
+                    <p class="lang-es hidden">Tus ojos color café, tu hermosa sonrisa, la forma en que juegas voleibol, cómo amas el espagueti... Recuerdo todo sobre ti porque eres todo para mí.</p>
                 </div>
             </div>
 
             <!-- Page 5 -->
             <div class="page" data-page="5">
-                <h1 class="page-title">Looking Ahead</h1>
+                <h1 class="page-title lang-en">Looking Ahead</h1>
+                <h1 class="page-title lang-es hidden">Mirando Adelante</h1>
                 <div class="page-content">
-                    <p>[Talk about your future together]</p>
+                    <p class="lang-en">I've never forgotten my promises to you:</p>
+                    <p class="lang-es hidden">Nunca he olvidado mis promesas para ti:</p>
 
-                    <div class="spanish-note">
-                        "Nuestro futuro es brillante"
+                    <div class="spanish-note lang-en">
+                        "I'll never forget the things you love: Your birthday is March 10th. You love volleyball, spaghetti with meatballs, and you have the most beautiful coffee-colored eyes and the most gorgeous smile I've ever seen. ♥"
+                    </div>
+                    <div class="spanish-note lang-es hidden">
+                        "Nunca olvidaré las cosas que amas: Tu cumpleaños es el 10 de marzo. Amas el voleibol, el espagueti con albóndigas, y tienes los ojos color café más hermosos y la sonrisa más preciosa que he visto. ♥"
                     </div>
 
-                    <p>[What you're excited for...]</p>
+                    <p class="lang-en">Our future is bright, Isabella. I can't wait to meet you in person, to hold your hand, to see that smile in real life. Every day brings us closer to that moment.</p>
+                    <p class="lang-es hidden">Nuestro futuro es brillante, Isabella. No puedo esperar a conocerte en persona, a tomar tu mano, a ver esa sonrisa en la vida real. Cada día nos acerca a ese momento.</p>
                 </div>
             </div>
 
             <!-- Page 6 -->
             <div class="page" data-page="6">
-                <h1 class="page-title">Forever & Always</h1>
+                <h1 class="page-title lang-en">Forever & Always</h1>
+                <h1 class="page-title lang-es hidden">Por Siempre y Para Siempre</h1>
                 <div class="page-content">
-                    <p>[Your final heartfelt message]</p>
+                    <p class="lang-en">One Last Thing...</p>
+                    <p class="lang-es hidden">Una Última Cosa...</p>
 
-                    <div class="spanish-note">
-                        "Te amaré por siempre, Isabella"
+                    <div class="spanish-note lang-en">
+                        "I love you, my idiot. And I hope you remember that for the rest of your life, because you're mine now — and I'm not letting you go. You're stuck with me, the most annoying, goofy, and loving boy in the world. And honestly, I wouldn't want it any other way."
+                    </div>
+                    <div class="spanish-note lang-es hidden">
+                        "Te amo, mi tonta. Y espero que lo recuerdes por el resto de tu vida, porque ahora eres mía — y no te voy a dejar ir. Estás atascada conmigo, el chico más molesto, tonto y amoroso del mundo. Y honestamente, no lo querría de otra manera."
                     </div>
 
-                    <p>[Close with something meaningful...]</p>
+                    <p class="lang-en">No matter how much we joke around, just know that I really do love you — forever and always. You make every day worth living, and I can't imagine my life without you in it. Thank you for being you, Isabella. ♥</p>
+                    <p class="lang-es hidden">No importa cuánto bromeemos, solo sé que realmente te amo — por siempre y para siempre. Haces que cada día valga la pena vivirlo, y no puedo imaginar mi vida sin ti. Gracias por ser tú, Isabella. ♥</p>
                 </div>
             </div>
 
             <!-- Page 7 - Gallery -->
             <div class="page" data-page="7">
-                <h1 class="page-title">Our Memories</h1>
+                <h1 class="page-title lang-en">Our Memories</h1>
+                <h1 class="page-title lang-es hidden">Nuestros Recuerdos</h1>
                 <div class="slideshow-container">
                     <div class="slide active">
-                        <img src="https://github.com/1NFERNO-HUB/1NFERNO-Hub-Website/blob/main/RobloxScreenShot20260210_194554465.png?raw=true" 
+                        <img src="https://raw.githubusercontent.com/1NFERNO-HUB/1NFERNO-Hub/main/RobloxScreenShot20260210_194554465.png" 
                              alt="Memory 1" onclick="openModal(this.src)">
                     </div>
                     <div class="slide">
-                        <img src="https://raw.githubusercontent.com/1NFERNO-HUB/1NFERNO-Hub-Website/refs/heads/main/RobloxScreenShot20260210_194659039.png?raw=true" 
+                        <img src="https://raw.githubusercontent.com/1NFERNO-HUB/1NFERNO-Hub/main/RobloxScreenShot20260210_194659039.png" 
                              alt="Memory 2" onclick="openModal(this.src)">
                     </div>
                     <div class="slide">
-                        <img src="https://github.com/1NFERNO-HUB/1NFERNO-Hub-Website/blob/main/RobloxScreenShot20260210_195700932.png?raw=true" 
+                        <img src="https://raw.githubusercontent.com/1NFERNO-HUB/1NFERNO-Hub/main/RobloxScreenShot20260210_195700932.png" 
                              alt="Memory 3" onclick="openModal(this.src)">
                     </div>
                     <div class="slide">
-                        <img src="https://github.com/1NFERNO-HUB/1NFERNO-Hub-Website/blob/main/RobloxScreenShot20260210_195729673.png?raw=true" 
+                        <img src="https://raw.githubusercontent.com/1NFERNO-HUB/1NFERNO-Hub/main/RobloxScreenShot20260210_195729673.png" 
                              alt="Memory 4" onclick="openModal(this.src)">
                     </div>
                     <div class="slide">
-                        <img src="https://github.com/1NFERNO-HUB/1NFERNO-Hub-Website/blob/main/RobloxScreenShot20260210_195951630.png?raw=true" 
+                        <img src="https://raw.githubusercontent.com/1NFERNO-HUB/1NFERNO-Hub/main/RobloxScreenShot20260210_195951630.png" 
                              alt="Memory 5" onclick="openModal(this.src)">
                     </div>
                     <div class="slide">
-                        <img src="https://github.com/1NFERNO-HUB/1NFERNO-Hub-Website/blob/main/RobloxScreenShot20260210_200331007.png?raw=true" 
+                        <img src="https://raw.githubusercontent.com/1NFERNO-HUB/1NFERNO-Hub/main/RobloxScreenShot20260210_200331007.png" 
                              alt="Memory 6" onclick="openModal(this.src)">
                     </div>
                     
@@ -1498,10 +1175,12 @@
 
             <div class="nav-buttons">
                 <button class="nav-btn" id="prev-btn" onclick="previousPage()">
-                    <span>← Previous</span>
+                    <span class="lang-en">← Previous</span>
+                    <span class="lang-es hidden">← Anterior</span>
                 </button>
                 <button class="nav-btn" id="next-btn" onclick="nextPage()">
-                    <span>Next →</span>
+                    <span class="lang-en">Next →</span>
+                    <span class="lang-es hidden">Siguiente →</span>
                 </button>
             </div>
         </div>
@@ -1517,18 +1196,51 @@
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
     <script>
+        // Language System
+        let currentLang = 'en';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            // Hide all elements
+            document.querySelectorAll('.lang-en, .lang-es').forEach(el => {
+                el.classList.add('hidden');
+            });
+            
+            // Show elements for current language
+            document.querySelectorAll(`.lang-${lang}`).forEach(el => {
+                el.classList.remove('hidden');
+            });
+            
+            // Update button states
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+            
+            // Confetti on language switch
+            confetti({
+                particleCount: 50,
+                spread: 60,
+                origin: { y: 0.1, x: 0.9 },
+                colors: ['#8b5cf6', '#ec4899', '#fbbf24']
+            });
+        }
+
+        // Detect mobile
+        const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
+        if (isMobile) {
+            document.body.classList.add('mobile');
+        }
+
         // Custom cursor
         const cursor = document.querySelector('.custom-cursor');
         const cursorDot = document.querySelector('.cursor-dot');
-        const container = document.getElementById('container');
         const glassCard = document.querySelector('.glass-card');
         let mouseX = 0, mouseY = 0;
         let cursorX = 0, cursorY = 0;
         let dotX = 0, dotY = 0;
-        
-        // Detect if mobile
-        const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
-        
+
         if (isMobile) {
             document.body.style.cursor = 'auto';
             if (cursor) cursor.style.display = 'none';
@@ -1539,38 +1251,31 @@
             mouseX = e.clientX;
             mouseY = e.clientY;
             
-            // Cursor trail
             if (!isMobile && Math.random() > 0.7) {
                 createTrail(e.clientX, e.clientY);
             }
             
-            // 3D Parallax Effect (desktop only)
             if (!isMobile) {
                 apply3DParallax(e);
             }
         });
-        
-        // 3D Parallax Function
+
         function apply3DParallax(e) {
             const centerX = window.innerWidth / 2;
             const centerY = window.innerHeight / 2;
             
-            // Calculate rotation based on mouse position
-            const rotateX = ((e.clientY - centerY) / centerY) * 15; // More dramatic tilt
+            const rotateX = ((e.clientY - centerY) / centerY) * 15;
             const rotateY = ((e.clientX - centerX) / centerX) * 15;
             
-            // Apply 3D transform to the GLASS CARD (not container)
             if (glassCard) {
                 glassCard.style.transform = `
                     perspective(1500px)
                     rotateX(${-rotateX}deg)
                     rotateY(${rotateY}deg)
                     translateZ(0)
-                    scale(1)
                 `;
             }
             
-            // Parallax stars
             const stars = document.querySelectorAll('.star');
             stars.forEach((star, index) => {
                 const speed = (index % 5 + 1) * 0.2;
@@ -1578,8 +1283,7 @@
                 const y = ((e.clientY - centerY) / centerY) * (25 * speed);
                 star.style.transform = `translate(${x}px, ${y}px)`;
             });
-            
-            // Parallax shapes (if they exist)
+
             const shapes = document.querySelectorAll('.shape');
             shapes.forEach((shape, index) => {
                 const speed = (index + 1) * 0.4;
@@ -1614,25 +1318,23 @@
             trail.style.left = x + 'px';
             trail.style.top = y + 'px';
             document.body.appendChild(trail);
-            
             setTimeout(() => trail.remove(), 800);
         }
 
-        // Click ripple effect
         document.addEventListener('click', (e) => {
             const ripple = document.createElement('div');
             ripple.className = 'ripple';
             ripple.style.left = (e.clientX - 50) + 'px';
             ripple.style.top = (e.clientY - 50) + 'px';
             document.body.appendChild(ripple);
-            
             setTimeout(() => ripple.remove(), 800);
         });
 
         // Create particles
         function createParticles() {
             const container = document.getElementById('particles');
-            for (let i = 0; i < 80; i++) {
+            const count = isMobile ? 40 : 60;
+            for (let i = 0; i < count; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 const size = Math.random() * 4 + 2;
@@ -1646,27 +1348,11 @@
             }
         }
 
-        // Create floating orbs
-        function createFloatingOrbs() {
-            const container = document.getElementById('floating-orbs');
-            for (let i = 0; i < 15; i++) {
-                const orb = document.createElement('div');
-                orb.className = 'orb';
-                orb.style.left = Math.random() * 100 + '%';
-                orb.style.top = Math.random() * 100 + '%';
-                orb.style.animationDelay = Math.random() * 25 + 's';
-                orb.style.setProperty('--x1', (Math.random() * 600 - 300) + 'px');
-                orb.style.setProperty('--y1', (Math.random() * 600 - 300) + 'px');
-                orb.style.setProperty('--x2', (Math.random() * 800 - 400) + 'px');
-                orb.style.setProperty('--y2', (Math.random() * 800 - 400) + 'px');
-                container.appendChild(orb);
-            }
-        }
-
         // Create stars
         function createStars() {
             const container = document.getElementById('stars');
-            for (let i = 0; i < 100; i++) {
+            const count = isMobile ? 50 : 80;
+            for (let i = 0; i < count; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
                 star.style.left = Math.random() * 100 + '%';
@@ -1678,7 +1364,6 @@
         }
 
         createParticles();
-        createFloatingOrbs();
         createStars();
 
         // Navigation
@@ -1686,9 +1371,7 @@
         const totalPages = 7;
 
         function updateNavigation() {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
             document.querySelector(`[data-page="${currentPage}"]`).classList.add('active');
 
             const navDots = document.getElementById('nav-dots');
@@ -1730,16 +1413,12 @@
         function pageTransition() {
             const colors = ['#8b5cf6', '#ec4899', '#e11d48', '#a78bfa', '#f472b6'];
             
-            // Multi-burst confetti
             confetti({
                 particleCount: 100,
                 spread: 120,
                 origin: { x: 0.5, y: 0.5 },
                 colors: colors,
-                scalar: 1.2,
-                gravity: 1.2,
-                ticks: 400,
-                startVelocity: 45
+                scalar: 1.2
             });
 
             setTimeout(() => {
@@ -1758,21 +1437,11 @@
                     colors: colors
                 });
             }, 150);
-
-            setTimeout(() => {
-                confetti({
-                    particleCount: 80,
-                    spread: 100,
-                    origin: { x: 0.5, y: 0.3 },
-                    colors: colors,
-                    shapes: ['circle'],
-                    scalar: 1.5
-                });
-            }, 300);
         }
 
-        // Slideshow functionality
+        // Slideshow
         let currentSlideIndex = 1;
+        let slideInterval;
 
         function updateSlideCounter() {
             const slides = document.querySelectorAll('.slide');
@@ -1783,17 +1452,10 @@
         function showSlide(n) {
             const slides = document.querySelectorAll('.slide');
             
-            if (n > slides.length) {
-                currentSlideIndex = 1;
-            }
-            if (n < 1) {
-                currentSlideIndex = slides.length;
-            }
+            if (n > slides.length) currentSlideIndex = 1;
+            if (n < 1) currentSlideIndex = slides.length;
             
-            slides.forEach(slide => {
-                slide.classList.remove('active');
-            });
-            
+            slides.forEach(slide => slide.classList.remove('active'));
             slides[currentSlideIndex - 1].classList.add('active');
             updateSlideCounter();
         }
@@ -1803,19 +1465,15 @@
             showSlide(currentSlideIndex);
         }
 
-        // Auto-advance slideshow
-        let slideInterval;
         function startSlideshow() {
-            slideInterval = setInterval(() => {
-                changeSlide(1);
-            }, 5000);
+            slideInterval = setInterval(() => changeSlide(1), 5000);
         }
 
         function stopSlideshow() {
             clearInterval(slideInterval);
         }
 
-        // Image modal functionality
+        // Image modal
         function openModal(imageSrc) {
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
@@ -1830,18 +1488,12 @@
             startSlideshow();
         }
 
-        // Close modal on click outside image
         document.getElementById('imageModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
+            if (e.target === this) closeModal();
         });
 
-        // Close modal on escape key
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
+            if (e.key === 'Escape') closeModal();
         });
 
         // Music
@@ -1859,17 +1511,6 @@
             }).catch(() => {
                 musicPlaying = false;
                 musicToggle.querySelector('.music-icon').textContent = '♪';
-                
-                const enableAudio = () => {
-                    if (!musicLoaded) {
-                        music.play().then(() => {
-                            musicPlaying = true;
-                            musicLoaded = true;
-                            musicToggle.querySelector('.music-icon').textContent = '♫';
-                        }).catch(() => {});
-                    }
-                };
-                document.addEventListener('click', enableAudio, { once: true });
             });
         }
 
@@ -1897,28 +1538,22 @@
             }
         });
 
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                currentPage === 7 ? changeSlide(1) : nextPage();
+            }
+            if (e.key === 'ArrowLeft') {
+                currentPage === 7 ? changeSlide(-1) : previousPage();
+            }
+        });
+
+        // Initialize
         window.addEventListener('load', () => {
             updateNavigation();
             initMusic();
             updateSlideCounter();
             startSlideshow();
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') {
-                if (currentPage === 7) {
-                    changeSlide(1);
-                } else {
-                    nextPage();
-                }
-            }
-            if (e.key === 'ArrowLeft') {
-                if (currentPage === 7) {
-                    changeSlide(-1);
-                } else {
-                    previousPage();
-                }
-            }
         });
     </script>
 </body>
