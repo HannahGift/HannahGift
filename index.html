@@ -327,6 +327,8 @@
             border-radius: 50%;
             animation: starTwinkle 3s ease-in-out infinite;
             box-shadow: 0 0 8px rgba(255, 255, 255, 1);
+            transition: transform 0.2s ease-out;
+            will-change: transform;
         }
 
         @keyframes starTwinkle {
@@ -350,6 +352,9 @@
             height: 92vh;
             display: flex;
             flex-direction: column;
+            transform-style: preserve-3d;
+            will-change: transform;
+            transition: transform 0.1s ease-out;
         }
 
         /* Glass morphism card */
@@ -371,7 +376,9 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            transition: all 0.4s ease;
+            transition: all 0.4s ease, transform 0.1s ease-out;
+            transform-style: preserve-3d;
+            will-change: transform;
         }
 
         .glass-card:hover {
@@ -549,6 +556,9 @@
             letter-spacing: -3px;
             animation: page1Title 2.5s ease, gradientMove 8s ease infinite;
             filter: drop-shadow(0 0 30px rgba(236, 72, 153, 0.4));
+            transform-style: preserve-3d;
+            will-change: transform;
+            transition: transform 0.1s ease-out;
         }
 
         @keyframes page1Enter {
@@ -1455,25 +1465,31 @@
                 <h1 class="page-title">Our Memories</h1>
                 <div class="slideshow-container">
                     <div class="slide active">
-                        <img src="Images/photo1.jpg" alt="Memory 1" onclick="openModal(this.src)">
+                        <img src="images/05fae9e6c4fbb7a4024b24e4ba" alt="Memory 1" onerror="this.src='images/05fae9e6c4fbb7a4024b24e4ba.jpg'" onclick="openModal(this.src)">
                     </div>
                     <div class="slide">
-                        <img src="Images/photo2.jpg" alt="Memory 2" onclick="openModal(this.src)">
+                        <img src="images/32722b5438ce8427a2f28de026" alt="Memory 2" onerror="this.src='images/32722b5438ce8427a2f28de026.jpg'" onclick="openModal(this.src)">
                     </div>
                     <div class="slide">
-                        <img src="Images/photo3.jpg" alt="Memory 3" onclick="openModal(this.src)">
+                        <img src="images/35fe93b91362501303b918625" alt="Memory 3" onerror="this.src='images/35fe93b91362501303b918625.jpg'" onclick="openModal(this.src)">
                     </div>
                     <div class="slide">
-                        <img src="Images/photo4.jpg" alt="Memory 4" onclick="openModal(this.src)">
+                        <img src="images/a13a267798ec1aa701448de10" alt="Memory 4" onerror="this.src='images/a13a267798ec1aa701448de10.jpg'" onclick="openModal(this.src)">
                     </div>
                     <div class="slide">
-                        <img src="Images/photo5.jpg" alt="Memory 5" onclick="openModal(this.src)">
+                        <img src="images/a77b1c34c76fed366553a81d0a" alt="Memory 5" onerror="this.src='images/a77b1c34c76fed366553a81d0a.jpg'" onclick="openModal(this.src)">
+                    </div>
+                    <div class="slide">
+                        <img src="images/c9b246d12c859a3d207ed0116" alt="Memory 6" onerror="this.src='images/c9b246d12c859a3d207ed0116.jpg'" onclick="openModal(this.src)">
+                    </div>
+                    <div class="slide">
+                        <img src="images/d9f88c8c36e9c43175ad0afa01c" alt="Memory 7" onerror="this.src='images/d9f88c8c36e9c43175ad0afa01c.jpg'" onclick="openModal(this.src)">
                     </div>
                     
                     <div class="slide-controls">
                         <button class="slide-btn" onclick="changeSlide(-1)">&#10094;</button>
                         <div class="slide-counter">
-                            <span id="currentSlide">1</span> / <span id="totalSlides">5</span>
+                            <span id="currentSlide">1</span> / <span id="totalSlides">7</span>
                         </div>
                         <button class="slide-btn" onclick="changeSlide(1)">&#10095;</button>
                     </div>
@@ -1504,30 +1520,107 @@
         // Custom cursor
         const cursor = document.querySelector('.custom-cursor');
         const cursorDot = document.querySelector('.cursor-dot');
+        const container = document.getElementById('container');
+        const glassCard = document.querySelector('.glass-card');
         let mouseX = 0, mouseY = 0;
         let cursorX = 0, cursorY = 0;
         let dotX = 0, dotY = 0;
+        
+        // Detect if mobile
+        const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
+        
+        if (isMobile) {
+            document.body.style.cursor = 'auto';
+            if (cursor) cursor.style.display = 'none';
+            if (cursorDot) cursorDot.style.display = 'none';
+        }
 
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
             
             // Cursor trail
-            if (Math.random() > 0.7) {
+            if (!isMobile && Math.random() > 0.7) {
                 createTrail(e.clientX, e.clientY);
             }
+            
+            // 3D Parallax Effect (desktop only)
+            if (!isMobile) {
+                apply3DParallax(e);
+            }
         });
+        
+        // 3D Parallax Function
+        function apply3DParallax(e) {
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            
+            // Calculate rotation based on mouse position
+            const rotateX = ((e.clientY - centerY) / centerY) * 10; // Increased from 5 to 10
+            const rotateY = ((e.clientX - centerX) / centerX) * 10;
+            
+            // Apply 3D transform to main container
+            if (container) {
+                container.style.transform = `
+                    perspective(1500px)
+                    rotateX(${-rotateX}deg)
+                    rotateY(${rotateY}deg)
+                    translateZ(0)
+                `;
+            }
+            
+            // Card tilt effect
+            if (glassCard) {
+                glassCard.style.transform = `
+                    rotateX(${-rotateX * 0.4}deg)
+                    rotateY(${rotateY * 0.4}deg)
+                `;
+            }
+            
+            // Parallax stars
+            const stars = document.querySelectorAll('.star');
+            stars.forEach((star, index) => {
+                const speed = (index % 5 + 1) * 0.2;
+                const x = ((e.clientX - centerX) / centerX) * (25 * speed);
+                const y = ((e.clientY - centerY) / centerY) * (25 * speed);
+                star.style.transform = `translate(${x}px, ${y}px)`;
+            });
+            
+            // Title parallax
+            const pageTitle = document.querySelector('.page.active .page-title');
+            if (pageTitle) {
+                const titleX = ((e.clientX - centerX) / centerX) * 20;
+                const titleY = ((e.clientY - centerY) / centerY) * 20;
+                pageTitle.style.transform = `
+                    translate(${titleX}px, ${titleY}px)
+                    translateZ(50px)
+                `;
+            }
+            
+            // Parallax shapes (if they exist)
+            const shapes = document.querySelectorAll('.shape');
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 0.4;
+                const x = ((e.clientX - centerX) / centerX) * (30 * speed);
+                const y = ((e.clientY - centerY) / centerY) * (30 * speed);
+                shape.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        }
 
         function animateCursor() {
-            cursorX += (mouseX - cursorX) * 0.2;
-            cursorY += (mouseY - cursorY) * 0.2;
-            dotX += (mouseX - dotX) * 0.35;
-            dotY += (mouseY - dotY) * 0.35;
-            
-            cursor.style.left = cursorX + 'px';
-            cursor.style.top = cursorY + 'px';
-            cursorDot.style.left = dotX + 'px';
-            cursorDot.style.top = dotY + 'px';
+            if (!isMobile) {
+                cursorX += (mouseX - cursorX) * 0.2;
+                cursorY += (mouseY - cursorY) * 0.2;
+                dotX += (mouseX - dotX) * 0.35;
+                dotY += (mouseY - dotY) * 0.35;
+                
+                if (cursor && cursorDot) {
+                    cursor.style.left = cursorX + 'px';
+                    cursor.style.top = cursorY + 'px';
+                    cursorDot.style.left = dotX + 'px';
+                    cursorDot.style.top = dotY + 'px';
+                }
+            }
             
             requestAnimationFrame(animateCursor);
         }
