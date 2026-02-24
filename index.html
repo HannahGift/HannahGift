@@ -51,14 +51,11 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 @keyframes glow{0%,100%{opacity:0.5}50%{opacity:1}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 @keyframes pageSlide{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:translateX(0)}}
-@keyframes spinIn{from{opacity:0;transform:rotate(-8deg) scale(0.95)}to{opacity:1;transform:rotate(0) scale(1)}}
-@keyframes typewriter{from{width:0}to{width:100%}}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 @keyframes loadingBar{0%{width:0%}20%{width:30%}50%{width:60%}80%{width:85%}100%{width:100%}}
-@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
 @keyframes bounceIn{0%{opacity:0;transform:scale(0.8) translateY(20px)}60%{transform:scale(1.05) translateY(-4px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 
-/* ─── HOME ─── */
 #home{position:fixed;inset:0;z-index:500;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--bg);transition:opacity 0.55s var(--ease),transform 0.55s var(--ease);overflow:hidden}
 #home.out{opacity:0;transform:scale(1.04);pointer-events:none}
 .h-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(74,222,128,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(74,222,128,0.035) 1px,transparent 1px);background-size:48px 48px;animation:gridMove 20s linear infinite}
@@ -85,7 +82,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .h-link svg{width:12px;height:12px}
 .h-sep{width:1px;height:14px;background:var(--border2)}
 
-/* ─── APP SHELL ─── */
 #app{display:none;height:100vh;width:100vw;overflow:hidden;flex-direction:column}
 #app.visible{display:flex;animation:fadeIn 0.35s ease both}
 #topbar{height:var(--topbar-h);flex-shrink:0;background:rgba(7,16,10,0.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--border);display:flex;align-items:center;position:relative;z-index:200}
@@ -112,7 +108,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .tb-pill-dot{width:5px;height:5px;background:var(--green);border-radius:50%;animation:pulse 2.5s ease-in-out infinite}
 #body{flex:1;display:flex;overflow:hidden}
 
-/* ─── SIDEBAR ─── */
 #sidebar{width:var(--sidebar-w);flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;transition:width 0.3s var(--spring),opacity 0.25s ease,transform 0.3s var(--spring)}
 #sidebar.hidden{width:0;opacity:0;pointer-events:none;transform:translateX(-8px)}
 .sb-inner{flex:1;overflow-y:auto;overflow-x:hidden;padding:10px 8px}
@@ -134,7 +129,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .sb-footer-text{font-size:11px;color:var(--fg3)}
 .sb-footer-text span{color:var(--green)}
 
-/* ─── PAGES ─── */
 #pages{flex:1;overflow:hidden;display:flex;flex-direction:column}
 .page{display:none;flex-direction:column;height:100%;overflow:hidden}
 .page.active{display:flex;animation:pageSlide 0.28s var(--spring) both}
@@ -186,7 +180,6 @@ code{font-family:var(--mono);font-size:11.5px;background:var(--surface2);border:
 .ptype-arr{color:var(--amber);border-color:rgba(252,211,77,0.25);background:rgba(252,211,77,0.07)}
 .pdesc{color:var(--fg2);font-size:13px}
 
-/* ─── ENHANCED CODE BLOCKS ─── */
 .codeblock{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin:12px 0;position:relative}
 .cb-header{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;border-bottom:1px solid var(--border);background:var(--surface2);gap:8px}
 .cb-left{display:flex;align-items:center;gap:10px}
@@ -206,11 +199,9 @@ code{font-family:var(--mono);font-size:11.5px;background:var(--surface2);border:
 .line-nums{padding:14px 0;background:var(--surface2);border-right:1px solid var(--border);flex-shrink:0;user-select:none}
 .line-nums span{display:block;padding:0 12px;font-family:var(--mono);font-size:11.5px;color:var(--fg3);line-height:1.7;opacity:0.5;text-align:right}
 pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:1.7;color:#94b894;flex:1;min-width:0;overflow:visible;white-space:pre}
-.typewriter-active .cb-pre-inner{display:inline;overflow:hidden;white-space:pre}
 .cb-cursor{display:inline-block;width:2px;height:1em;background:var(--green);vertical-align:text-bottom;animation:blink 1s step-end infinite;margin-left:1px}
 .kw{color:#f97583}.str{color:#9ecfb8}.num{color:#79c0ff}.fn{color:#b8d4a0}.cm{color:#3d5e3d;font-style:italic}.key{color:#dda678}.bool{color:#f97583}
 
-/* ─── CALLOUTS ─── */
 .callout{display:flex;gap:12px;padding:11px 15px;border-left:2px solid;border-radius:0 var(--radius-sm) var(--radius-sm) 0;margin:12px 0;font-size:13px;line-height:1.65;background:var(--surface)}
 .callout-icon{flex-shrink:0;margin-top:1px}
 .callout-icon svg{width:14px;height:14px}
@@ -222,7 +213,6 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
 .callout.info{border-color:var(--blue);color:#93b8d4}
 .callout.info .callout-icon svg{color:var(--blue)}
 
-/* ─── STEPS ─── */
 .steps{display:flex;flex-direction:column;gap:2px;margin:14px 0 22px}
 .step{display:flex;gap:14px;padding:13px 14px;border-radius:var(--radius-sm);transition:background 0.15s}
 .step:hover{background:rgba(74,222,128,0.018)}
@@ -230,7 +220,6 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
 .step-title{font-size:14px;font-weight:600;color:var(--fg);margin-bottom:3px}
 .step-desc{font-size:13px;color:var(--fg2);line-height:1.65}
 
-/* ─── TAGS TABLE ─── */
 .tags-table{width:100%;border-collapse:collapse;margin:10px 0}
 .tags-table tr{border-bottom:1px solid var(--border);transition:background 0.1s}
 .tags-table tr:hover{background:rgba(74,222,128,0.018)}
@@ -244,7 +233,6 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
 
 .divider{height:1px;background:var(--border);margin:24px 0}
 
-/* ─── IMG SHOWCASE ─── */
 .img-showcase{position:relative;overflow:hidden;border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;transition:border-color 0.25s,box-shadow 0.25s;perspective:800px}
 .img-showcase:hover{border-color:var(--border3);box-shadow:0 8px 40px rgba(74,222,128,0.07)}
 .img-showcase img{width:100%;display:block;transition:transform 0.08s ease;border-radius:calc(var(--radius) - 1px)}
@@ -252,7 +240,6 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
 .img-hint svg{width:10px;height:10px}
 .img-showcase:hover .img-hint{opacity:1}
 
-/* ─── LIGHTBOX ─── */
 #lightbox{position:fixed;inset:0;z-index:900;background:rgba(0,0,0,0.93);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity 0.3s ease}
 #lightbox.open{opacity:1;pointer-events:all}
 #lightbox img{max-width:88vw;max-height:86vh;border-radius:var(--radius);border:1px solid var(--border2);box-shadow:0 32px 80px rgba(0,0,0,0.6);cursor:default;transition:transform 0.08s ease}
@@ -260,7 +247,6 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
 #lb-close svg{width:15px;height:15px}
 #lb-close:hover{background:var(--surface2);border-color:var(--border3);color:var(--fg)}
 
-/* ─── NAV ─── */
 #page-nav{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:9px 40px;border-top:1px solid var(--border);background:rgba(7,16,10,0.65);backdrop-filter:blur(8px);gap:12px}
 .pnav-btn{display:flex;align-items:center;gap:6px;padding:7px 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;font-weight:500;color:var(--fg2);cursor:pointer;transition:all 0.15s;font-family:var(--sans)}
 .pnav-btn svg{width:13px;height:13px}
@@ -275,11 +261,9 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
 #sb-overlay{display:none;position:fixed;inset:0;top:var(--topbar-h);background:rgba(0,0,0,0.65);backdrop-filter:blur(4px);z-index:140}
 #sb-overlay.visible{display:block}
 
-/* ─── TOAST ─── */
 #toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius);padding:9px 16px;font-size:13px;color:var(--fg);display:flex;align-items:center;gap:8px;box-shadow:0 8px 32px rgba(0,0,0,0.4);transition:transform 0.3s var(--spring),opacity 0.3s ease;opacity:0;pointer-events:none;z-index:1000;white-space:nowrap}
 #toast svg{width:14px;height:14px;color:var(--green);flex-shrink:0}
 
-/* ─── CODE GENERATOR ─── */
 .gen-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px}
 .gen-field{display:flex;flex-direction:column;gap:6px}
 .gen-field.full{grid-column:1/-1}
@@ -291,6 +275,7 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
 .gen-select{background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:9px 12px;font-family:var(--sans);font-size:13px;color:var(--fg);outline:none;transition:border-color 0.2s;width:100%;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%234d6b4d' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
 .gen-select:focus{border-color:var(--border3)}
 .gen-select option{background:#0c1810}
+
 .color-section{display:flex;flex-direction:column;gap:10px}
 .color-presets{display:flex;gap:7px;flex-wrap:wrap}
 .color-swatch{width:28px;height:28px;border-radius:6px;cursor:pointer;border:2px solid transparent;transition:all 0.15s;flex-shrink:0}
@@ -302,6 +287,7 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
 .color-rgb-input{background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:7px 8px;font-family:var(--mono);font-size:12px;color:var(--fg);outline:none;width:100%;text-align:center;transition:border-color 0.2s}
 .color-rgb-input:focus{border-color:var(--border3)}
 .color-preview{width:36px;height:36px;border-radius:8px;border:1px solid var(--border2);flex-shrink:0;transition:background 0.2s}
+
 .toggle-row{display:flex;align-items:center;gap:10px}
 .toggle{position:relative;width:38px;height:20px;flex-shrink:0}
 .toggle input{opacity:0;width:0;height:0}
@@ -310,13 +296,13 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
 .toggle input:checked + .toggle-slider{background:var(--green-bg);border-color:rgba(74,222,128,0.4)}
 .toggle input:checked + .toggle-slider::before{transform:translateX(18px);background:var(--green)}
 .toggle-label{font-size:13px;color:var(--fg2)}
+
 .gen-section-title{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--fg3);margin:18px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:7px}
 .gen-section-title svg{width:12px;height:12px;color:var(--green)}
 .gen-submit{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:13px;background:var(--green);color:#061209;font-weight:700;font-size:15px;border-radius:var(--radius);border:none;cursor:pointer;transition:all 0.2s var(--ease);font-family:var(--sans);margin-top:6px}
 .gen-submit:hover{transform:translateY(-2px);box-shadow:0 10px 36px rgba(74,222,128,0.3)}
 .gen-submit svg{width:17px;height:17px}
 
-/* ─── LOADING SCREEN ─── */
 #gen-loading{position:absolute;inset:0;background:var(--surface);z-index:50;display:none;flex-direction:column;align-items:center;justify-content:center;gap:18px;border-radius:var(--radius);animation:fadeIn 0.3s ease}
 #gen-loading.visible{display:flex}
 .gen-loading-icon{width:56px;height:56px;background:var(--green-bg);border:1px solid var(--border2);border-radius:14px;display:flex;align-items:center;justify-content:center;animation:bounceIn 0.5s var(--spring) both}
@@ -331,7 +317,6 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
 .gen-loading-step.done{color:var(--green)}
 .gen-loading-step svg{width:12px;height:12px}
 
-/* ─── RESULT ─── */
 #gen-result{display:none;flex-direction:column;gap:12px;margin-top:4px;animation:bounceIn 0.5s var(--spring) both}
 #gen-result.visible{display:flex}
 .gen-result-header{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--green-bg);border:1px solid rgba(74,222,128,0.2);border-radius:var(--radius)}
@@ -343,7 +328,6 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
 .gen-reset svg{width:13px;height:13px}
 .gen-wrapper{position:relative}
 
-/* ─── GAME SEARCH ─── */
 .game-search-wrap{position:relative}
 .game-search-results{position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius-sm);z-index:200;max-height:220px;overflow-y:auto;box-shadow:0 8px 24px rgba(0,0,0,0.4);display:none}
 .game-search-results.open{display:block}
@@ -357,20 +341,24 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
 .game-result-name{font-size:12.5px;font-weight:600;color:var(--fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .game-result-id{font-family:var(--mono);font-size:10px;color:var(--green);opacity:0.7}
 .game-result-players{font-family:var(--mono);font-size:10px;color:var(--fg3)}
-.game-search-status{padding:10px 12px;font-size:12px;color:var(--fg3);font-family:var(--mono);text-align:center}
+.game-search-status{padding:10px 12px;font-size:12px;color:var(--fg3);font-family:var(--mono);text-align:center;display:flex;align-items:center;justify-content:center;gap:6px}
+.game-search-spinner{width:12px;height:12px;border:2px solid var(--border2);border-top-color:var(--green);border-radius:50%;animation:spin 0.7s linear infinite;flex-shrink:0}
 .game-selected-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:var(--green-bg);border:1px solid rgba(74,222,128,0.2);border-radius:999px;font-size:11px;color:var(--green);font-family:var(--mono);margin-top:5px}
 .game-selected-badge svg{width:10px;height:10px}
 
-/* ─── SOCIAL TOGGLES ─── */
-.social-editor-row{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:6px;transition:border-color 0.15s}
-.social-editor-row:hover{border-color:var(--border2)}
-.social-editor-row .social-icon{width:28px;height:28px;border-radius:6px;background:var(--surface3);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.social-editor-row .social-icon svg{width:14px;height:14px;color:var(--green)}
-.social-editor-row .social-name{font-size:13px;font-weight:500;color:var(--fg);flex:1}
-.social-editor-row .social-link-input{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:5px 8px;font-family:var(--mono);font-size:11px;color:var(--fg2);outline:none;width:170px;transition:border-color 0.2s}
-.social-editor-row .social-link-input:focus{border-color:var(--border3)}
+.editor-row{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:6px;transition:border-color 0.15s}
+.editor-row:hover{border-color:var(--border2)}
+.editor-row-icon{width:28px;height:28px;border-radius:6px;background:var(--surface3);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.editor-row-icon svg{width:14px;height:14px;color:var(--green)}
+.editor-row-name{font-size:13px;font-weight:500;color:var(--fg);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.editor-link-input{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:5px 8px;font-family:var(--mono);font-size:11px;color:var(--fg2);outline:none;width:160px;transition:border-color 0.2s;flex-shrink:0}
+.editor-link-input:focus{border-color:var(--border3)}
+.drag-handle{color:var(--fg3);cursor:grab;flex-shrink:0;display:flex;align-items:center;padding:0 2px}
+.drag-handle:active{cursor:grabbing}
+.drag-handle svg{width:14px;height:14px}
+.editor-row.dragging{opacity:0.5;border-color:var(--green)}
+.editor-row.drag-over{border-color:var(--green);background:var(--green-bg)}
 
-/* ─── INSTRUCTION EDITOR ─── */
 .instr-row{display:flex;gap:8px;align-items:flex-start;padding:10px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:6px;position:relative}
 .instr-row-num{width:22px;height:22px;flex-shrink:0;background:var(--green-bg);border:1px solid var(--border2);border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;font-weight:700;color:var(--green);margin-top:2px}
 .instr-fields{flex:1;display:flex;flex-direction:column;gap:5px}
@@ -384,7 +372,6 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
 .add-row-btn:hover{border-color:var(--green);color:var(--green);background:var(--green-bg)}
 .add-row-btn svg{width:12px;height:12px}
 
-/* ─── CHANGELOG EDITOR ─── */
 .cl-version-row{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:8px;overflow:hidden}
 .cl-version-header{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--surface3);border-bottom:1px solid var(--border);cursor:pointer;user-select:none}
 .cl-version-header:hover{background:var(--surface2)}
@@ -404,13 +391,18 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
 .cl-del-btn:hover{color:var(--red)}
 .cl-del-btn svg{width:13px;height:13px}
 
-/* ─── DOWNLOAD BUTTONS ─── */
 .dl-btns{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
 .dl-btn{display:flex;align-items:center;gap:6px;padding:8px 16px;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius-sm);font-family:var(--mono);font-size:12px;color:var(--fg2);cursor:pointer;transition:all 0.15s}
 .dl-btn:hover{border-color:var(--green);color:var(--green);background:var(--green-bg)}
 .dl-btn svg{width:13px;height:13px}
 
-/* ─── MOBILE ─── */
+.provider-row{display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:6px;transition:border-color 0.15s}
+.provider-row:hover{border-color:var(--border2)}
+.provider-row.drag-over{border-color:var(--green);background:var(--green-bg)}
+.provider-row.dragging{opacity:0.4}
+
+.applink-locked{font-family:var(--mono);font-size:10px;color:var(--fg3);opacity:0.6;padding:4px 8px;background:var(--surface3);border:1px solid var(--border);border-radius:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px}
+
 @media (max-width:800px){
   #sidebar{position:fixed;top:var(--topbar-h);left:0;bottom:0;z-index:150;box-shadow:8px 0 40px rgba(0,0,0,0.4)}
   #sidebar.hidden{transform:translateX(-100%);width:var(--sidebar-w);opacity:1}
@@ -432,7 +424,6 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
 </head>
 <body>
 
-<!-- ═══ HOME ═══ -->
 <div id="home">
   <div class="h-grid"></div>
   <div class="h-glow"></div>
@@ -441,7 +432,7 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
   <div class="h-content">
     <div class="h-badge"><div class="h-dot"></div>Roblox Config Documentation</div>
     <div class="h-title">Havoc<span class="h-accent">Preset</span></div>
-    <div class="h-sub">Tutorial & Configuration Reference</div>
+    <div class="h-sub">Tutorial &amp; Configuration Reference</div>
     <div class="h-btns">
       <button class="h-btn-p" onclick="enterApp()"><i data-lucide="book-open"></i><span>Open Docs</span></button>
       <a class="h-btn-s" href="https://jnkie.com" target="_blank" rel="noopener"><i data-lucide="globe"></i><span>jnkie.com</span></a>
@@ -457,7 +448,6 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
   </div>
 </div>
 
-<!-- ═══ APP ═══ -->
 <div id="app">
   <div id="sb-overlay" onclick="closeSbMobile()"></div>
   <header id="topbar">
@@ -474,7 +464,6 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
   </header>
 
   <div id="body">
-    <!-- SIDEBAR -->
     <aside id="sidebar">
       <div class="sb-inner">
         <div class="nav-sec">
@@ -518,7 +507,6 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
       </div>
     </aside>
 
-    <!-- PAGES -->
     <div id="pages">
 
       <!-- 0: Overview -->
@@ -572,16 +560,15 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
               <div class="cb-left"><div class="cb-dots"><div class="cb-dot-r"></div><div class="cb-dot-y"></div><div class="cb-dot-g"></div></div><div class="cb-lang">Lua — Minimal Template</div></div>
               <div class="cb-actions">
                 <button class="cb-btn" onclick="copyRaw(this)"><i data-lucide="copy"></i>Copy Raw</button>
-                <button class="cb-btn" onclick="copyComments(this)"><i data-lucide="message-square"></i>With Comments</button>
               </div>
             </div>
             <div class="cb-wrap"><div class="cb-lines">
               <div class="line-nums" id="ln-2"></div>
 <pre class="cb-pre" id="pre-2"><span class="fn">getgenv</span>().<span class="key">SCRIPT_KEY</span> = <span class="bool">nil</span>
 
-<span class="kw">local</span> Junkie_Configs = { <span class="cm">-- Junkie / key validation config</span> }
-<span class="kw">local</span> UI_Configs     = { <span class="cm">-- Visual / UI config</span> }
-<span class="kw">local</span> Config = { <span class="cm">-- merged from both tables above</span> }
+<span class="kw">local</span> Junkie_Configs = { }
+<span class="kw">local</span> UI_Configs     = { }
+<span class="kw">local</span> Config = { }
 
 <span class="kw">local</span> Hub
 <span class="fn">pcall</span>(<span class="kw">function</span>()
@@ -601,10 +588,7 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
 
 <span class="kw">while not</span> <span class="fn">getgenv</span>().<span class="key">SCRIPT_KEY</span> <span class="kw">do</span>
   task.<span class="fn">wait</span>(<span class="num">0.1</span>)
-<span class="kw">end</span>
-
-<span class="cm">-- Put your game script here
--- return Hub</span></pre>
+<span class="kw">end</span></pre>
             </div></div>
           </div>
         </div></div>
@@ -679,7 +663,7 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
 
       <!-- 6: UI Configs -->
       <div class="page" data-idx="6">
-        <div class="page-header"><div class="page-eyebrow"><i data-lucide="palette"></i> 05 — Visual</div><div class="page-title">UI_Configs</div><div class="page-desc">Controls the visual appearance and behaviour of the key system UI. Split into focused sub-sections below.</div></div>
+        <div class="page-header"><div class="page-eyebrow"><i data-lucide="palette"></i> 05 — Visual</div><div class="page-title">UI_Configs</div><div class="page-desc">Controls the visual appearance and behaviour of the key system UI.</div></div>
         <div class="page-scroll"><div class="doc-content">
           <div class="callout info"><div class="callout-icon"><i data-lucide="info"></i></div><div>Navigate using the sidebar or Next button to reach General, Background, Snow, Key System, Discord, Socials, Instructions, and Changelog sub-sections. Or use the <strong>Code Generator</strong> tab to configure everything visually.</div></div>
         </div></div>
@@ -749,12 +733,12 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
             <tbody>
               <tr><td class="pname">KeySystemLabel</td><td><span class="ptype-pill ptype-str">string</span></td><td class="pdesc">Label text above the key input box.</td></tr>
               <tr><td class="pname">KeySystemPlaceholder</td><td><span class="ptype-pill ptype-str">string</span></td><td class="pdesc">Animated placeholder that types itself when the box is empty.</td></tr>
-              <tr><td class="pname">KeyFile</td><td><span class="ptype-pill ptype-str">string</span></td><td class="pdesc">Filename used to save and reload a verified key. On next launch the saved key is auto-validated — skipping the UI entirely if valid. Leave <code>""</code> to disable.</td></tr>
+              <tr><td class="pname">KeyFile</td><td><span class="ptype-pill ptype-str">string</span></td><td class="pdesc">Filename used to save and reload a verified key. Leave <code>""</code> to disable.</td></tr>
               <tr><td class="pname">CloseOnSuccess</td><td><span class="ptype-pill ptype-bool">boolean</span></td><td class="pdesc"><code>true</code> = UI auto-closes after successful redeem.</td></tr>
               <tr><td class="pname">SuccessMessage</td><td><span class="ptype-pill ptype-str">string</span></td><td class="pdesc">Toast shown on success. e.g. <code>"✓ Access Granted!"</code></td></tr>
             </tbody>
           </table>
-          <div class="callout tip"><div class="callout-icon"><i data-lucide="check-circle-2"></i></div><div><strong>Auto-Login —</strong> On launch the library checks <code>KeyFile</code> (or <code>getgenv().SCRIPT_KEY</code> if already set) against the Junkie SDK. If valid, the UI is never shown and <code>getgenv().SCRIPT_KEY</code> is set immediately. The key is stored in <code>KeyFile</code> after first successful manual redeem.</div></div>
+          <div class="callout tip"><div class="callout-icon"><i data-lucide="check-circle-2"></i></div><div><strong>Auto-Login —</strong> On launch the library checks <code>KeyFile</code> against the Junkie SDK. If valid, the UI is never shown.</div></div>
           <div class="callout info"><div class="callout-icon"><i data-lucide="info"></i></div><div><strong>KEYLESS mode —</strong> If Junkie returns <code>message == "KEYLESS"</code>, the library sets <code>getgenv().SCRIPT_KEY = "KEYLESS"</code> and proceeds without saving any file.</div></div>
         </div></div>
       </div>
@@ -862,7 +846,6 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
               <div class="cb-left"><div class="cb-dots"><div class="cb-dot-r"></div><div class="cb-dot-y"></div><div class="cb-dot-g"></div></div><div class="cb-lang">Lua — Full Config</div></div>
               <div class="cb-actions">
                 <button class="cb-btn" onclick="copyRaw(this)"><i data-lucide="copy"></i>Copy Raw</button>
-                <button class="cb-btn" onclick="copyComments(this)"><i data-lucide="message-square"></i>With Comments</button>
               </div>
             </div>
             <div class="cb-wrap"><div class="cb-lines">
@@ -882,8 +865,8 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
     { <span class="key">Name</span>=<span class="str">"Linkvertise"</span>, <span class="key">Url</span>=<span class="str">"https://linkvertise.com/yourhub"</span>, <span class="key">Show</span>=<span class="bool">true</span>, <span class="key">Pinned</span>=<span class="bool">false</span> },
   },
   <span class="key">GameSupport</span> = {
-    [<span class="num">2788229376</span>] = { <span class="key">Name</span>=<span class="str">"Blox Fruits"</span>, <span class="key">Free</span>=<span class="str">"https://api.jnkie.com/.../HASH/download"</span>, <span class="key">Premium</span>=<span class="str">"https://api.jnkie.com/.../HASH/download"</span> },
-    <span class="key">Universal</span>    = { <span class="key">Name</span>=<span class="str">"Universal"</span>,   <span class="key">Free</span>=<span class="str">"https://api.jnkie.com/.../HASH/download"</span>, <span class="key">Premium</span>=<span class="str">"https://api.jnkie.com/.../HASH/download"</span> },
+    [<span class="num">2788229376</span>] = { <span class="key">Name</span>=<span class="str">"Blox Fruits"</span>, <span class="key">Free</span>=<span class="str">"..."</span>, <span class="key">Premium</span>=<span class="str">"..."</span> },
+    <span class="key">Universal</span>    = { <span class="key">Name</span>=<span class="str">"Universal"</span>,   <span class="key">Free</span>=<span class="str">"..."</span>, <span class="key">Premium</span>=<span class="str">"..."</span> },
   },
 }
 
@@ -896,48 +879,10 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
   <span class="key">KeySystemPlaceholder</span> = <span class="str">"jnk-XXXXXXXXXXXXXXXX"</span>,
   <span class="key">ShowMemberCount</span> = <span class="bool">true</span>,
   <span class="key">SnowEnabled</span> = <span class="bool">true</span>, <span class="key">SnowDensity</span> = <span class="num">1.0</span>,
-  <span class="key">SnowColor</span> = <span class="fn">Color3</span>.<span class="fn">fromRGB</span>(<span class="num">220</span>, <span class="num">235</span>, <span class="num">255</span>), <span class="key">SnowSize</span> = { <span class="key">Min</span>=<span class="num">3</span>, <span class="key">Max</span>=<span class="num">7</span> },
   <span class="key">GlassOpacity</span> = <span class="num">0.18</span>, <span class="key">SlideInEnabled</span> = <span class="bool">true</span>,
   <span class="key">BlurEnabled</span> = <span class="bool">true</span>, <span class="key">BlurSize</span> = <span class="num">30</span>, <span class="key">OverlayOpacity</span> = <span class="num">0.65</span>,
   <span class="key">CloseOnSuccess</span> = <span class="bool">true</span>, <span class="key">SuccessMessage</span> = <span class="str">"✓ Access Granted!"</span>,
   <span class="key">KeyFile</span> = <span class="str">"myhub_key.txt"</span>, <span class="key">Discord</span> = <span class="str">"your_invite_code"</span>,
-  <span class="key">Socials</span> = {
-    { <span class="key">Name</span>=<span class="str">"Discord"</span>, <span class="key">Icon</span>=<span class="str">"rbxassetid://124569550333033"</span>, <span class="key">Link</span>=<span class="str">"https://discord.gg/yourserver"</span>, <span class="key">Show</span>=<span class="bool">true</span>, <span class="key">Pinned</span>=<span class="bool">true</span> },
-    { <span class="key">Name</span>=<span class="str">"GitHub"</span>,  <span class="key">Icon</span>=<span class="str">"rbxassetid://82005505285811"</span>,  <span class="key">Link</span>=<span class="str">"https://github.com/yourrepo"</span>,  <span class="key">Show</span>=<span class="bool">true</span>, <span class="key">Pinned</span>=<span class="bool">false</span> },
-  },
-  <span class="key">AppLinks</span> = { { <span class="key">Name</span>=<span class="str">"My App"</span>, <span class="key">Icon</span>=<span class="str">"rbxassetid://0"</span>, <span class="key">Link</span>=<span class="str">""</span>, <span class="key">Show</span>=<span class="bool">true</span>, <span class="key">Pinned</span>=<span class="bool">true</span> } },
-  <span class="key">Instructions</span> = {
-    { <span class="key">Title</span>=<span class="str">"Open Junkie"</span>,    <span class="key">Body</span>=<span class="str">"Click Junkie Development to open your key link."</span> },
-    { <span class="key">Title</span>=<span class="str">"Complete Steps"</span>, <span class="key">Body</span>=<span class="str">"Finish all checkpoints on the Junkie page."</span> },
-    { <span class="key">Title</span>=<span class="str">"Paste &amp; Redeem"</span>, <span class="key">Body</span>=<span class="str">"Paste your jnk- key above and hit Redeem."</span> },
-  },
-  <span class="key">Changelog</span> = {
-    <span class="key">Show</span> = <span class="bool">true</span>, <span class="key">Title</span> = <span class="str">"What's New"</span>,
-    <span class="key">Versions</span> = {
-      { <span class="key">Version</span>=<span class="str">"1.0"</span>, <span class="key">Date</span>=<span class="str">"Feb 2026"</span>, <span class="key">Tag</span>=<span class="str">"NEW"</span>, <span class="key">Notes</span>={ <span class="str">"Initial release"</span> } },
-    },
-  },
-}
-
-<span class="kw">local</span> Config = {
-  <span class="key">Name</span>=UI_Configs.<span class="key">Name</span>, <span class="key">Version</span>=UI_Configs.<span class="key">Version</span>, <span class="key">Color</span>=UI_Configs.<span class="key">Color</span>,
-  <span class="key">GradientAnimated</span>=UI_Configs.<span class="key">GradientAnimated</span>, <span class="key">GradientAnimationSpeed</span>=UI_Configs.<span class="key">GradientAnimationSpeed</span>,
-  <span class="key">BadgeText</span>=UI_Configs.<span class="key">BadgeText</span>, <span class="key">ShowOutline</span>=UI_Configs.<span class="key">ShowOutline</span>,
-  <span class="key">KeySystemLabel</span>=UI_Configs.<span class="key">KeySystemLabel</span>, <span class="key">KeySystemPlaceholder</span>=UI_Configs.<span class="key">KeySystemPlaceholder</span>,
-  <span class="key">ShowMemberCount</span>=UI_Configs.<span class="key">ShowMemberCount</span>,
-  <span class="key">SnowEnabled</span>=UI_Configs.<span class="key">SnowEnabled</span>, <span class="key">SnowDensity</span>=UI_Configs.<span class="key">SnowDensity</span>,
-  <span class="key">SnowColor</span>=UI_Configs.<span class="key">SnowColor</span>, <span class="key">SnowSize</span>=UI_Configs.<span class="key">SnowSize</span>,
-  <span class="key">GlassOpacity</span>=UI_Configs.<span class="key">GlassOpacity</span>, <span class="key">SlideInEnabled</span>=UI_Configs.<span class="key">SlideInEnabled</span>,
-  <span class="key">BlurEnabled</span>=UI_Configs.<span class="key">BlurEnabled</span>, <span class="key">BlurSize</span>=UI_Configs.<span class="key">BlurSize</span>,
-  <span class="key">OverlayOpacity</span>=UI_Configs.<span class="key">OverlayOpacity</span>, <span class="key">CloseOnSuccess</span>=UI_Configs.<span class="key">CloseOnSuccess</span>,
-  <span class="key">SuccessMessage</span>=UI_Configs.<span class="key">SuccessMessage</span>, <span class="key">KeyFile</span>=UI_Configs.<span class="key">KeyFile</span>,
-  <span class="key">Discord</span>=UI_Configs.<span class="key">Discord</span>, <span class="key">Socials</span>=UI_Configs.<span class="key">Socials</span>,
-  <span class="key">AppLinks</span>=UI_Configs.<span class="key">AppLinks</span>, <span class="key">Instructions</span>=UI_Configs.<span class="key">Instructions</span>,
-  <span class="key">Changelog</span>=UI_Configs.<span class="key">Changelog</span>,
-  <span class="key">UseJunkie</span>=Junkie_Configs.<span class="key">UseJunkie</span>, <span class="key">Junkie_Webhook</span>=Junkie_Configs.<span class="key">Junkie_Webhook</span>,
-  <span class="key">Junkie</span>={ <span class="key">Service</span>=Junkie_Configs.<span class="key">Service</span>, <span class="key">Identifier</span>=Junkie_Configs.<span class="key">Identifier</span>, <span class="key">Provider</span>=Junkie_Configs.<span class="key">Provider</span> },
-  <span class="key">Providers</span>=Junkie_Configs.<span class="key">Providers</span>, <span class="key">MaxKeyAttempts</span>=Junkie_Configs.<span class="key">MaxKeyAttempts</span>,
-  <span class="key">Premium</span>=Junkie_Configs.<span class="key">Premium</span>, <span class="key">GameSupport</span>=Junkie_Configs.<span class="key">GameSupport</span>,
 }
 
 <span class="kw">local</span> Hub
@@ -948,21 +893,11 @@ pre.cb-pre{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:
 <span class="kw">end</span>)
 <span class="kw">if</span> <span class="fn">type</span>(Hub) ~= <span class="str">"table"</span> <span class="kw">then return end</span>
 
-<span class="kw">local</span> autoLogin = TryAutoLogin()
-<span class="kw">if not</span> autoLogin <span class="kw">then</span>
-  <span class="fn">pcall</span>(<span class="kw">function</span>()
-    <span class="kw">local</span> hub = Hub.<span class="fn">new</span>(Config)
-    hub:<span class="fn">Init</span>()
-  <span class="kw">end</span>)
-<span class="kw">end</span>
-
 <span class="kw">while not</span> <span class="fn">getgenv</span>().<span class="key">SCRIPT_KEY</span> <span class="kw">do</span> task.<span class="fn">wait</span>(<span class="num">0.1</span>) <span class="kw">end</span>
 
-<span class="cm">-- Put script here
-return Hub</span></pre>
+<span class="kw">return</span> Hub</pre>
             </div></div>
           </div>
-          <div class="callout info"><div class="callout-icon"><i data-lucide="info"></i></div><div><strong>Note —</strong> Never modify the library itself. All customisation lives in your <code>Junkie_Configs</code> and <code>UI_Configs</code> tables. The library returns itself as <code>Hub</code> which you can use in your game script.</div></div>
         </div></div>
       </div>
 
@@ -975,7 +910,6 @@ return Hub</span></pre>
         </div>
         <div class="page-scroll"><div class="doc-content">
           <div class="gen-wrapper">
-            <!-- LOADING OVERLAY -->
             <div id="gen-loading">
               <div class="gen-loading-icon"><i data-lucide="cpu"></i></div>
               <div class="gen-loading-title">Generating your config…</div>
@@ -990,7 +924,6 @@ return Hub</span></pre>
               </div>
             </div>
 
-            <!-- RESULT -->
             <div id="gen-result">
               <div class="gen-result-header">
                 <i data-lucide="check-circle-2"></i>
@@ -1013,7 +946,6 @@ return Hub</span></pre>
               </div>
             </div>
 
-            <!-- FORM -->
             <div id="gen-form">
               <div class="gen-section-title"><i data-lucide="settings-2"></i>Junkie Settings</div>
               <div class="gen-grid">
@@ -1063,6 +995,9 @@ return Hub</span></pre>
                   <div class="color-swatch" style="background:#06b6d4" data-r="6" data-g="182" data-b="212" onclick="selectColor(this)" title="Cyan"></div>
                   <div class="color-swatch" style="background:#f97316" data-r="249" data-g="115" data-b="22" onclick="selectColor(this)" title="Orange"></div>
                   <div class="color-swatch" style="background:#ffffff" data-r="255" data-g="255" data-b="255" onclick="selectColor(this)" title="White"></div>
+                  <div class="color-swatch" style="background:#ff0000" data-r="255" data-g="0" data-b="0" onclick="selectColor(this)" title="Red"></div>
+                  <div class="color-swatch" style="background:#00ffff" data-r="0" data-g="255" data-b="255" onclick="selectColor(this)" title="Aqua"></div>
+                  <div class="color-swatch" style="background:#ff00ff" data-r="255" data-g="0" data-b="255" onclick="selectColor(this)" title="Magenta"></div>
                 </div>
                 <div class="color-rgb-row">
                   <span class="color-rgb-label">Custom RGB</span>
@@ -1123,6 +1058,12 @@ return Hub</span></pre>
                 <div class="gen-field"><div class="toggle-row"><label class="toggle"><input type="checkbox" id="g-premium"><div class="toggle-slider"></div></label><span class="toggle-label">Premium Mode</span></div></div>
               </div>
 
+              <!-- PROVIDERS EDITOR -->
+              <div class="gen-section-title"><i data-lucide="link-2"></i>Providers Editor</div>
+              <div style="font-size:11px;color:var(--fg3);font-family:var(--mono);margin-bottom:8px">Drag to reorder · Toggle show/pin · Only ONE IsJunkie provider allowed</div>
+              <div id="providers-editor"></div>
+              <button type="button" class="add-row-btn" onclick="addProvider()"><i data-lucide="plus"></i>Add Provider</button>
+
               <!-- GAME SUPPORT -->
               <div class="gen-section-title"><i data-lucide="gamepad-2"></i>Game Support</div>
               <div class="gen-field full" style="grid-column:1/-1;margin-bottom:12px">
@@ -1130,25 +1071,27 @@ return Hub</span></pre>
                 <div class="game-search-wrap">
                   <input class="gen-input" id="g-game-search" type="text" placeholder="e.g. Blox Fruits, Adopt Me, Arsenal…" oninput="searchRobloxGame(this.value)" autocomplete="off">
                   <div class="game-search-results" id="game-search-results">
-                    <div class="game-search-status" id="game-search-status">Type to search…</div>
+                    <div class="game-search-status">Type to search…</div>
                   </div>
                 </div>
-                <div id="game-selected-badge" style="display:none" class="game-selected-badge"><i data-lucide="check-circle-2"></i><span id="game-selected-text">No game selected</span><button onclick="clearGameSelection()" style="background:none;border:none;color:var(--green);cursor:pointer;padding:0;margin-left:4px;display:flex;align-items:center"><i data-lucide="x" style="width:10px;height:10px"></i></button></div>
               </div>
-              <div id="game-entries-list" style="margin-bottom:16px">
-                <div style="font-size:11px;color:var(--fg3);font-family:var(--mono);margin-bottom:8px">GAME ENTRIES — add games via search or manually below</div>
-                <!-- game entries injected here -->
-              </div>
+              <div id="game-entries-list" style="margin-bottom:8px"></div>
               <button type="button" class="add-row-btn" onclick="addGameEntryManual()" style="margin-bottom:16px"><i data-lucide="plus"></i>Add Game Manually</button>
 
               <!-- SOCIALS EDITOR -->
-              <div class="gen-section-title"><i data-lucide="share-2"></i>Socials Toggle &amp; Links</div>
-              <div id="socials-editor">
-                <!-- injected by JS -->
-              </div>
+              <div class="gen-section-title"><i data-lucide="share-2"></i>Socials</div>
+              <div style="font-size:11px;color:var(--fg3);font-family:var(--mono);margin-bottom:8px">Drag to reorder · Toggle show/pin</div>
+              <div id="socials-editor"></div>
+              <button type="button" class="add-row-btn" onclick="addSocial()"><i data-lucide="plus"></i>Add Social</button>
+
+              <!-- APP LINKS EDITOR -->
+              <div class="gen-section-title" style="margin-top:20px"><i data-lucide="external-link"></i>App Links</div>
+              <div style="font-size:11px;color:var(--fg3);font-family:var(--mono);margin-bottom:8px">Drag to reorder · Icon IDs are fixed by the library</div>
+              <div id="applinks-editor"></div>
+              <button type="button" class="add-row-btn" onclick="addAppLink()"><i data-lucide="plus"></i>Add App Link</button>
 
               <!-- INSTRUCTION EDITOR -->
-              <div class="gen-section-title"><i data-lucide="list-ordered"></i>Instructions Editor</div>
+              <div class="gen-section-title" style="margin-top:20px"><i data-lucide="list-ordered"></i>Instructions Editor</div>
               <div id="instr-editor"></div>
               <button type="button" class="add-row-btn" onclick="addInstrRow()"><i data-lucide="plus"></i>Add Step</button>
 
@@ -1157,7 +1100,7 @@ return Hub</span></pre>
               <div id="cl-editor"></div>
               <button type="button" class="add-row-btn" onclick="addClVersion()"><i data-lucide="plus"></i>Add Version</button>
 
-              <button class="gen-submit" onclick="generateCode()">
+              <button class="gen-submit" style="margin-top:24px" onclick="generateCode()">
                 <i data-lucide="wand-2"></i>Generate My Config
               </button>
             </div>
@@ -1167,10 +1110,10 @@ return Hub</span></pre>
 
       <!-- 18: Showcase -->
       <div class="page" data-idx="18">
-        <div class="page-header"><div class="page-eyebrow"><i data-lucide="image"></i> Media</div><div class="page-title">UI Showcase</div><div class="page-desc">Click the screenshot to expand. Hover for a 3D tilt effect.</div></div>
+        <div class="page-header"><div class="page-eyebrow"><i data-lucide="image"></i> Media</div><div class="page-title">UI Showcase</div><div class="page-desc">Click the screenshot to expand.</div></div>
         <div class="page-scroll"><div class="doc-content">
           <div class="img-showcase" id="img3d" onclick="openLightbox()">
-            <img id="showcase-img" src="https://raw.githubusercontent.com/1NFERNO-HUB/Junkie/refs/heads/main/Screenshot_20260223_154320_Roblox.jpg" alt="Havoc Preset UI in Roblox" onerror="this.parentElement.innerHTML='<div style=\'height:220px;display:flex;align-items:center;justify-content:center;background:var(--surface);color:var(--fg3);font-family:var(--mono);font-size:11px;letter-spacing:1px;border:1px dashed var(--border2);border-radius:var(--radius);\'>[screenshot unavailable]</div>'"/>
+            <img id="showcase-img" src="https://raw.githubusercontent.com/1NFERNO-HUB/Junkie/refs/heads/main/Screenshot_20260223_154320_Roblox.jpg" alt="Havoc Preset UI in Roblox" onerror="this.parentElement.innerHTML='<div style=\'height:220px;display:flex;align-items:center;justify-content:center;background:var(--surface);color:var(--fg3);font-family:var(--mono);font-size:11px;\'>[screenshot unavailable]</div>'"/>
             <div class="img-hint"><i data-lucide="zoom-in"></i> Click to expand</div>
           </div>
           <div style="margin-top:24px">
@@ -1185,7 +1128,6 @@ return Hub</span></pre>
         </div></div>
       </div>
 
-      <!-- NAV -->
       <div id="page-nav">
         <button class="pnav-btn" id="prev-btn" onclick="goTo(currentPage-1)"><i data-lucide="arrow-left"></i>Prev</button>
         <div class="pnav-center">
@@ -1198,17 +1140,24 @@ return Hub</span></pre>
   </div>
 </div>
 
-<!-- LIGHTBOX -->
 <div id="lightbox" onclick="lbBg(event)">
   <button id="lb-close" onclick="closeLightbox()"><i data-lucide="x"></i></button>
   <img id="lb-img" src="https://raw.githubusercontent.com/1NFERNO-HUB/Junkie/refs/heads/main/Screenshot_20260223_154320_Roblox.jpg" alt="UI Preview"/>
 </div>
 
-<!-- TOAST -->
 <div id="toast"><i data-lucide="check-circle-2"></i><span id="toast-msg">Copied!</span></div>
 
 <script>
-window.addEventListener('DOMContentLoaded', () => { lucide.createIcons(); initLineNums(); });
+window.addEventListener('DOMContentLoaded', () => {
+  lucide.createIcons();
+  initLineNums();
+  renderProvidersEditor();
+  renderSocialsEditor();
+  renderAppLinksEditor();
+  renderInstrEditor();
+  renderClEditor();
+  renderGameEntries();
+});
 
 const TOTAL = 19;
 const NAMES = ['Overview','How It Works','Minimal Template','Junkie Configs','Providers','GameSupport',
@@ -1216,7 +1165,6 @@ const NAMES = ['Overview','How It Works','Minimal Template','Junkie Configs','Pr
   'Instructions','Changelog Config','Changelog Tags','Full Example','Code Generator','UI Showcase'];
 let currentPage = 0, sbOpen = true;
 
-// ─── LINE NUMBERS ───
 function initLineNums() {
   document.querySelectorAll('.cb-pre').forEach(pre => {
     const id = pre.id;
@@ -1227,7 +1175,6 @@ function initLineNums() {
   });
 }
 
-// ─── TYPEWRITER ───
 const typedBlocks = new Set();
 function typewriteBlock(pre) {
   if (typedBlocks.has(pre.id)) return;
@@ -1246,15 +1193,12 @@ function typewriteBlock(pre) {
   function tick() {
     if (i >= chars.length) { pre.innerHTML = html; initLineNums(); return; }
     const chunk = Math.ceil(1 + chars.length / 400);
-    for (let c = 0; c < chunk && i < chars.length; c++, i++) {
-      inner.textContent += chars[i];
-    }
+    for (let c = 0; c < chunk && i < chars.length; c++, i++) inner.textContent += chars[i];
     setTimeout(tick, speed);
   }
   tick();
 }
 
-// ─── NAV ───
 function buildDots() {
   const c = document.getElementById('dots');
   if (!c) return;
@@ -1282,7 +1226,6 @@ function goTo(idx) {
     next.classList.add('active');
     const s = next.querySelector('.page-scroll');
     if (s) s.scrollTop = 0;
-    // trigger typewriter on first code block in page
     setTimeout(() => {
       const pre = next.querySelector('.cb-pre');
       if (pre && !typedBlocks.has(pre.id)) typewriteBlock(pre);
@@ -1331,7 +1274,6 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeLightbox();
 });
 
-// ─── TOAST ───
 let toastTimer;
 function showToast(msg) {
   const t = document.getElementById('toast');
@@ -1342,7 +1284,6 @@ function showToast(msg) {
   toastTimer = setTimeout(() => { t.style.transform='translateX(-50%) translateY(60px)'; t.style.opacity='0'; }, 2200);
 }
 
-// ─── COPY FUNCTIONS ───
 function getRawText(btn) {
   const pre = btn.closest('.codeblock').querySelector('.cb-pre');
   return pre ? pre.innerText : '';
@@ -1355,17 +1296,6 @@ function copyRaw(btn) {
     setTimeout(() => { btn.innerHTML = '<i data-lucide="copy"></i>Copy Raw'; lucide.createIcons(); }, 2000);
   });
 }
-function copyComments(btn) {
-  let text = getRawText(btn);
-  // strip comment lines (lines starting with --)
-  text = text.split('\n').filter(l => !l.trim().startsWith('--')).join('\n');
-  navigator.clipboard.writeText(text).then(() => {
-    btn.innerHTML = '<i data-lucide="check"></i>Copied!';
-    lucide.createIcons();
-    showToast('Copied without comments');
-    setTimeout(() => { btn.innerHTML = '<i data-lucide="message-square"></i>With Comments'; lucide.createIcons(); }, 2000);
-  });
-}
 function copyGenerated(btn) {
   const pre = document.getElementById('pre-gen');
   navigator.clipboard.writeText(pre ? pre.innerText : '').then(() => {
@@ -1376,7 +1306,6 @@ function copyGenerated(btn) {
   });
 }
 
-// ─── IMAGE 3D ───
 const img3d = document.getElementById('img3d');
 if (img3d) {
   img3d.addEventListener('mousemove', e => {
@@ -1405,7 +1334,6 @@ if (lbImg) {
   lbImg.addEventListener('mouseleave', () => { lbImg.style.transition='transform 0.4s var(--spring)'; lbImg.style.transform=''; setTimeout(() => lbImg.style.transition='transform 0.08s ease', 400); });
 }
 
-// ─── COLOR PICKER ───
 function selectColor(el) {
   document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('selected'));
   el.classList.add('selected');
@@ -1422,10 +1350,347 @@ function updateColorPreview() {
   document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('selected'));
 }
 
-// ─── CODE GENERATOR ───
 function v(id) { return document.getElementById(id)?.value || ''; }
 function chk(id) { return document.getElementById(id)?.checked; }
 
+/* ─── DRAG AND DROP HELPER ─── */
+function makeDraggable(containerEl, dataArr, renderFn) {
+  let dragIdx = null;
+  containerEl.addEventListener('dragstart', e => {
+    const row = e.target.closest('[draggable]');
+    if (!row) return;
+    dragIdx = parseInt(row.dataset.idx);
+    row.classList.add('dragging');
+  });
+  containerEl.addEventListener('dragend', e => {
+    containerEl.querySelectorAll('[draggable]').forEach(r => r.classList.remove('dragging','drag-over'));
+    dragIdx = null;
+  });
+  containerEl.addEventListener('dragover', e => {
+    e.preventDefault();
+    const row = e.target.closest('[draggable]');
+    containerEl.querySelectorAll('[draggable]').forEach(r => r.classList.remove('drag-over'));
+    if (row) row.classList.add('drag-over');
+  });
+  containerEl.addEventListener('drop', e => {
+    e.preventDefault();
+    const row = e.target.closest('[draggable]');
+    if (!row || dragIdx === null) return;
+    const dropIdx = parseInt(row.dataset.idx);
+    if (dragIdx === dropIdx) return;
+    const moved = dataArr.splice(dragIdx, 1)[0];
+    dataArr.splice(dropIdx, 0, moved);
+    renderFn();
+  });
+}
+
+/* ─── PROVIDERS EDITOR ─── */
+let providersData = [
+  { name: 'Junkie Development', url: 'https://jnkie.com/junkiehub', show: true, isJunkie: true, pinned: true },
+  { name: 'Linkvertise', url: '', show: true, isJunkie: false, pinned: false },
+];
+
+function renderProvidersEditor() {
+  const el = document.getElementById('providers-editor');
+  el.innerHTML = providersData.map((p, i) => `
+    <div class="provider-row" draggable="true" data-idx="${i}">
+      <div class="drag-handle"><i data-lucide="grip-vertical"></i></div>
+      <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:7px;align-items:center">
+        <input class="gen-input" style="padding:5px 9px;font-size:12px" type="text" placeholder="Provider name" value="${esc(p.name)}" oninput="providersData[${i}].name=this.value">
+        <input class="gen-input" style="padding:5px 9px;font-family:var(--mono);font-size:11px" type="text" placeholder="URL" value="${esc(p.url)}" oninput="providersData[${i}].url=this.value">
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+        <div class="toggle-row" title="Show">
+          <label class="toggle"><input type="checkbox" ${p.show?'checked':''} onchange="providersData[${i}].show=this.checked"><div class="toggle-slider"></div></label>
+          <span class="toggle-label" style="font-size:11px">Show</span>
+        </div>
+        <div class="toggle-row" title="Pin first">
+          <label class="toggle"><input type="checkbox" ${p.pinned?'checked':''} onchange="providersData[${i}].pinned=this.checked"><div class="toggle-slider"></div></label>
+          <span class="toggle-label" style="font-size:11px">Pin</span>
+        </div>
+        <div class="toggle-row" title="IsJunkie SDK provider">
+          <label class="toggle"><input type="checkbox" ${p.isJunkie?'checked':''} onchange="setJunkieProvider(${i},this.checked)"><div class="toggle-slider"></div></label>
+          <span class="toggle-label" style="font-size:11px;color:var(--green)">Junkie</span>
+        </div>
+        <button class="cl-del-btn" onclick="removeProvider(${i})"><i data-lucide="trash-2"></i></button>
+      </div>
+    </div>
+  `).join('');
+  lucide.createIcons();
+  makeDraggable(el, providersData, renderProvidersEditor);
+}
+
+function setJunkieProvider(idx, val) {
+  if (val) providersData.forEach((p,i) => p.isJunkie = i === idx);
+  else providersData[idx].isJunkie = false;
+  renderProvidersEditor();
+}
+function addProvider() {
+  providersData.push({ name: '', url: '', show: true, isJunkie: false, pinned: false });
+  renderProvidersEditor();
+}
+function removeProvider(idx) {
+  providersData.splice(idx, 1);
+  renderProvidersEditor();
+}
+
+/* ─── GAME SEARCH (Roblox API via allorigins proxy) ─── */
+let gameSearchTimer = null;
+let gameEntries = [];
+
+async function searchRobloxGame(val) {
+  const q = val.trim();
+  const resultsEl = document.getElementById('game-search-results');
+  clearTimeout(gameSearchTimer);
+  if (q.length < 2) { resultsEl.classList.remove('open'); return; }
+  resultsEl.classList.add('open');
+  resultsEl.innerHTML = '<div class="game-search-status"><div class="game-search-spinner"></div>Searching Roblox…</div>';
+
+  gameSearchTimer = setTimeout(async () => {
+    try {
+      const encoded = encodeURIComponent(`https://games.roblox.com/v1/games/list?model.keyword=${encodeURIComponent(q)}&model.maxRows=10&model.startRows=0`);
+      const res = await fetch(`https://api.allorigins.win/get?url=${encoded}`);
+      const json = await res.json();
+      const data = JSON.parse(json.contents);
+      const games = data.games || [];
+      if (!games.length) { resultsEl.innerHTML = '<div class="game-search-status">No games found.</div>'; return; }
+      resultsEl.innerHTML = games.slice(0,8).map(g => {
+        const thumb = `https://www.roblox.com/asset-thumbnail/image?assetId=${g.placeId}&width=50&height=50&format=png`;
+        const players = g.playerCount ? `${g.playerCount.toLocaleString()} playing` : '';
+        return `<div class="game-result-item" onclick="selectGame(${g.placeId}, ${JSON.stringify(g.name)})">
+          <img class="game-result-thumb" src="${thumb}" onerror="this.style.display='none'" alt="">
+          <div class="game-result-info">
+            <div class="game-result-name">${g.name}</div>
+            <div class="game-result-id">ID: ${g.placeId}</div>
+            <div class="game-result-players">${players}</div>
+          </div>
+        </div>`;
+      }).join('');
+    } catch(e) {
+      resultsEl.innerHTML = '<div class="game-search-status">Search failed — check connection.</div>';
+    }
+  }, 450);
+}
+
+function selectGame(id, name) {
+  document.getElementById('game-search-results').classList.remove('open');
+  document.getElementById('g-game-search').value = '';
+  addGameEntry(id, name);
+  showToast(`Added: ${name}`);
+}
+
+function addGameEntry(id, name) {
+  if (gameEntries.find(g => String(g.id) === String(id))) { showToast('Game already added'); return; }
+  gameEntries.push({ id, name, free: '', premium: '' });
+  renderGameEntries();
+}
+function addGameEntryManual() {
+  gameEntries.push({ id: '', name: '', free: '', premium: '' });
+  renderGameEntries();
+}
+function removeGameEntry(idx) { gameEntries.splice(idx, 1); renderGameEntries(); }
+
+function renderGameEntries() {
+  const el = document.getElementById('game-entries-list');
+  if (!gameEntries.length) { el.innerHTML = '<div style="font-size:11px;color:var(--fg3);font-family:var(--mono);padding:8px 0">No game entries yet. Search above or add manually.</div>'; lucide.createIcons(); return; }
+  el.innerHTML = gameEntries.map((g,i) => `
+    <div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px;margin-bottom:8px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--green)">GAME ${i+1}${g.name ? ' — '+g.name : ''}</div>
+        <button class="cl-del-btn" onclick="removeGameEntry(${i})"><i data-lucide="trash-2"></i></button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
+        <div class="gen-field">
+          <label class="gen-label" style="font-size:11px">Place ID</label>
+          <input class="gen-input" style="padding:6px 9px;font-family:var(--mono);font-size:12px" value="${g.id}" placeholder="2788229376" oninput="gameEntries[${i}].id=this.value">
+        </div>
+        <div class="gen-field">
+          <label class="gen-label" style="font-size:11px">Game Name</label>
+          <input class="gen-input" style="padding:6px 9px;font-size:12px" value="${esc(g.name)}" placeholder="Blox Fruits" oninput="gameEntries[${i}].name=this.value">
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div class="gen-field">
+          <label class="gen-label" style="font-size:11px">Free Script URL</label>
+          <input class="gen-input" style="padding:6px 9px;font-family:var(--mono);font-size:11px" value="${esc(g.free)}" placeholder="https://api.jnkie.com/.../HASH/download" oninput="gameEntries[${i}].free=this.value">
+        </div>
+        <div class="gen-field">
+          <label class="gen-label" style="font-size:11px">Premium Script URL</label>
+          <input class="gen-input" style="padding:6px 9px;font-family:var(--mono);font-size:11px" value="${esc(g.premium)}" placeholder="https://api.jnkie.com/.../HASH/download" oninput="gameEntries[${i}].premium=this.value">
+        </div>
+      </div>
+    </div>
+  `).join('');
+  lucide.createIcons();
+}
+
+document.addEventListener('click', e => {
+  const wrap = document.querySelector('.game-search-wrap');
+  const results = document.getElementById('game-search-results');
+  if (wrap && !wrap.contains(e.target)) results?.classList.remove('open');
+});
+
+/* ─── SOCIALS EDITOR ─── */
+const SOCIAL_ICONS = {
+  Discord:'message-circle', GitHub:'github', Website:'globe', Twitter:'twitter',
+  YouTube:'youtube', TikTok:'music', Instagram:'camera', Telegram:'send',
+  Reddit:'message-square', Twitch:'tv', Patreon:'heart', 'Ko-fi':'coffee',
+};
+
+let socialsData = [
+  { name:'Discord', assetId:'124569550333033', show:true, pinned:true, link:'' },
+  { name:'GitHub',  assetId:'82005505285811',  show:true, pinned:false, link:'' },
+  { name:'Website', assetId:'70402301072503',  show:true, pinned:false, link:'' },
+];
+
+function renderSocialsEditor() {
+  const el = document.getElementById('socials-editor');
+  el.innerHTML = socialsData.map((s,i) => `
+    <div class="editor-row" draggable="true" data-idx="${i}">
+      <div class="drag-handle"><i data-lucide="grip-vertical"></i></div>
+      <div class="editor-row-icon"><i data-lucide="${SOCIAL_ICONS[s.name]||'link'}"></i></div>
+      <input class="gen-input" style="padding:5px 9px;font-size:12px;width:110px;flex-shrink:0" type="text" placeholder="Name" value="${esc(s.name)}" oninput="socialsData[${i}].name=this.value;renderSocialsEditor()">
+      <input class="gen-input" style="padding:5px 9px;font-family:var(--mono);font-size:10px;flex:1" type="text" placeholder="https://…" value="${esc(s.link)}" oninput="socialsData[${i}].link=this.value">
+      <div class="toggle-row" style="flex-shrink:0">
+        <label class="toggle"><input type="checkbox" ${s.show?'checked':''} onchange="socialsData[${i}].show=this.checked"><div class="toggle-slider"></div></label>
+        <span class="toggle-label" style="font-size:11px">Show</span>
+      </div>
+      <div class="toggle-row" style="flex-shrink:0">
+        <label class="toggle"><input type="checkbox" ${s.pinned?'checked':''} onchange="socialsData[${i}].pinned=this.checked"><div class="toggle-slider"></div></label>
+        <span class="toggle-label" style="font-size:11px">Pin</span>
+      </div>
+      <button class="cl-del-btn" onclick="removeSocial(${i})"><i data-lucide="trash-2"></i></button>
+    </div>
+  `).join('');
+  lucide.createIcons();
+  makeDraggable(el, socialsData, renderSocialsEditor);
+}
+function addSocial() {
+  socialsData.push({ name:'', assetId:'0', show:true, pinned:false, link:'' });
+  renderSocialsEditor();
+}
+function removeSocial(idx) { socialsData.splice(idx,1); renderSocialsEditor(); }
+
+/* ─── APP LINKS EDITOR ─── */
+const APPLINK_ICONS = {
+  'Linkvertise': '136932438761448',
+  'LootLabs':    '112948200285735',
+  'Work.ink':    '92786469847385',
+  'Shrtfly':     '0',
+  'Lockr':       '0',
+  'Website':     '70402301072503',
+};
+
+let appLinksData = [
+  { name:'', show:true, pinned:true, link:'' },
+];
+
+function getAppIcon(name) {
+  return APPLINK_ICONS[name] || '0';
+}
+
+function renderAppLinksEditor() {
+  const el = document.getElementById('applinks-editor');
+  el.innerHTML = appLinksData.map((a,i) => `
+    <div class="editor-row" draggable="true" data-idx="${i}">
+      <div class="drag-handle"><i data-lucide="grip-vertical"></i></div>
+      <div class="editor-row-icon"><i data-lucide="external-link"></i></div>
+      <input class="gen-input" style="padding:5px 9px;font-size:12px;width:120px;flex-shrink:0" type="text" placeholder="App name" value="${esc(a.name)}" oninput="appLinksData[${i}].name=this.value">
+      <input class="gen-input" style="padding:5px 9px;font-family:var(--mono);font-size:10px;flex:1" type="text" placeholder="https://…" value="${esc(a.link)}" oninput="appLinksData[${i}].link=this.value">
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px;flex-shrink:0">
+        <div class="applink-locked" title="Icon ID is auto-assigned by the library">🔒 icon: auto</div>
+      </div>
+      <div class="toggle-row" style="flex-shrink:0">
+        <label class="toggle"><input type="checkbox" ${a.show?'checked':''} onchange="appLinksData[${i}].show=this.checked"><div class="toggle-slider"></div></label>
+        <span class="toggle-label" style="font-size:11px">Show</span>
+      </div>
+      <div class="toggle-row" style="flex-shrink:0">
+        <label class="toggle"><input type="checkbox" ${a.pinned?'checked':''} onchange="appLinksData[${i}].pinned=this.checked"><div class="toggle-slider"></div></label>
+        <span class="toggle-label" style="font-size:11px">Pin</span>
+      </div>
+      <button class="cl-del-btn" onclick="removeAppLink(${i})"><i data-lucide="trash-2"></i></button>
+    </div>
+  `).join('');
+  lucide.createIcons();
+  makeDraggable(el, appLinksData, renderAppLinksEditor);
+}
+function addAppLink() {
+  appLinksData.push({ name:'', show:true, pinned:false, link:'' });
+  renderAppLinksEditor();
+}
+function removeAppLink(idx) { appLinksData.splice(idx,1); renderAppLinksEditor(); }
+
+/* ─── INSTRUCTION EDITOR ─── */
+let instrRows = [
+  { title:'Open Junkie',    body:'Click Junkie Development to open your key link.' },
+  { title:'Complete Steps', body:'Finish all checkpoints on the Junkie page.' },
+  { title:'Paste & Redeem',body:'Paste your jnk- key above and hit Redeem.' },
+];
+
+function renderInstrEditor() {
+  const el = document.getElementById('instr-editor');
+  el.innerHTML = instrRows.map((r,i) => `
+    <div class="instr-row">
+      <div class="instr-row-num">${i+1}</div>
+      <div class="instr-fields">
+        <input class="instr-title-input" type="text" placeholder="Step title" value="${esc(r.title)}" oninput="instrRows[${i}].title=this.value">
+        <textarea class="instr-body-input" placeholder="Step description…" oninput="instrRows[${i}].body=this.value">${r.body}</textarea>
+      </div>
+      <button class="instr-del-btn" onclick="removeInstrRow(${i})"><i data-lucide="trash-2"></i></button>
+    </div>
+  `).join('');
+  lucide.createIcons();
+}
+function addInstrRow() { instrRows.push({ title:'', body:'' }); renderInstrEditor(); }
+function removeInstrRow(idx) { instrRows.splice(idx,1); renderInstrEditor(); }
+
+/* ─── CHANGELOG EDITOR ─── */
+let clVersions = [
+  { version:'1.0', date:'', tag:'NEW', notes:['Initial release'] }
+];
+const CL_TAGS = ['NEW','FIX','IMPROVED','REMOVED','SECURITY'];
+
+function renderClEditor() {
+  const el = document.getElementById('cl-editor');
+  el.innerHTML = clVersions.map((cv,vi) => `
+    <div class="cl-version-row">
+      <div class="cl-version-header">
+        <select class="cl-version-tag-select" onchange="clVersions[${vi}].tag=this.value" style="color:${tagColor(cv.tag)}">
+          ${CL_TAGS.map(t=>`<option value="${t}" ${cv.tag===t?'selected':''}>${t}</option>`).join('')}
+        </select>
+        <div class="cl-version-fields">
+          <input class="cl-version-input" type="text" placeholder="e.g. 1.0" value="${esc(cv.version)}" style="width:90px" oninput="clVersions[${vi}].version=this.value">
+          <input class="cl-version-input" type="text" placeholder="e.g. Feb 2026" value="${esc(cv.date)}" style="width:110px" oninput="clVersions[${vi}].date=this.value">
+        </div>
+        <button class="cl-del-btn" onclick="removeClVersion(${vi})"><i data-lucide="trash-2"></i></button>
+      </div>
+      <div class="cl-notes-wrap">
+        ${cv.notes.map((n,ni) => `
+          <div class="cl-note-row">
+            <input class="cl-note-input" type="text" placeholder="Change note…" value="${esc(n)}" oninput="clVersions[${vi}].notes[${ni}]=this.value">
+            <button class="cl-note-del" onclick="removeClNote(${vi},${ni})"><i data-lucide="x"></i></button>
+          </div>
+        `).join('')}
+        <button type="button" class="add-row-btn" onclick="addClNote(${vi})" style="margin-top:4px"><i data-lucide="plus"></i>Add Note</button>
+      </div>
+    </div>
+  `).join('');
+  lucide.createIcons();
+}
+function tagColor(tag) {
+  const map = { NEW:'#4ade80',FIX:'#f87171',IMPROVED:'#93c5fd',REMOVED:'#fdba74',SECURITY:'#fcd34d' };
+  return map[tag] || '#deeede';
+}
+function addClVersion() { clVersions.unshift({ version:'', date:'', tag:'NEW', notes:[''] }); renderClEditor(); }
+function removeClVersion(vi) { clVersions.splice(vi,1); renderClEditor(); }
+function addClNote(vi) { clVersions[vi].notes.push(''); renderClEditor(); }
+function removeClNote(vi,ni) { clVersions[vi].notes.splice(ni,1); renderClEditor(); }
+
+/* ─── UTILS ─── */
+function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
+function q(s) { return s.replace(/\\/g,'\\\\').replace(/"/g,'\\"'); }
+
+/* ─── CODE GENERATOR ─── */
 function generateCode() {
   const form = document.getElementById('gen-form');
   const loading = document.getElementById('gen-loading');
@@ -1434,40 +1699,31 @@ function generateCode() {
   result.classList.remove('visible');
   loading.classList.add('visible');
 
-  const dur = (Math.random() * 14 + 8).toFixed(1); // 8–22s range display
-  const actualDur = (Math.random() * 3 + 1.5); // actual 1.5–4.5s
-  document.getElementById('gen-bar').style.setProperty('--load-dur', actualDur + 's');
+  const actualDur = (Math.random() * 2 + 1.5);
   document.getElementById('gen-bar').style.animation = 'none';
   void document.getElementById('gen-bar').offsetWidth;
+  document.getElementById('gen-bar').style.setProperty('--load-dur', actualDur+'s');
   document.getElementById('gen-bar').style.animation = `loadingBar ${actualDur}s ease-in-out forwards`;
 
-  const msgs = [
-    `Building config for "${v('g-name')}"…`,
-    'Applying your colour theme…',
-    'Setting up Junkie SDK integration…',
-    'Preparing key system settings…',
-    'Wrapping up your config…'
-  ];
+  const msgs = [`Building config for "${v('g-name')}"…`,'Applying colour theme…','Setting up Junkie SDK…','Preparing key system…','Wrapping up…'];
   const steps = ['gls-1','gls-2','gls-3','gls-4','gls-5'];
   const stepInterval = (actualDur * 1000) / steps.length;
-  steps.forEach((id, i) => {
+  steps.forEach((id,i) => {
     setTimeout(() => {
       document.getElementById(id).classList.add('visible');
-      document.getElementById('gen-loading-msg').textContent = msgs[i] || msgs[msgs.length-1];
-      if (i > 0) { const prev = document.getElementById(steps[i-1]); if(prev) prev.classList.add('done'); }
+      document.getElementById('gen-loading-msg').textContent = msgs[i]||msgs[msgs.length-1];
+      if (i > 0) document.getElementById(steps[i-1])?.classList.add('done');
       lucide.createIcons();
     }, i * stepInterval);
   });
 
   setTimeout(() => {
-    const lastStep = document.getElementById(steps[steps.length-1]);
-    if(lastStep) lastStep.classList.add('done');
+    document.getElementById(steps[steps.length-1])?.classList.add('done');
     lucide.createIcons();
   }, (steps.length - 0.2) * stepInterval);
 
   setTimeout(() => {
     loading.classList.remove('visible');
-    // reset steps
     steps.forEach(id => { const el=document.getElementById(id); if(el){el.classList.remove('visible','done');} });
     buildOutput();
     result.classList.add('visible');
@@ -1480,77 +1736,72 @@ function generateCode() {
 }
 
 function buildOutput() {
-  const name = v('g-name') || 'My Hub';
-  const ver  = v('g-ver')  || '1.0';
-  const service  = v('g-service')  || name;
-  const ident    = v('g-ident')    || '1234';
-  const provider = v('g-provider') || name;
-  const webhook  = v('g-webhook')  || '';
-  const attempts = v('g-attempts') || '5';
-  const keyfile  = v('g-keyfile')  || 'myhub_key.txt';
-  const badge    = v('g-badge')    || 'KEY SYSTEM';
-  const discord  = v('g-discord')  || '';
-  const keylabel = v('g-keylabel') || 'Enter Key';
-  const keyph    = v('g-keyph')    || 'jnk-XXXXXXXXXXXXXXXX';
-  const success  = v('g-success')  || '✓ Access Granted!';
-  const gradspeed= v('g-gradspeed')|| '4';
-  const glass    = v('g-glass')    || '0.18';
-  const blur     = v('g-blur')     || '30';
+  const name       = v('g-name')     || 'My Hub';
+  const ver        = v('g-ver')      || '1.0';
+  const service    = v('g-service')  || name;
+  const ident      = v('g-ident')    || '1234';
+  const provider   = v('g-provider') || name;
+  const webhook    = v('g-webhook')  || '';
+  const attempts   = v('g-attempts') || '5';
+  const keyfile    = v('g-keyfile')  || 'myhub_key.txt';
+  const badge      = v('g-badge')    || 'KEY SYSTEM';
+  const discord    = v('g-discord')  || '';
+  const keylabel   = v('g-keylabel') || 'Enter Key';
+  const keyph      = v('g-keyph')    || 'jnk-XXXXXXXXXXXXXXXX';
+  const success    = v('g-success')  || '✓ Access Granted!';
+  const gradspeed  = v('g-gradspeed')|| '4';
+  const glass      = v('g-glass')    || '0.18';
+  const blur       = v('g-blur')     || '30';
   const r = parseInt(v('g-r'))||138, g = parseInt(v('g-g'))||43, b = parseInt(v('g-b'))||226;
-  const snow      = chk('g-snow')     ? 'true' : 'false';
-  const gradient  = chk('g-gradient') ? 'true' : 'false';
-  const outline   = chk('g-outline')  ? 'true' : 'false';
-  const slidein   = chk('g-slidein')  ? 'true' : 'false';
-  const bluren    = chk('g-bluren')   ? 'true' : 'false';
-  const members   = chk('g-members')  ? 'true' : 'false';
-  const closeok   = chk('g-close')    ? 'true' : 'false';
-  const premium   = chk('g-premium')  ? 'true' : 'false';
+  const snow     = chk('g-snow')     ? 'true':'false';
+  const gradient = chk('g-gradient') ? 'true':'false';
+  const outline  = chk('g-outline')  ? 'true':'false';
+  const slidein  = chk('g-slidein')  ? 'true':'false';
+  const bluren   = chk('g-bluren')   ? 'true':'false';
+  const members  = chk('g-members')  ? 'true':'false';
+  const closeok  = chk('g-close')    ? 'true':'false';
+  const premium  = chk('g-premium')  ? 'true':'false';
 
-  // Build GameSupport from entries
-  let gameSupportStr = '';
-  if (gameEntries.length) {
-    gameSupportStr = gameEntries.map(g => {
-      const keyStr = g.id && !isNaN(g.id) ? `[${g.id}]` : 'Universal';
-      return `    ${keyStr} = { Name = "${g.name || 'Universal'}", Free = "${g.free}", Premium = "${g.premium}" },`;
-    }).join('\n');
-  }
+  const providersStr = providersData.map(p =>
+    `    { Name = "${q(p.name)}", Url = "${q(p.url)}", Show = ${p.show}, IsJunkie = ${p.isJunkie}, Pinned = ${p.pinned} },`
+  ).join('\n');
+
+  let gameSupportStr = gameEntries.map(g => {
+    const keyStr = g.id && !isNaN(g.id) ? `[${g.id}]` : 'Universal';
+    return `    ${keyStr} = { Name = "${q(g.name||'Game')}", Free = "${q(g.free)}", Premium = "${q(g.premium)}" },`;
+  }).join('\n');
   gameSupportStr += `\n    Universal = { Name = "Universal", Free = "", Premium = "" },`;
 
-  // Build Socials from editor
   const socialsStr = socialsData.map(s =>
-    `    { Name = "${s.name}", Icon = "rbxassetid://${s.assetId}", Link = "${s.link}", Show = ${s.show}, Pinned = ${s.pinned} },`
+    `    { Name = "${q(s.name)}", Icon = "rbxassetid://${s.assetId}", Link = "${q(s.link)}", Show = ${s.show}, Pinned = ${s.pinned} },`
   ).join('\n');
 
-  // Build Instructions from editor
+  const applinksStr = appLinksData.map(a =>
+    `    { Name = "${q(a.name)}", Icon = "rbxassetid://0", Link = "${q(a.link)}", Show = ${a.show}, Pinned = ${a.pinned} },`
+  ).join('\n');
+
   const instrStr = instrRows.map(r =>
-    `    { Title = "${r.title.replace(/"/g,'\\"')}", Body = "${r.body.replace(/"/g,'\\"')}" },`
+    `    { Title = "${q(r.title)}", Body = "${q(r.body)}" },`
   ).join('\n');
 
-  // Build Changelog from editor
   const clStr = clVersions.map(cv => {
-    const notesStr = cv.notes.map(n => `"${n.replace(/"/g,'\\"')}"`).join(', ');
-    return `      { Version = "${cv.version}", Date = "${cv.date}", Tag = "${cv.tag}", Notes = { ${notesStr} } },`;
+    const notesStr = cv.notes.map(n => `"${q(n)}"`).join(', ');
+    return `      { Version = "${q(cv.version)}", Date = "${q(cv.date)}", Tag = "${q(cv.tag)}", Notes = { ${notesStr} } },`;
   }).join('\n');
 
-  const code = `getgenv().SCRIPT_KEY = nil
+  const code =
+`getgenv().SCRIPT_KEY = nil
 
 local Junkie_Configs = {
   UseJunkie       = true,
-  Junkie_Webhook  = "${webhook}",
-  Service         = "${service}",
-  Identifier      = "${ident}",
-  Provider        = "${provider}",
+  Junkie_Webhook  = "${q(webhook)}",
+  Service         = "${q(service)}",
+  Identifier      = "${q(ident)}",
+  Provider        = "${q(provider)}",
   MaxKeyAttempts  = ${attempts},
   Premium         = ${premium},
   Providers = {
-    {
-      Name     = "Junkie Development",
-      Icon     = "rbxassetid://135475048973669",
-      Url      = "",
-      Show     = true,
-      IsJunkie = true,
-      Pinned   = true,
-    },
+${providersStr}
   },
   GameSupport = {
 ${gameSupportStr}
@@ -1558,34 +1809,34 @@ ${gameSupportStr}
 }
 
 local UI_Configs = {
-  Name                 = "\${name}",
-  Version              = "\${ver}",
-  Color                = Color3.fromRGB(\${r}, \${g}, \${b}),
-  GradientAnimated     = \${gradient},
-  GradientAnimationSpeed = \${gradspeed},
-  BadgeText            = "\${badge}",
-  ShowOutline          = \${outline},
-  KeySystemLabel       = "\${keylabel}",
-  KeySystemPlaceholder = "\${keyph}",
-  ShowMemberCount      = \${members},
-  SnowEnabled          = \${snow},
+  Name                 = "${q(name)}",
+  Version              = "${q(ver)}",
+  Color                = Color3.fromRGB(${r}, ${g}, ${b}),
+  GradientAnimated     = ${gradient},
+  GradientAnimationSpeed = ${gradspeed},
+  BadgeText            = "${q(badge)}",
+  ShowOutline          = ${outline},
+  KeySystemLabel       = "${q(keylabel)}",
+  KeySystemPlaceholder = "${q(keyph)}",
+  ShowMemberCount      = ${members},
+  SnowEnabled          = ${snow},
   SnowDensity          = 1.0,
   SnowColor            = Color3.fromRGB(220, 235, 255),
   SnowSize             = { Min = 3, Max = 7 },
-  GlassOpacity         = \${glass},
-  SlideInEnabled       = \${slidein},
-  BlurEnabled          = \${bluren},
-  BlurSize             = \${blur},
+  GlassOpacity         = ${glass},
+  SlideInEnabled       = ${slidein},
+  BlurEnabled          = ${bluren},
+  BlurSize             = ${blur},
   OverlayOpacity       = 0.65,
-  CloseOnSuccess       = \${closeok},
-  SuccessMessage       = "\${success}",
-  KeyFile              = "\${keyfile}",
-  Discord              = "\${discord}",
+  CloseOnSuccess       = ${closeok},
+  SuccessMessage       = "${q(success)}",
+  KeyFile              = "${q(keyfile)}",
+  Discord              = "${q(discord)}",
   Socials = {
 ${socialsStr}
   },
   AppLinks = {
-    { Name = "", Icon = "rbxassetid://124569550333033", Link = "", Show = true, Pinned = true },
+${applinksStr}
   },
   Instructions = {
 ${instrStr}
@@ -1601,11 +1852,12 @@ ${clStr}
 
 local Config = {
   Name=UI_Configs.Name, Version=UI_Configs.Version, Color=UI_Configs.Color,
-  Text_Color=UI_Configs.Text_Color, GradientAnimated=UI_Configs.GradientAnimated,
-  GradientAnimationSpeed=UI_Configs.GradientAnimationSpeed, Icon=UI_Configs.Icon,
-  BadgeText=UI_Configs.BadgeText, CustomFont=UI_Configs.CustomFont,
-  ShowOutline=UI_Configs.ShowOutline, KeySystemLabel=UI_Configs.KeySystemLabel,
-  KeySystemPlaceholder=UI_Configs.KeySystemPlaceholder, ShowMemberCount=UI_Configs.ShowMemberCount,
+  GradientAnimated=UI_Configs.GradientAnimated,
+  GradientAnimationSpeed=UI_Configs.GradientAnimationSpeed,
+  BadgeText=UI_Configs.BadgeText, ShowOutline=UI_Configs.ShowOutline,
+  KeySystemLabel=UI_Configs.KeySystemLabel,
+  KeySystemPlaceholder=UI_Configs.KeySystemPlaceholder,
+  ShowMemberCount=UI_Configs.ShowMemberCount,
   SnowEnabled=UI_Configs.SnowEnabled, SnowDensity=UI_Configs.SnowDensity,
   SnowColor=UI_Configs.SnowColor, SnowSize=UI_Configs.SnowSize,
   GlassOpacity=UI_Configs.GlassOpacity, SlideInEnabled=UI_Configs.SlideInEnabled,
@@ -1623,7 +1875,7 @@ local Config = {
 
 local Hub
 pcall(function()
-  local src = game:HttpGet("") -- Insert your library URL here
+  local src = game:HttpGet("")
   if #src < 100 then return end
   Hub = loadstring(src)()
 end)
@@ -1641,16 +1893,14 @@ while not getgenv().SCRIPT_KEY do
   task.wait(0.1)
 end
 
--- Put your script here
 return Hub`;
 
   const pre = document.getElementById('pre-gen');
   if (pre) pre.textContent = code;
-  // build line numbers
   const lnEl = document.getElementById('ln-gen');
   if (lnEl) {
     const lines = code.split('\n').length;
-    lnEl.innerHTML = Array.from({length: lines}, (_,i) => `<span>${i+1}</span>`).join('');
+    lnEl.innerHTML = Array.from({length:lines},(_,i)=>`<span>${i+1}</span>`).join('');
   }
 }
 
@@ -1660,280 +1910,19 @@ function resetGenerator() {
   lucide.createIcons();
 }
 
-// ─── DOWNLOAD ───
 function downloadGenerated(ext) {
   const pre = document.getElementById('pre-gen');
   const text = pre ? pre.innerText : '';
   if (!text) return;
-  const name = (document.getElementById('g-name')?.value || 'config').replace(/\s+/g,'_').toLowerCase();
-  const blob = new Blob([text], { type: 'text/plain' });
+  const fname = (v('g-name')||'config').replace(/\s+/g,'_').toLowerCase();
+  const blob = new Blob([text], { type:'text/plain' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = name + '_config.' + ext;
+  a.download = fname + '_config.' + ext;
   a.click();
   URL.revokeObjectURL(a.href);
-  showToast('Downloaded as ' + ext + '!');
+  showToast('Downloaded as .' + ext);
 }
-
-// ─── GAME SEARCH (Claude API) ───
-let gameSearchTimer = null;
-let gameEntries = []; // [{id, name, free, premium}]
-
-function searchRobloxGame(val) {
-  const q = val.trim();
-  const resultsEl = document.getElementById('game-search-results');
-  const statusEl = document.getElementById('game-search-status');
-  clearTimeout(gameSearchTimer);
-  if (q.length < 2) {
-    resultsEl.classList.remove('open');
-    return;
-  }
-  resultsEl.classList.add('open');
-  statusEl.textContent = 'Searching…';
-  resultsEl.innerHTML = '<div class="game-search-status" id="game-search-status">Searching…</div>';
-
-  gameSearchTimer = setTimeout(async () => {
-    try {
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 600,
-          messages: [{
-            role: 'user',
-            content: `Return a JSON array of 5 Roblox games matching the search query "${q}". Each item must have: id (Roblox PlaceId number), name (string), players (string like "2.3k playing"). Only return real Roblox games. Return ONLY the raw JSON array, no markdown, no explanation. Example: [{"id":2788229376,"name":"Blox Fruits","players":"42k playing"}]`
-          }]
-        })
-      });
-      const data = await response.json();
-      const text = data.content?.[0]?.text || '[]';
-      const clean = text.replace(/```json|```/g,'').trim();
-      const games = JSON.parse(clean);
-      renderGameResults(games);
-    } catch(e) {
-      document.getElementById('game-search-results').innerHTML = '<div class="game-search-status">Search failed. Try again.</div>';
-    }
-  }, 500);
-}
-
-function renderGameResults(games) {
-  const el = document.getElementById('game-search-results');
-  if (!games || !games.length) {
-    el.innerHTML = '<div class="game-search-status">No games found.</div>';
-    return;
-  }
-  el.innerHTML = games.map(g => `
-    <div class="game-result-item" onclick="selectGame(${g.id}, ${JSON.stringify(g.name).replace(/"/g,'&quot;')})">
-      <div class="game-result-thumb" style="background:var(--surface3);display:flex;align-items:center;justify-content:center;color:var(--green);font-family:var(--mono);font-size:9px">${g.id}</div>
-      <div class="game-result-info">
-        <div class="game-result-name">${g.name}</div>
-        <div class="game-result-id">ID: ${g.id}</div>
-        <div class="game-result-players">${g.players || ''}</div>
-      </div>
-    </div>
-  `).join('');
-}
-
-function selectGame(id, name) {
-  document.getElementById('game-search-results').classList.remove('open');
-  document.getElementById('g-game-search').value = '';
-  const badge = document.getElementById('game-selected-badge');
-  badge.style.display = 'inline-flex';
-  document.getElementById('game-selected-text').textContent = name + ' — ' + id;
-  addGameEntry(id, name);
-  lucide.createIcons();
-}
-
-function clearGameSelection() {
-  document.getElementById('game-selected-badge').style.display = 'none';
-}
-
-function addGameEntry(id, name) {
-  gameEntries.push({ id: id, name: name, free: '', premium: '' });
-  renderGameEntries();
-}
-
-function addGameEntryManual() {
-  gameEntries.push({ id: '', name: '', free: '', premium: '' });
-  renderGameEntries();
-}
-
-function removeGameEntry(idx) {
-  gameEntries.splice(idx, 1);
-  renderGameEntries();
-}
-
-function renderGameEntries() {
-  const el = document.getElementById('game-entries-list');
-  const header = '<div style="font-size:11px;color:var(--fg3);font-family:var(--mono);margin-bottom:8px">GAME ENTRIES — add games via search or manually below</div>';
-  if (!gameEntries.length) { el.innerHTML = header; lucide.createIcons(); return; }
-  el.innerHTML = header + gameEntries.map((g,i) => `
-    <div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px;margin-bottom:8px">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px">
-        <div style="font-family:var(--mono);font-size:10px;color:var(--green)">GAME ${i+1}</div>
-        <button class="cl-del-btn" onclick="removeGameEntry(${i})"><i data-lucide="trash-2"></i></button>
-      </div>
-      <div class="gen-grid" style="gap:8px;margin-bottom:8px">
-        <div class="gen-field">
-          <label class="gen-label" style="font-size:11px">Place ID</label>
-          <input class="gen-input" style="padding:6px 9px;font-family:var(--mono);font-size:12px" value="${g.id}" placeholder="2788229376" oninput="gameEntries[${i}].id=this.value">
-        </div>
-        <div class="gen-field">
-          <label class="gen-label" style="font-size:11px">Game Name</label>
-          <input class="gen-input" style="padding:6px 9px;font-size:12px" value="${g.name}" placeholder="Blox Fruits" oninput="gameEntries[${i}].name=this.value">
-        </div>
-      </div>
-      <div class="gen-grid" style="gap:8px">
-        <div class="gen-field">
-          <label class="gen-label" style="font-size:11px">Free Script URL</label>
-          <input class="gen-input" style="padding:6px 9px;font-family:var(--mono);font-size:11px" value="${g.free}" placeholder="https://api.jnkie.com/.../HASH/download" oninput="gameEntries[${i}].free=this.value">
-        </div>
-        <div class="gen-field">
-          <label class="gen-label" style="font-size:11px">Premium Script URL</label>
-          <input class="gen-input" style="padding:6px 9px;font-family:var(--mono);font-size:11px" value="${g.premium}" placeholder="https://api.jnkie.com/.../HASH/download" oninput="gameEntries[${i}].premium=this.value">
-        </div>
-      </div>
-    </div>
-  `).join('');
-  lucide.createIcons();
-}
-
-// close game search on outside click
-document.addEventListener('click', e => {
-  const wrap = document.querySelector('.game-search-wrap');
-  const results = document.getElementById('game-search-results');
-  if (wrap && !wrap.contains(e.target)) results?.classList.remove('open');
-});
-
-// ─── SOCIALS EDITOR ───
-const SOCIALS_DEF = [
-  { name: 'Discord', icon: 'message-circle', assetId: '124569550333033', show: true, pinned: true, link: '' },
-  { name: 'GitHub',  icon: 'github',         assetId: '82005505285811',  show: true, pinned: false, link: '' },
-  { name: 'Website', icon: 'globe',          assetId: '70402301072503',  show: true, pinned: false, link: '' },
-];
-let socialsData = SOCIALS_DEF.map(s => ({...s}));
-
-function renderSocialsEditor() {
-  const el = document.getElementById('socials-editor');
-  el.innerHTML = socialsData.map((s,i) => `
-    <div class="social-editor-row">
-      <div class="social-icon"><i data-lucide="${s.icon}"></i></div>
-      <span class="social-name">${s.name}</span>
-      <input class="social-link-input" type="text" placeholder="https://…" value="${s.link}" oninput="socialsData[${i}].link=this.value" title="Link URL">
-      <div class="toggle-row" style="flex-shrink:0">
-        <label class="toggle" title="Show in UI"><input type="checkbox" ${s.show?'checked':''} onchange="socialsData[${i}].show=this.checked"><div class="toggle-slider"></div></label>
-        <span class="toggle-label" style="font-size:11px;white-space:nowrap">Show</span>
-      </div>
-      <div class="toggle-row" style="flex-shrink:0">
-        <label class="toggle" title="Pin first"><input type="checkbox" ${s.pinned?'checked':''} onchange="socialsData[${i}].pinned=this.checked"><div class="toggle-slider"></div></label>
-        <span class="toggle-label" style="font-size:11px;white-space:nowrap">Pin</span>
-      </div>
-    </div>
-  `).join('');
-  lucide.createIcons();
-}
-
-// ─── INSTRUCTION EDITOR ───
-let instrRows = [
-  { title: 'Open Junkie',    body: 'Click Junkie Development to open your key link.' },
-  { title: 'Complete Steps', body: 'Finish all checkpoints on the Junkie page.' },
-  { title: 'Paste & Redeem',body: 'Paste your jnk- key above and hit Redeem.' },
-];
-
-function renderInstrEditor() {
-  const el = document.getElementById('instr-editor');
-  el.innerHTML = instrRows.map((r,i) => `
-    <div class="instr-row">
-      <div class="instr-row-num">${i+1}</div>
-      <div class="instr-fields">
-        <input class="instr-title-input" type="text" placeholder="Step title" value="${r.title.replace(/"/g,'&quot;')}" oninput="instrRows[${i}].title=this.value">
-        <textarea class="instr-body-input" placeholder="Step description…" oninput="instrRows[${i}].body=this.value">${r.body}</textarea>
-      </div>
-      <button class="instr-del-btn" onclick="removeInstrRow(${i})"><i data-lucide="trash-2"></i></button>
-    </div>
-  `).join('');
-  lucide.createIcons();
-}
-
-function addInstrRow() {
-  instrRows.push({ title: '', body: '' });
-  renderInstrEditor();
-}
-
-function removeInstrRow(idx) {
-  instrRows.splice(idx, 1);
-  renderInstrEditor();
-}
-
-// ─── CHANGELOG EDITOR ───
-let clVersions = [
-  { version: '1.0', date: '', tag: 'NEW', notes: ['Initial release'] }
-];
-const CL_TAGS = ['NEW','FIX','IMPROVED','REMOVED','SECURITY'];
-
-function renderClEditor() {
-  const el = document.getElementById('cl-editor');
-  el.innerHTML = clVersions.map((v,vi) => `
-    <div class="cl-version-row">
-      <div class="cl-version-header">
-        <select class="cl-version-tag-select" onchange="clVersions[${vi}].tag=this.value" style="color:${tagColor(v.tag)}">
-          ${CL_TAGS.map(t=>`<option value="${t}" ${v.tag===t?'selected':''}>${t}</option>`).join('')}
-        </select>
-        <div class="cl-version-fields">
-          <input class="cl-version-input" type="text" placeholder="Version e.g. 1.0" value="${v.version}" style="width:90px" oninput="clVersions[${vi}].version=this.value">
-          <input class="cl-version-input" type="text" placeholder="Date e.g. Feb 2026" value="${v.date}" style="width:110px" oninput="clVersions[${vi}].date=this.value">
-        </div>
-        <button class="cl-del-btn" onclick="removeClVersion(${vi})"><i data-lucide="trash-2"></i></button>
-      </div>
-      <div class="cl-notes-wrap">
-        ${v.notes.map((n,ni) => `
-          <div class="cl-note-row">
-            <input class="cl-note-input" type="text" placeholder="Change note…" value="${n.replace(/"/g,'&quot;')}" oninput="clVersions[${vi}].notes[${ni}]=this.value">
-            <button class="cl-note-del" onclick="removeClNote(${vi},${ni})"><i data-lucide="x"></i></button>
-          </div>
-        `).join('')}
-        <button type="button" class="add-row-btn" onclick="addClNote(${vi})" style="margin-top:4px"><i data-lucide="plus"></i>Add Note</button>
-      </div>
-    </div>
-  `).join('');
-  lucide.createIcons();
-}
-
-function tagColor(tag) {
-  const map = { NEW:'#4ade80',FIX:'#f87171',IMPROVED:'#93c5fd',REMOVED:'#fdba74',SECURITY:'#fcd34d' };
-  return map[tag] || '#deeede';
-}
-
-function addClVersion() {
-  clVersions.unshift({ version: '', date: '', tag: 'NEW', notes: [''] });
-  renderClEditor();
-}
-
-function removeClVersion(vi) {
-  clVersions.splice(vi,1);
-  renderClEditor();
-}
-
-function addClNote(vi) {
-  clVersions[vi].notes.push('');
-  renderClEditor();
-}
-
-function removeClNote(vi,ni) {
-  clVersions[vi].notes.splice(ni,1);
-  renderClEditor();
-}
-
-// ─── INIT EDITORS ───
-document.addEventListener('DOMContentLoaded', () => {
-  lucide.createIcons();
-  initLineNums();
-  renderSocialsEditor();
-  renderInstrEditor();
-  renderClEditor();
-  renderGameEntries();
-});
 </script>
 </body>
 </html>
